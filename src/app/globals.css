@@ -15,6 +15,16 @@
 
 	--font-sans: var(--font-sans);
 	--font-heading: var(--font-heading);
+
+	--radius-card: 1.5rem;
+	--radius-panel: 2rem;
+	--radius-pill: 999px;
+
+	--shadow-soft: 0 24px 80px rgba(47, 38, 31, 0.12);
+	--shadow-card: 0 16px 40px rgba(47, 38, 31, 0.08);
+
+	--text-hero: clamp(3rem, 7vw, 6.5rem);
+	--text-section-title: clamp(2.25rem, 4vw, 4rem);
 }
 
 html {
@@ -43,5 +53,39 @@ body {
 			background-color 150ms ease,
 			border-color 150ms ease,
 			opacity 150ms ease;
+	}
+
+	:focus-visible {
+		outline: 3px solid color-mix(in srgb, var(--color-mk-green) 70%, white);
+		outline-offset: 3px;
+	}
+}
+
+@layer components {
+	.section-padding {
+		padding-block: clamp(4rem, 8vw, 7rem);
+	}
+
+	.section-container {
+		width: min(100% - 2rem, 80rem);
+		margin-inline: auto;
+	}
+
+	.heading-display {
+		font-family: var(--font-heading);
+		font-size: var(--text-hero);
+		line-height: 0.95;
+		letter-spacing: 0;
+	}
+
+	.heading-section {
+		font-family: var(--font-heading);
+		font-size: var(--text-section-title);
+		line-height: 1;
+		letter-spacing: 0;
+	}
+
+	.text-balance-pretty {
+		text-wrap: balance;
 	}
 }
