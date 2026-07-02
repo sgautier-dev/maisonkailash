@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+	--color-background: #fffaf3;
+	--color-foreground: #2f261f;
+	--color-muted: #6f675f;
+	--color-border: rgba(52, 119, 109, 0.16);
+
+	--color-mk-saffron: #f08030;
+	--color-mk-saffron-dark: #c85f1f;
+	--color-mk-green: #34776d;
+	--color-mk-green-dark: #1f574f;
+	--color-mk-mint: #bad3d4;
+	--color-mk-sand: #f7dea6;
+
+	--font-sans: var(--font-sans);
+	--font-heading: var(--font-heading);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+	scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--color-background);
+	color: var(--color-foreground);
+}
+
+@layer base {
+	* {
+		border-color: var(--color-border);
+	}
+
+	::selection {
+		background: color-mix(in srgb, var(--color-mk-saffron) 35%, white);
+		color: var(--color-foreground);
+	}
+
+	a,
+	button {
+		transition:
+			color 150ms ease,
+			background-color 150ms ease,
+			border-color 150ms ease,
+			opacity 150ms ease;
+	}
 }
