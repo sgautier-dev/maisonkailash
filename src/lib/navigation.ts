@@ -10,7 +10,7 @@ export type NavigationSection = {
 	children?: NavigationItem[]
 }
 
-export const mainNavigation = [
+export const mainNavigation: readonly NavigationSection[] = [
 	{
 		name: "Bien-être",
 		href: "/bien-etre/",
@@ -147,14 +147,14 @@ export const mainNavigation = [
 			},
 		],
 	},
-] as const satisfies readonly NavigationSection[]
+]
 
-export const utilityNavigation = [
+export const utilityNavigation: readonly NavigationItem[] = [
 	{
 		name: "Contact & accès",
 		href: "/accueil/contact-acces/",
 	},
-] as const satisfies readonly NavigationItem[]
+]
 
 export const footerNavigation = {
 	main: mainNavigation,
@@ -173,4 +173,4 @@ export const footerNavigation = {
 			href: "/sitemap/",
 		},
 	],
-} as const
+}

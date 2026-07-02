@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Julius_Sans_One, Noto_Sans } from "next/font/google"
 
 import "./globals.css"
+import Header from "@/components/Header"
 
 const juliusSansOne = Julius_Sans_One({
 	subsets: ["latin"],
@@ -46,8 +47,10 @@ export default function RootLayout({
 		<html
 			lang="fr"
 			className={`${juliusSansOne.variable} ${notoSans.variable}`}
+			data-scroll-behavior="smooth"
 		>
 			<body className="min-h-screen bg-background font-sans text-foreground antialiased">
+				<Header />
 				{children}
 			</body>
 		</html>
