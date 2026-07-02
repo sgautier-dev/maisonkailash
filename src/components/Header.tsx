@@ -70,10 +70,10 @@ export default function Header() {
 					<button
 						type="button"
 						onClick={() => setMobileMenuOpen(true)}
-						className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground"
+						className="-m-2.5 inline-flex size-14 items-center justify-center rounded-md text-foreground"
 					>
 						<span className="sr-only">Ouvrir le menu principal</span>
-						<Bars3Icon aria-hidden="true" className="size-7" />
+						<Bars3Icon aria-hidden="true" className="size-10" />
 					</button>
 				</div>
 
@@ -136,7 +136,7 @@ export default function Header() {
 				<div className="hidden lg:flex lg:flex-1 lg:justify-end">
 					<Link
 						href={contactLink.href}
-						className="inline-flex items-center justify-center rounded-pill bg-mk-green px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-mk-green-dark"
+						className="btn-primary px-5 py-2.5 text-sm"
 					>
 						{contactLink.name}
 					</Link>
@@ -150,7 +150,7 @@ export default function Header() {
 			>
 				<div className="fixed inset-0 z-50 bg-foreground/20" />
 
-				<DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-4 sm:max-w-sm sm:ring-1 sm:ring-border">
+				<DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-2 sm:max-w-sm sm:ring-1 sm:ring-border">
 					<div className="flex items-center justify-between">
 						<Link
 							href="/"
@@ -169,10 +169,10 @@ export default function Header() {
 						<button
 							type="button"
 							onClick={() => setMobileMenuOpen(false)}
-							className="-m-2.5 rounded-md p-2.5 text-foreground"
+							className="-m-2.5 inline-flex size-14 items-center justify-center rounded-md text-foreground"
 						>
 							<span className="sr-only">Fermer le menu</span>
-							<XMarkIcon aria-hidden="true" className="size-7" />
+							<XMarkIcon aria-hidden="true" className="size-10" />
 						</button>
 					</div>
 
@@ -217,7 +217,7 @@ export default function Header() {
 								<Link
 									href={contactLink.href}
 									onClick={() => setMobileMenuOpen(false)}
-									className="block rounded-pill bg-mk-green px-5 py-3 text-center text-base font-semibold text-white hover:bg-mk-green-dark"
+									className="btn-primary px-5 py-3 text-base"
 								>
 									{contactLink.name}
 								</Link>
