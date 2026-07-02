@@ -1,9 +1,10 @@
 import type { ComponentProps } from "react"
+import { PhoneIcon } from "@heroicons/react/20/solid"
 import Image from "next/image"
 import Link from "next/link"
 
 import logoKailash from "@/images/logo-kailash.png"
-import { footerNavigation, mainNavigation } from "@/lib/navigation"
+import { footerNavigation } from "@/lib/navigation"
 
 const socialNavigation = [
 	{
@@ -36,9 +37,9 @@ const socialNavigation = [
 
 export default function Footer() {
 	return (
-		<footer className="bg-surface">
+		<footer className="border-t border-mk-green/15 bg-chrome">
 			<div className="mx-auto max-w-7xl px-6 pt-16 pb-8 lg:px-8">
-				<div className="grid gap-12 lg:grid-cols-[1.1fr_1.4fr]">
+				<div className="grid gap-12 lg:grid-cols-[1fr_1fr_1.2fr_0.8fr]">
 					<div>
 						<Link href="/" className="inline-flex">
 							<span className="sr-only">Maison Kailash</span>
@@ -51,7 +52,8 @@ export default function Footer() {
 
 						<p className="mt-6 max-w-sm text-sm/6 text-muted">
 							Santé holistique, bien-être, yoga, méditation et ateliers à
-							l&apos;Éperon, Saint-Gilles les Hauts, La Réunion.
+							l&apos;Éperon, Saint-Gilles les Hauts, dans l&apos;Ouest de La
+							Réunion.
 						</p>
 
 						<div className="mt-6 flex gap-x-5">
@@ -59,6 +61,8 @@ export default function Footer() {
 								<a
 									key={item.name}
 									href={item.href}
+									target="_blank"
+									rel="noopener noreferrer"
 									className="text-mk-green hover:text-mk-saffron-text"
 								>
 									<span className="sr-only">{item.name}</span>
@@ -68,85 +72,74 @@ export default function Footer() {
 						</div>
 					</div>
 
-					<div className="grid gap-10 sm:grid-cols-2">
-						<div>
-							<h2 className="text-sm/6 font-semibold text-foreground">
-								Newsletter
-							</h2>
-							<p className="mt-3 text-sm/6 text-muted">
-								Recevez les actualités, ateliers et prochains rendez-vous de
-								Maison Kailash.
+					<div>
+						<h2 className="text-sm/6 font-semibold text-foreground">Contact</h2>
+						<address className="mt-4 space-y-4 text-sm/6 text-muted not-italic">
+							<p>
+								44 Route de l&apos;Éperon
+								<br />
+								97435 Saint-Gilles les Hauts
+								<br />
+								La Réunion
 							</p>
-
-							<form className="mt-6 flex max-w-md flex-col gap-3 sm:flex-row">
-								<label htmlFor="newsletter-email" className="sr-only">
-									Adresse email
-								</label>
-								<input
-									id="newsletter-email"
-									name="email"
-									type="email"
-									required
-									autoComplete="email"
-									placeholder="Votre email"
-									className="min-w-0 flex-1 rounded-pill bg-white px-4 py-2.5 text-sm text-foreground shadow-sm outline-1 -outline-offset-1 outline-border placeholder:text-muted focus:outline-2 focus:-outline-offset-2 focus:outline-mk-green"
-								/>
-								<button
-									type="submit"
-									className="btn-primary px-5 py-2.5 text-sm"
+							<p>Sur rendez-vous du lundi au samedi</p>
+							<p>
+								<span className="block text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
+									Appeler
+								</span>
+								<a
+									href="tel:+262692683073"
+									className="mt-2 inline-flex items-center gap-2 rounded-pill bg-background px-3 py-1.5 font-semibold text-mk-green shadow-sm hover:text-mk-saffron-text"
 								>
-									S&apos;inscrire
-								</button>
-							</form>
-						</div>
+									<PhoneIcon aria-hidden="true" className="size-4" />
+									0692 68 30 73
+								</a>
+							</p>
+						</address>
+					</div>
 
-						<div className="grid grid-cols-2 gap-8">
-							<div>
-								<h2 className="text-sm/6 font-semibold text-foreground">
-									Rubriques
-								</h2>
-								<ul role="list" className="mt-4 space-y-3">
-									{mainNavigation.map((item) => (
-										<li key={item.href}>
-											<Link
-												href={item.href}
-												className="text-sm/6 text-muted hover:text-mk-green"
-											>
-												{item.name}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
+					<div className="rounded-card bg-background p-6 shadow-card">
+						<h2 className="text-sm/6 font-semibold text-foreground">
+							Newsletter
+						</h2>
+						<p className="mt-3 text-sm/6 text-muted">
+							Recevez les actualités, ateliers et prochains rendez-vous de
+							Maison Kailash.
+						</p>
 
-							<div>
-								<h2 className="text-sm/6 font-semibold text-foreground">
-									Infos
-								</h2>
-								<ul role="list" className="mt-4 space-y-3">
-									{footerNavigation.utility.map((item) => (
-										<li key={item.href}>
-											<Link
-												href={item.href}
-												className="text-sm/6 text-muted hover:text-mk-green"
-											>
-												{item.name}
-											</Link>
-										</li>
-									))}
-									{footerNavigation.legal.map((item) => (
-										<li key={item.href}>
-											<Link
-												href={item.href}
-												className="text-sm/6 text-muted hover:text-mk-green"
-											>
-												{item.name}
-											</Link>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
+						<form className="mt-6 flex flex-col gap-3">
+							<label htmlFor="newsletter-email" className="sr-only">
+								Adresse email
+							</label>
+							<input
+								id="newsletter-email"
+								name="email"
+								type="email"
+								required
+								autoComplete="email"
+								placeholder="Votre email"
+								className="min-w-0 rounded-pill bg-white px-4 py-2.5 text-sm text-foreground shadow-sm outline-1 -outline-offset-1 outline-border placeholder:text-muted focus:outline-2 focus:-outline-offset-2 focus:outline-mk-green"
+							/>
+							<button type="submit" className="btn-primary px-5 py-2.5 text-sm">
+								S&apos;inscrire
+							</button>
+						</form>
+					</div>
+
+					<div>
+						<h2 className="text-sm/6 font-semibold text-foreground">Infos</h2>
+						<ul role="list" className="mt-4 space-y-3">
+							{footerNavigation.legal.map((item) => (
+								<li key={item.href}>
+									<Link
+										href={item.href}
+										className="text-sm/6 text-muted hover:text-mk-green"
+									>
+										{item.name}
+									</Link>
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 

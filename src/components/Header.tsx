@@ -9,9 +9,11 @@ import {
 	DisclosureButton,
 	DisclosurePanel,
 	Popover,
+	PopoverBackdrop,
 	PopoverButton,
 	PopoverGroup,
 	PopoverPanel,
+	Portal,
 } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
 import { ChevronDownIcon } from "@heroicons/react/20/solid"
@@ -49,7 +51,7 @@ export default function Header() {
 	}
 
 	return (
-		<header className="sticky top-0 z-40 bg-surface/95 shadow-sm shadow-mk-green/5 backdrop-blur-md">
+		<header className="sticky top-0 z-40 bg-chrome/75 shadow-sm shadow-mk-green/5 backdrop-blur-md">
 			<nav
 				aria-label="Navigation principale"
 				className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 px-6 py-2 lg:px-8"
@@ -93,9 +95,16 @@ export default function Header() {
 										/>
 									</PopoverButton>
 
+									<Portal>
+										<PopoverBackdrop
+											transition
+											className="fixed inset-0 z-30 bg-transparent transition data-closed:opacity-0"
+										/>
+									</Portal>
+
 									<PopoverPanel
 										transition
-										className="absolute left-1/2 z-10 mt-4 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-panel bg-white shadow-soft outline-1 outline-border transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+										className="absolute left-1/2 z-50 mt-4 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-panel bg-white shadow-soft outline-1 outline-border transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
 									>
 										<div className="p-3">
 											<Link
