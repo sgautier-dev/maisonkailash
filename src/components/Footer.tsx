@@ -5,6 +5,7 @@ import Link from "next/link"
 
 import logoKailash from "@/images/logo-kailash.png"
 import { footerNavigation } from "@/lib/navigation"
+import NewsletterSignup from "./NewsletterSignup"
 
 const socialNavigation = [
 	{
@@ -98,33 +99,7 @@ export default function Footer() {
 						</address>
 					</div>
 
-					<div className="rounded-card bg-background p-6 shadow-card">
-						<h2 className="text-sm/6 font-semibold text-foreground">
-							Newsletter
-						</h2>
-						<p className="mt-3 text-sm/6 text-muted">
-							Recevez les actualités, ateliers et prochains rendez-vous de
-							Maison Kailash.
-						</p>
-
-						<form className="mt-6 flex flex-col gap-3">
-							<label htmlFor="newsletter-email" className="sr-only">
-								Adresse email
-							</label>
-							<input
-								id="newsletter-email"
-								name="email"
-								type="email"
-								required
-								autoComplete="email"
-								placeholder="Votre email"
-								className="min-w-0 rounded-pill bg-white px-4 py-2.5 text-sm text-foreground shadow-sm outline-1 -outline-offset-1 outline-border placeholder:text-muted focus:outline-2 focus:-outline-offset-2 focus:outline-mk-green"
-							/>
-							<button type="submit" className="btn-primary px-5 py-2.5 text-sm">
-								S&apos;inscrire
-							</button>
-						</form>
-					</div>
+					<NewsletterSignup id="footer-newsletter" compact />
 
 					<div>
 						<h2 className="text-sm/6 font-semibold text-foreground">Infos</h2>
