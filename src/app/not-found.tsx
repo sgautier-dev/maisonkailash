@@ -6,9 +6,7 @@ export default function NotFound() {
 			<section className="section-padding">
 				<div className="section-container">
 					<div className="mx-auto max-w-2xl text-center">
-						<p className="text-sm/7 font-semibold text-mk-saffron-text">
-							Page introuvable
-						</p>
+						<p className="eyebrow">Page introuvable</p>
 						<h1 className="heading-section mt-3 text-mk-green">
 							Cette page est introuvable
 						</h1>

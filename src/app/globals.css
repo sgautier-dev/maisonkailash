@@ -162,6 +162,37 @@ body {
 		border-color: color-mix(in srgb, var(--color-mk-green) 45%, transparent);
 		background: color-mix(in srgb, var(--color-mk-mint) 28%, white);
 	}
+
+	.eyebrow {
+		font-size: 0.875rem;
+		line-height: 1.75rem;
+		font-weight: 600;
+		color: var(--color-mk-saffron-text);
+	}
+
+	.content-card {
+		border-radius: var(--radius-card);
+		background: var(--color-background);
+		padding: 1.5rem;
+		box-shadow: var(--shadow-card);
+	}
+
+	.media-frame {
+		display: block;
+		overflow: hidden;
+		border-radius: var(--radius-panel);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-card);
+	}
+
+	.text-link {
+		font-weight: 600;
+		color: var(--color-mk-green);
+	}
+
+	.text-link:hover {
+		color: var(--color-mk-saffron-text);
+	}
 }
 
 @media (prefers-reduced-motion: no-preference) {

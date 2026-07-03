@@ -119,9 +119,7 @@ export default function HomePage() {
 				<div className="section-container">
 					<Reveal>
 						<div className="max-w-2xl">
-							<p className="text-sm/7 font-semibold text-mk-saffron-text">
-								Services
-							</p>
+							<p className="eyebrow">Services</p>
 							<h2 className="heading-section mt-2 text-foreground">
 								Une démarche de santé holistique
 							</h2>
@@ -166,15 +164,13 @@ export default function HomePage() {
 						<Image
 							src={foundersKailash}
 							alt="L’équipe fondatrice de Maison Kailash"
-							className="h-auto w-full rounded-panel bg-surface object-contain shadow-card"
+							className="media-frame h-auto w-full object-contain"
 						/>
 					</Reveal>
 
 					<Reveal delay="sm" className="px-6 py-16 sm:py-24 lg:px-0">
 						<div className="mx-auto max-w-2xl lg:max-w-lg">
-							<p className="text-sm/7 font-semibold text-mk-saffron-text">
-								À propos
-							</p>
+							<p className="eyebrow">À propos</p>
 							<h2 className="heading-section mt-2 text-mk-green">
 								Un espace associatif dédié au mieux-être
 							</h2>
@@ -196,9 +192,7 @@ export default function HomePage() {
 				<div className="section-container">
 					<Reveal>
 						<div className="max-w-3xl">
-							<p className="text-sm/7 font-semibold text-mk-saffron-text">
-								Notre philosophie
-							</p>
+							<p className="eyebrow">Notre philosophie</p>
 							<h2 className="heading-section mt-2 text-foreground">
 								Offrir un service de qualité à dimension humaine
 							</h2>
@@ -258,9 +252,7 @@ export default function HomePage() {
 					<div className="grid gap-12 lg:grid-cols-2 lg:items-center">
 						<Reveal>
 							<div className="max-w-2xl">
-								<p className="text-sm/7 font-semibold text-mk-saffron-text">
-									Cours hebdomadaires
-								</p>
+								<p className="eyebrow">Cours hebdomadaires</p>
 								<h2 className="heading-section mt-2 text-mk-green">
 									Venez découvrir nos cours hebdomadaires
 								</h2>
@@ -290,7 +282,7 @@ export default function HomePage() {
 						</Reveal>
 
 						<Reveal delay="sm">
-							<div className="overflow-hidden rounded-panel bg-surface shadow-card">
+							<div className="media-frame">
 								<Image
 									src={yogaDeck}
 									alt="Cours de yoga sur le deck de Maison Kailash à La Réunion"
@@ -307,9 +299,7 @@ export default function HomePage() {
 				<div className="section-container">
 					<Reveal>
 						<div className="mx-auto max-w-2xl text-center">
-							<p className="text-sm/7 font-semibold text-mk-saffron-text">
-								Avis
-							</p>
+							<p className="eyebrow">Avis</p>
 							<h2 className="heading-section mt-2 text-foreground">
 								Ils parlent de Maison Kailash
 							</h2>
