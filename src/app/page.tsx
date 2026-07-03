@@ -1,7 +1,6 @@
 import {
 	GiftIcon,
 	HeartIcon,
-	MapPinIcon,
 	SparklesIcon,
 	SunIcon,
 	UserGroupIcon,

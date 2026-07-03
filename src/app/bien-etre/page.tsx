@@ -256,34 +256,31 @@ export default function BienEtrePage() {
 								delay={index % 3 === 2 ? "lg" : index % 3 === 1 ? "md" : "sm"}
 							>
 								<article className="group flex h-full flex-col">
-									<Link
-										href={massage.href}
-										className="media-frame relative block"
-									>
-										<Image
-											src={massage.image}
-											alt={massage.imageAlt}
-											sizes="(min-width: 1024px) 33vw, 100vw"
-											className="aspect-3/2 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-										/>
-									</Link>
-
-									<div className="mt-6 flex grow flex-col">
-										<p className="text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
-											{massage.tag}
-										</p>
-										<h3 className="mt-3 text-xl font-semibold text-foreground group-hover:text-mk-green">
-											<Link href={massage.href}>{massage.title}</Link>
-										</h3>
-										<p className="mt-4 line-clamp-3 text-sm/6 text-muted">
-											{massage.description}
-										</p>
-										<div className="mt-6">
-											<Link href={massage.href} className="text-link text-sm">
-												Découvrir le soin
-											</Link>
+									<Link href={massage.href} className="flex h-full flex-col">
+										<div className="media-frame relative">
+											<Image
+												src={massage.image}
+												alt={massage.imageAlt}
+												sizes="(min-width: 1024px) 33vw, 100vw"
+												className="aspect-3/2 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+											/>
 										</div>
-									</div>
+
+										<div className="mt-6 flex grow flex-col">
+											<p className="text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
+												{massage.tag}
+											</p>
+											<h3 className="mt-3 text-xl font-semibold text-foreground group-hover:text-mk-green">
+												{massage.title}
+											</h3>
+											<p className="mt-4 line-clamp-3 text-sm/6 text-muted">
+												{massage.description}
+											</p>
+											<p className="mt-6 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
+												Découvrir le soin
+											</p>
+										</div>
+									</Link>
 								</article>
 							</Reveal>
 						))}
