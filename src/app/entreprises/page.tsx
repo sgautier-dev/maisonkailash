@@ -16,6 +16,7 @@ import Reveal from "@/components/Reveal"
 import massageAssisHeroImage from "@/images/massage-assis-kailash.jpg"
 import massageAssisCtaImage from "@/images/massage-assis-kailash2.jpg"
 import massageAssisDetailImage from "@/images/massage-assis-kailash3.jpg"
+import LocationCta from "@/components/LocationCta"
 
 export const metadata: Metadata = {
 	title: "Massage assis et bien-être en entreprise à La Réunion",
@@ -319,54 +320,15 @@ export default function EntreprisesPage() {
 				</div>
 			</section>
 
-			<section className="bg-mk-green">
-				<div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-					<div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-						<Reveal>
-							<div className="max-w-2xl">
-								<PhoneIcon
-									aria-hidden="true"
-									className="size-8 text-white/80"
-								/>
-								<h2 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-									Parlez-nous de votre besoin
-								</h2>
-								<p className="mt-6 text-lg/8 text-white/80">
-									Entreprise, collectivité, événement ou retraite bien-être :
-									nous vous répondons avec une proposition adaptée, sur devis.
-								</p>
-
-								<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-									<a
-										href="tel:+262692683073"
-										className="inline-flex items-center justify-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-semibold text-mk-green shadow-card hover:bg-mk-saffron-soft hover:text-mk-saffron-text"
-									>
-										<PhoneIcon aria-hidden="true" className="size-4" />
-										0692 68 30 73
-									</a>
-									<Link
-										href="/accueil/contact-acces/"
-										className="inline-flex items-center justify-center rounded-pill border border-white/30 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
-									>
-										Contact & plan d&apos;accès
-									</Link>
-								</div>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="overflow-hidden rounded-panel bg-white/10 shadow-soft ring-1 ring-white/20">
-								<Image
-									src={massageAssisCtaImage}
-									alt="Massage assis lors d'une intervention Maison Kailash"
-									sizes="(min-width: 1024px) 34vw, 100vw"
-									className="aspect-4/3 w-full object-cover"
-								/>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
+			<LocationCta
+				icon={PhoneIcon}
+				title="Parlez-nous de votre besoin"
+				description="Entreprise, collectivité, événement ou retraite bien-être : nous vous répondons avec une proposition adaptée, sur devis."
+				image={massageAssisCtaImage}
+				imageAlt="Massage assis lors d'une intervention Maison Kailash"
+				secondaryLabel="Contact"
+				secondaryHref="/accueil/contact-acces/"
+			/>
 		</main>
 	)
 }
