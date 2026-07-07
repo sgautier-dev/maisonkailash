@@ -147,6 +147,10 @@ export const mainNavigation: readonly NavigationSection[] = [
 			},
 		],
 	},
+	{
+		name: "Entreprises",
+		href: "/entreprises/",
+	},
 ]
 
 export const utilityNavigation: readonly NavigationItem[] = [

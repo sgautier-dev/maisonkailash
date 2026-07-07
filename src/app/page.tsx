@@ -11,7 +11,7 @@ import Link from "next/link"
 import Reveal from "@/components/Reveal"
 import foundersKailash from "@/images/maison-kailash.png"
 import homeHero from "@/images/home-hero.jpeg"
-import yogaDeck from "@/images/yoga-deck-kailash.jpg"
+import seatedMassageImage from "@/images/massage-assis-kailash.jpg"
 import LocationCta from "@/components/LocationCta"
 
 const services = [
@@ -30,10 +30,10 @@ const services = [
 		icon: SparklesIcon,
 	},
 	{
-		name: "Cours hebdomadaires",
+		name: "Prestations entreprises",
 		description:
-			"Vinyasa Yoga, Tai Chi et méditation pour cultiver souffle, alignement, présence et mouvement.",
-		href: "/cours-collectifs-reunion/",
+			"Massage assis, pauses bien-être et actions de prévention santé directement sur votre lieu de travail.",
+		href: "/accueil/contact-acces/",
 		icon: SunIcon,
 	},
 	{
@@ -251,30 +251,29 @@ export default function HomePage() {
 					<div className="grid gap-12 lg:grid-cols-2 lg:items-center">
 						<Reveal>
 							<div className="max-w-2xl">
-								<p className="eyebrow">Cours hebdomadaires</p>
+								<p className="eyebrow">Bien-être en entreprise</p>
 								<h2 className="heading-section mt-2 text-mk-green">
-									Venez découvrir nos cours hebdomadaires
+									Des pauses bien-être directement sur votre lieu de travail
 								</h2>
 								<div className="mt-8 space-y-5 text-base/7 text-muted">
 									<p>
-										Vous recherchez des pratiques physiques : Vinyasa Yoga,
-										souffle et alignements.
+										Maison Kailash accompagne les entreprises avec des
+										interventions simples à mettre en place : massage assis,
+										pauses bien-être et actions de prévention santé au travail.
 									</p>
 									<p>
-										Ou peut-être des pratiques douces : Tai Chi et méditation.
-									</p>
-									<p>
-										Les places sont limitées, réservez auprès de chaque
-										intervenant.
+										Une solution concrète pour offrir aux équipes un temps de
+										récupération, réduire les tensions et soutenir la qualité de
+										vie au travail.
 									</p>
 								</div>
 
 								<div className="mt-10">
 									<Link
-										href="/cours-collectifs-reunion/"
+										href="/entreprises/"
 										className="btn-primary px-5 py-3 text-sm"
 									>
-										Découvrir les cours
+										Découvrir les prestations entreprises
 									</Link>
 								</div>
 							</div>
@@ -283,8 +282,8 @@ export default function HomePage() {
 						<Reveal delay="sm">
 							<div className="media-frame">
 								<Image
-									src={yogaDeck}
-									alt="Cours de yoga sur le deck de Maison Kailash à La Réunion"
+									src={seatedMassageImage}
+									alt="Massage assis en entreprise avec Maison Kailash"
 									sizes="(min-width: 1024px) 50vw, 100vw"
 									className="aspect-3/2 w-full object-cover"
 								/>
