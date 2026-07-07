@@ -84,16 +84,27 @@ export default function Header() {
 						<Popover key={section.name} className="relative">
 							{({ close }) => (
 								<>
-									<PopoverButton
-										data-active={isSectionActive(section) ? "true" : undefined}
-										className="nav-link group gap-x-1 text-sm/6 hover:text-mk-green"
-									>
-										{section.name}
-										<ChevronDownIcon
-											aria-hidden="true"
-											className="size-4 flex-none text-muted transition-transform duration-200 group-data-open:rotate-180"
-										/>
-									</PopoverButton>
+									<div className="flex items-center gap-x-1">
+										<Link
+											href={section.href}
+											data-active={
+												isSectionActive(section) ? "true" : undefined
+											}
+											className="nav-link text-base/6 hover:text-mk-green"
+										>
+											{section.name}
+										</Link>
+
+										<PopoverButton className="group inline-flex size-7 items-center justify-center rounded-full text-muted hover:bg-mk-mint/30 hover:text-mk-green">
+											<span className="sr-only">
+												Ouvrir le sous-menu {section.name}
+											</span>
+											<ChevronDownIcon
+												aria-hidden="true"
+												className="size-7 transition-transform duration-200 group-data-open:rotate-180"
+											/>
+										</PopoverButton>
+									</div>
 
 									<Portal>
 										<PopoverBackdrop
@@ -113,7 +124,10 @@ export default function Header() {
 												className="block rounded-card px-4 py-3 hover:bg-mk-mint/30"
 											>
 												<p className="font-heading text-lg text-mk-green">
-													{section.name}
+													Vue d&apos;ensemble
+												</p>
+												<p className="mt-1 text-sm leading-6 text-muted">
+													Découvrir la rubrique {section.name}
 												</p>
 											</Link>
 
@@ -190,29 +204,33 @@ export default function Header() {
 							<div className="space-y-2 py-6">
 								{mainNavigation.map((section) => (
 									<Disclosure key={section.name} as="div" className="-mx-3">
-										<DisclosureButton className="group flex w-full items-center justify-between rounded-card px-3 py-2 text-base/7 font-semibold text-foreground hover:bg-mk-mint/30">
-											{section.name}
-											<ChevronDownIcon
-												aria-hidden="true"
-												className="size-5 flex-none text-muted group-data-open:rotate-180"
-											/>
-										</DisclosureButton>
-
-										<DisclosurePanel className="mt-2 space-y-1">
+										<div className="flex items-center gap-x-1">
 											<Link
 												href={section.href}
 												onClick={() => setMobileMenuOpen(false)}
-												className="block rounded-card py-2 pr-3 pl-6 text-sm/7 font-semibold text-mk-green hover:bg-mk-mint/30"
+												className="flex-1 rounded-card px-3 py-2 text-lg/7 font-semibold text-foreground hover:bg-mk-mint/30"
 											>
 												{section.name}
 											</Link>
 
+											<DisclosureButton className="group inline-flex size-11 items-center justify-center rounded-card text-muted hover:bg-mk-mint/30 hover:text-mk-green">
+												<span className="sr-only">
+													Ouvrir le sous-menu {section.name}
+												</span>
+												<ChevronDownIcon
+													aria-hidden="true"
+													className="size-8 flex-none transition-transform duration-200 group-data-open:rotate-180"
+												/>
+											</DisclosureButton>
+										</div>
+
+										<DisclosurePanel className="mt-2 space-y-1">
 											{section.children?.map((item) => (
 												<Link
 													key={item.href}
 													href={item.href}
 													onClick={() => setMobileMenuOpen(false)}
-													className="block rounded-card py-2 pr-3 pl-6 text-sm/7 font-semibold text-foreground hover:bg-mk-mint/30"
+													className="block rounded-card py-2 pr-3 pl-6 text-base/7 font-semibold text-foreground hover:bg-mk-mint/30"
 												>
 													{item.name}
 												</Link>
