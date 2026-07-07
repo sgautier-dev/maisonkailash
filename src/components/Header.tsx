@@ -21,7 +21,26 @@ import Image from "next/image"
 import Link from "next/link"
 
 import logoKailash from "@/images/logo-kailash.png"
-import { mainNavigation, utilityNavigation } from "@/lib/navigation"
+import {
+	mainNavigation,
+	utilityNavigation,
+	type NavigationChild,
+	type NavigationGroup,
+	type NavigationLink,
+	type NavigationSection,
+} from "@/lib/navigation"
+
+function isNavigationGroup(child: NavigationChild): child is NavigationGroup {
+	return child.type === "group"
+}
+
+function getSectionLinks(section: NavigationSection): NavigationLink[] {
+	return (
+		section.children?.flatMap((child) =>
+			isNavigationGroup(child) ? child.children : [child],
+		) ?? []
+	)
+}
 
 export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -36,11 +55,11 @@ export default function Header() {
 		return `${path.replace(/\/+$/, "")}/`
 	}
 
-	function isSectionActive(section: (typeof mainNavigation)[number]) {
+	function isSectionActive(section: NavigationSection) {
 		const currentPath = normalizePath(pathname)
 		const sectionPaths = [
 			section.href,
-			...(section.children?.map((item) => item.href) ?? []),
+			...getSectionLinks(section).map((item) => item.href),
 		]
 
 		return sectionPaths.some((href) => {
@@ -89,7 +108,7 @@ export default function Header() {
 									key={section.name}
 									href={section.href}
 									data-active={isSectionActive(section) ? "true" : undefined}
-									className="nav-link text-base/6 hover:text-mk-green"
+									className="nav-link font-heading text-sm/6 tracking-[0.08em] uppercase hover:text-mk-green"
 								>
 									{section.name}
 								</Link>
@@ -106,7 +125,7 @@ export default function Header() {
 												data-active={
 													isSectionActive(section) ? "true" : undefined
 												}
-												className="nav-link text-base/6 hover:text-mk-green"
+												className="nav-link font-heading text-sm/6 tracking-[0.08em] uppercase hover:text-mk-green"
 											>
 												{section.name}
 											</Link>
@@ -131,40 +150,9 @@ export default function Header() {
 
 										<PopoverPanel
 											transition
-											className="absolute left-1/2 z-50 mt-4 w-screen max-w-md -translate-x-1/2 overflow-hidden rounded-panel bg-white shadow-soft outline-1 outline-border transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+											className="absolute left-0 z-50 mt-4 overflow-visible rounded-panel bg-white shadow-soft outline-1 outline-border transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
 										>
-											<div className="p-3">
-												<Link
-													href={section.href}
-													onClick={() => close()}
-													className="block rounded-card px-4 py-3 hover:bg-mk-mint/30"
-												>
-													<p className="font-heading text-lg text-mk-green">
-														Vue d&apos;ensemble
-													</p>
-													<p className="mt-1 text-sm leading-6 text-muted">
-														Découvrir la rubrique {section.name}
-													</p>
-												</Link>
-
-												{section.children?.map((item) => (
-													<Link
-														key={item.href}
-														href={item.href}
-														onClick={() => close()}
-														className="group relative block rounded-card px-4 py-3 hover:bg-mk-mint/30"
-													>
-														<p className="font-semibold text-foreground group-hover:text-mk-green">
-															{item.name}
-														</p>
-														{item.description ? (
-															<p className="mt-1 text-sm leading-6 text-muted">
-																{item.description}
-															</p>
-														) : null}
-													</Link>
-												))}
-											</div>
+											<DesktopDropdownContent section={section} close={close} />
 										</PopoverPanel>
 									</>
 								)}
@@ -257,17 +245,41 @@ export default function Header() {
 												</DisclosureButton>
 											</div>
 
-											<DisclosurePanel className="mt-2 space-y-1">
-												{section.children?.map((item) => (
-													<Link
-														key={item.href}
-														href={item.href}
-														onClick={() => setMobileMenuOpen(false)}
-														className="block rounded-card py-2 pr-3 pl-6 text-base/7 font-semibold text-foreground hover:bg-mk-mint/30"
-													>
-														{item.name}
-													</Link>
-												))}
+											<DisclosurePanel className="mt-2 space-y-3">
+												{section.children?.map((child) => {
+													if (isNavigationGroup(child)) {
+														return (
+															<div key={child.name}>
+																<p className="px-6 pt-2 pb-1 text-xs font-semibold tracking-[0.14em] text-mk-saffron-text uppercase">
+																	{child.name}
+																</p>
+																<div className="space-y-1">
+																	{child.children.map((item) => (
+																		<Link
+																			key={item.href}
+																			href={item.href}
+																			onClick={() => setMobileMenuOpen(false)}
+																			className="block rounded-card py-2 pr-3 pl-6 text-base/7 font-semibold text-foreground hover:bg-mk-mint/30"
+																		>
+																			{item.name}
+																		</Link>
+																	))}
+																</div>
+															</div>
+														)
+													}
+
+													return (
+														<Link
+															key={child.href}
+															href={child.href}
+															onClick={() => setMobileMenuOpen(false)}
+															className="block rounded-card py-2 pr-3 pl-6 text-base/7 font-semibold text-foreground hover:bg-mk-mint/30"
+														>
+															{child.name}
+														</Link>
+													)
+												})}
 											</DisclosurePanel>
 										</Disclosure>
 									)
@@ -288,5 +300,116 @@ export default function Header() {
 				</DialogPanel>
 			</Dialog>
 		</header>
+	)
+}
+
+function DesktopDropdownContent({
+	section,
+	close,
+}: {
+	section: NavigationSection
+	close: () => void
+}) {
+	const children = section.children ?? []
+	const groups = children.filter(isNavigationGroup)
+	const links = children.filter(
+		(child): child is NavigationLink => !isNavigationGroup(child),
+	)
+
+	if (groups.length > 0) {
+		return <DesktopGroupedDropdown groups={groups} close={close} />
+	}
+
+	return (
+		<div className="w-80 max-w-[calc(100vw-2rem)] p-3">
+			<div className="space-y-1">
+				{links.map((item) => (
+					<DropdownLink key={item.href} item={item} onClick={close} />
+				))}
+			</div>
+		</div>
+	)
+}
+
+function DesktopGroupedDropdown({
+	groups,
+	close,
+}: {
+	groups: NavigationGroup[]
+	close: () => void
+}) {
+	const [activeGroupIndex, setActiveGroupIndex] = useState(0)
+	const activeGroup = groups[activeGroupIndex] ?? groups[0]
+
+	return (
+		<div className="grid w-[42rem] max-w-[calc(100vw-2rem)] grid-cols-[16rem_1fr] overflow-hidden rounded-panel">
+			<div className="border-r border-border bg-surface p-3">
+				<div className="space-y-1">
+					{groups.map((group, index) => {
+						const isActive = index === activeGroupIndex
+
+						return (
+							<button
+								key={group.name}
+								type="button"
+								onMouseEnter={() => setActiveGroupIndex(index)}
+								onFocus={() => setActiveGroupIndex(index)}
+								onClick={() => setActiveGroupIndex(index)}
+								className={[
+									"flex w-full items-center justify-between gap-3 rounded-card px-4 py-3 text-left text-sm font-semibold transition",
+									isActive
+										? "bg-mk-mint/40 text-mk-green"
+										: "text-foreground hover:bg-mk-mint/25 hover:text-mk-green",
+								].join(" ")}
+							>
+								<span>{group.name}</span>
+								<ChevronDownIcon
+									aria-hidden="true"
+									className={[
+										"size-5 shrink-0 -rotate-90 transition",
+										isActive ? "text-mk-green" : "text-muted",
+									].join(" ")}
+								/>
+							</button>
+						)
+					})}
+				</div>
+			</div>
+
+			<div className="min-h-72 bg-white p-3">
+				<p className="px-4 pt-2 pb-1 text-xs font-semibold tracking-[0.14em] text-mk-saffron-text uppercase">
+					{activeGroup.name}
+				</p>
+
+				<div className="mt-1 space-y-1">
+					{activeGroup.children.map((item) => (
+						<DropdownLink key={item.href} item={item} onClick={close} />
+					))}
+				</div>
+			</div>
+		</div>
+	)
+}
+
+function DropdownLink({
+	item,
+	onClick,
+}: {
+	item: NavigationLink
+	onClick: () => void
+}) {
+	return (
+		<Link
+			href={item.href}
+			onClick={onClick}
+			className="group relative block rounded-card px-4 py-3 hover:bg-mk-mint/30"
+		>
+			<p className="font-semibold text-foreground group-hover:text-mk-green">
+				{item.name}
+			</p>
+			{item.description ? (
+				<p className="mt-1 text-sm leading-6 text-muted">{item.description}</p>
+			) : null}
+		</Link>
 	)
 }

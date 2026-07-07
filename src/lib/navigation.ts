@@ -1,13 +1,22 @@
-export type NavigationItem = {
+export type NavigationLink = {
+	type?: "link"
 	name: string
 	href: string
 	description?: string
 }
 
+export type NavigationGroup = {
+	type: "group"
+	name: string
+	children: NavigationLink[]
+}
+
+export type NavigationChild = NavigationLink | NavigationGroup
+
 export type NavigationSection = {
 	name: string
 	href: string
-	children?: NavigationItem[]
+	children?: NavigationChild[]
 }
 
 export const mainNavigation: readonly NavigationSection[] = [
@@ -16,42 +25,73 @@ export const mainNavigation: readonly NavigationSection[] = [
 		href: "/bien-etre/",
 		children: [
 			{
-				name: "Massage ayurvédique Abhyanga",
-				href: "/bien-etre/massage-ayurvedique/",
-				description:
-					"Un massage traditionnel à l’huile pour relâcher le corps.",
+				type: "group",
+				name: "Massages ayurvédiques",
+				children: [
+					{
+						name: "Massage ayurvédique Abhyanga",
+						href: "/bien-etre/massage-ayurvedique/",
+						description:
+							"Un massage traditionnel à l’huile pour détoxifier le corps.",
+					},
+					{
+						name: "Massage ayurvédique aux pochons",
+						href: "/bien-etre/massage-ayurvedique-aux-pochons/",
+						description: "Un soin enveloppant aux pochons chauds et plantes.",
+					},
+					{
+						name: "Shiroabhyanga",
+						href: "/bien-etre/shiroabhyanga/",
+						description:
+							"Massage ayurvédique de la tête pour apaiser le mental.",
+					},
+				],
 			},
 			{
-				name: "Massage ayurvédique aux pochons",
-				href: "/bien-etre/massage-ayurvedique-aux-pochons/",
-				description: "Un soin enveloppant aux pochons chauds et plantes.",
+				type: "group",
+				name: "Massages relaxants & profonds",
+				children: [
+					{
+						name: "Champissage indien",
+						href: "/bien-etre/massage-champissage-indien/",
+						description:
+							"Massage crânien, nuque et épaules pour apaiser les tensions.",
+					},
+					{
+						name: "Massage thaï à l'huile",
+						href: "/bien-etre/massage-thai-a-l-huile/",
+						description:
+							"Un massage énergétique, étirements doux et détente profonde.",
+					},
+					{
+						name: "Massage suédois",
+						href: "/bien-etre/massage-suedois/",
+						description: "Un massage profond pour détendre les muscles.",
+					},
+				],
 			},
 			{
-				name: "Champissage indien",
-				href: "/bien-etre/massage-champissage-indien/",
-				description:
-					"Massage crânien, nuque et épaules pour apaiser les tensions.",
-			},
-			{
-				name: "Massage prénatal",
-				href: "/bien-etre/massage-prenatal/",
-				description: "Un accompagnement doux pendant la grossesse.",
-			},
-			{
-				name: "Massage suédois",
-				href: "/bien-etre/massage-suedois/",
-				description: "Un massage profond pour détendre les muscles.",
-			},
-			{
-				name: "Massage thaï à l'huile",
-				href: "/bien-etre/massage-thai-a-l-huile/",
-				description: "Fluidité, étirements doux et relaxation profonde.",
-			},
-			{
-				name: "Réflexologie plantaire",
-				href: "/bien-etre/reflexologie-plantaire/",
-				description:
-					"Stimulation des zones réflexes pour soutenir l’équilibre global.",
+				type: "group",
+				name: "Accompagnements spécifiques",
+				children: [
+					{
+						name: "Réflexologie plantaire",
+						href: "/bien-etre/reflexologie-plantaire/",
+						description:
+							"Stimulation des zones réflexes pour soutenir l’équilibre global.",
+					},
+					{
+						name: "Massage prénatal",
+						href: "/bien-etre/massage-prenatal/",
+						description: "Un accompagnement doux pendant la grossesse.",
+					},
+					{
+						name: "Rebozo",
+						href: "/bien-etre/rebozo/",
+						description:
+							"Un soin enveloppant pour accompagner les passages de vie.",
+					},
+				],
 			},
 		],
 	},
@@ -60,36 +100,64 @@ export const mainNavigation: readonly NavigationSection[] = [
 		href: "/sante/",
 		children: [
 			{
-				name: "Santé intégrative",
-				href: "/sante/santeintegrative/",
-				description:
-					"Une approche globale du corps, de l’énergie et du mode de vie.",
+				type: "group",
+				name: "Soins corporels",
+				children: [
+					{
+						name: "Massage ventral Chi Nei Tsang",
+						href: "/sante/massage-ventral/",
+						description:
+							"Un soin ciblé autour du ventre, de la libération émotionnelle et des tensions internes.",
+					},
+					{
+						name: "Shiatsu",
+						href: "/sante/shiatsu/",
+						description:
+							"Pressions et rééquilibrage énergétique d’inspiration japonaise.",
+					},
+				],
 			},
 			{
-				name: "Massage ventral",
-				href: "/sante/massage-ventral/",
-				description: "Un soin ciblé autour du ventre et des tensions internes.",
+				type: "group",
+				name: "Soins énergétiques",
+				children: [
+					{
+						name: "Reiki",
+						href: "/sante/reiki/",
+						description:
+							"Soin énergétique d’harmonisation des chakras accompagné par les bols tibétains et les pierres.",
+					},
+					{
+						name: "Soin énergétique",
+						href: "/sante/soin-energetique-974/",
+						description:
+							"Un accompagnement subtil pour retrouver de l’harmonie.",
+					},
+				],
 			},
 			{
-				name: "Shiatsu",
-				href: "/sante/shiatsu/",
-				description:
-					"Pressions et rééquilibrage énergétique d’inspiration japonaise.",
-			},
-			{
-				name: "Soin énergétique",
-				href: "/sante/soin-energetique-974/",
-				description: "Un accompagnement subtil pour retrouver de l’harmonie.",
-			},
-			{
-				name: "Reiki",
-				href: "/sante/reiki/",
-				description: "Soin énergétique par imposition des mains.",
-			},
-			{
-				name: "Coaching santé holistique",
-				href: "/sante/coaching-sante-holistique/",
-				description: "Un accompagnement global pour soutenir votre vitalité.",
+				type: "group",
+				name: "Accompagnements holistiques",
+				children: [
+					{
+						name: "Santé intégrative",
+						href: "/sante/santeintegrative/",
+						description:
+							"Une approche globale du corps, de l’énergie et du mode de vie.",
+					},
+					{
+						name: "Coaching santé holistique",
+						href: "/sante/coaching-sante-holistique/",
+						description:
+							"Un accompagnement global pour soutenir votre vitalité.",
+					},
+					{
+						name: "Hypnose et coaching en système nerveux",
+						href: "/sante/hypnose-coaching-systeme-nerveux/",
+						description:
+							"Un accompagnement autour de la régulation du système nerveux.",
+					},
+				],
 			},
 		],
 	},
@@ -105,31 +173,19 @@ export const mainNavigation: readonly NavigationSection[] = [
 				name: "Tai Chi",
 				href: "/cours/tai-chi-reunion/",
 			},
-			{
-				name: "Méditation",
-				href: "/cours/meditation/",
-			},
 		],
+	},
+	{
+		name: "Entreprises",
+		href: "/entreprises/",
 	},
 	{
 		name: "Ateliers",
 		href: "/ateliers/",
 		children: [
 			{
-				name: "Sangha - Yogi Ashokananda",
-				href: "/ateliers/sangha-yogi-ashokananda/",
-			},
-			{
 				name: "Méditation - Yogi Ashokananda",
 				href: "/ateliers/meditation-yogi-ashokananda/",
-			},
-			{
-				name: "Himalayan Hatha Yoga",
-				href: "/ateliers/himalayan-hatha-yoga-yogi-ashokananda-et-concert-chants-dhrupad/",
-			},
-			{
-				name: "Prana Kriya Yoga",
-				href: "/ateliers/prana-kriya-yoga-yogi-ashokananda/",
 			},
 		],
 	},
@@ -141,19 +197,11 @@ export const mainNavigation: readonly NavigationSection[] = [
 				name: "Cure ayurvédique en Inde",
 				href: "/sejours-bien-etre/cure-ayurvedique-inde/",
 			},
-			{
-				name: "Retraite Yogi Ashokananda",
-				href: "/sejours-bien-etre/retraite-yogiashokananda/",
-			},
 		],
-	},
-	{
-		name: "Entreprises",
-		href: "/entreprises/",
 	},
 ]
 
-export const utilityNavigation: readonly NavigationItem[] = [
+export const utilityNavigation: readonly NavigationLink[] = [
 	{
 		name: "Contact & accès",
 		href: "/accueil/contact-acces/",
