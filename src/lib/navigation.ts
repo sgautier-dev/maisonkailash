@@ -49,7 +49,7 @@ export const mainNavigation: readonly NavigationSection[] = [
 			},
 			{
 				type: "group",
-				name: "Massages relaxants & profonds",
+				name: "Massages détente & profonds",
 				children: [
 					{
 						name: "Champissage indien",

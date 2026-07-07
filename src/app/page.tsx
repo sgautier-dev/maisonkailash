@@ -34,7 +34,7 @@ const services = [
 		name: "Prestations entreprises",
 		description:
 			"Massage assis, pauses bien-être et actions de prévention santé directement sur votre lieu de travail.",
-		href: "/accueil/contact-acces/",
+		href: "/entreprises/",
 		icon: SunIcon,
 	},
 	{
@@ -48,16 +48,16 @@ const services = [
 
 const testimonials = [
 	{
-		body: "Un lieu apaisant, accueillant, où l’on se sent tout de suite en confiance. Les soins sont profonds et très humains.",
-		author: "Avis à remplacer",
+		body: "Un massage ayurvédique incroyable d'1h30 ! Super accueil, je recommande à 100%.",
+		author: "Aziliz",
 	},
 	{
-		body: "Maison Kailash est devenu un repère pour prendre soin de moi, ralentir et retrouver de l’énergie.",
-		author: "Avis à remplacer",
+		body: "Des enseignants et masseurs passionnés, une belle écoute, un magnifique espace et des acteurs de soins professionnels.",
+		author: "Nicolas",
 	},
 	{
-		body: "Une belle équipe, des pratiques variées et une vraie qualité d’écoute. Je recommande chaleureusement.",
-		author: "Avis à remplacer",
+		body: "Une parenthèse de douceur et de zénitude dans un endroit aux belles énergies. Les cours sont d’une grande qualité.",
+		author: "Aurélie",
 	},
 ]
 
@@ -79,16 +79,14 @@ export default function HomePage() {
 								L&apos;Éperon · Saint-Gilles les Hauts
 							</p>
 							<h1 className="heading-display mt-6 max-w-3xl text-mk-green">
-								votre espace bien-être à la Réunion
+								votre espace bien-être et santé holistique à la Réunion
 							</h1>
+
 							<p className="mt-8 max-w-xl text-lg/8 text-muted sm:text-xl/8">
-								Les praticiens de notre espace de santé et de bien-être vous
-								proposent différents massages bien-être et soins de santé
-								holistique, sur rendez-vous à l&apos;Éperon.
-							</p>
-							<p className="mt-5 max-w-xl text-base/7 text-muted">
-								Ils interviennent également en entreprises ou en collectivités
-								lors de sessions de massages sur chaise.
+								À l&apos;Éperon, Saint-Gilles les Hauts, Maison Kailash réunit
+								des praticiens passionnés autour des massages bien-être, soins
+								holistiques, pratiques corporelles, ateliers et séjours
+								ressourçants.
 							</p>
 							<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
 								<Link
@@ -123,14 +121,9 @@ export default function HomePage() {
 					<Reveal>
 						<div className="max-w-2xl">
 							<p className="eyebrow">Services</p>
-							<h2 className="heading-section mt-2 text-foreground">
-								Une démarche de santé holistique
+							<h2 className="heading-section mt-2 text-mk-green">
+								Choisir votre chemin vers le mieux-être
 							</h2>
-							<p className="mt-6 text-lg/8 text-muted">
-								Maison Kailash vous propose un panel de soins simple et cohérent
-								: massages bien-être, soins holistiques, médecines douces, yoga,
-								taichi, méditation, conférences, stages et séjours bien-être.
-							</p>
 						</div>
 					</Reveal>
 
@@ -196,7 +189,7 @@ export default function HomePage() {
 					<Reveal>
 						<div className="max-w-3xl">
 							<p className="eyebrow">Notre philosophie</p>
-							<h2 className="heading-section mt-2 text-foreground">
+							<h2 className="heading-section mt-2 text-mk-green">
 								Offrir un service de qualité à dimension humaine
 							</h2>
 							<div className="mt-8 space-y-6 text-lg/8 text-muted">
@@ -302,7 +295,7 @@ export default function HomePage() {
 					<Reveal>
 						<div className="mx-auto max-w-2xl text-center">
 							<p className="eyebrow">Avis</p>
-							<h2 className="heading-section mt-2 text-foreground">
+							<h2 className="heading-section mt-2 text-mk-green">
 								Ils parlent de Maison Kailash
 							</h2>
 						</div>

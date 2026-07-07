@@ -28,9 +28,11 @@
 
 	--shadow-soft: 0 24px 80px rgba(47, 38, 31, 0.12);
 	--shadow-card: 0 16px 40px rgba(47, 38, 31, 0.08);
+}
 
-	--text-hero: clamp(2.5rem, 5vw, 4.5rem);
-	--text-section-title: clamp(2.25rem, 4vw, 4rem);
+:root {
+	--mk-text-hero: clamp(2rem, 3.8vw, 3.5rem);
+	--mk-text-section-title: clamp(1.9rem, 3vw, 3rem);
 }
 
 html {
@@ -83,15 +85,15 @@ body {
 
 	.heading-display {
 		font-family: var(--font-heading);
-		font-size: var(--text-hero);
-		line-height: 0.95;
+		font-size: var(--mk-text-hero);
+		line-height: 0.98;
 		letter-spacing: 0;
 	}
 
 	.heading-section {
 		font-family: var(--font-heading);
-		font-size: var(--text-section-title);
-		line-height: 1;
+		font-size: var(--mk-text-section-title);
+		line-height: 1.05;
 		letter-spacing: 0;
 	}
 
