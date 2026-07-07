@@ -1,5 +1,4 @@
 import type { ComponentProps } from "react"
-import { PhoneIcon } from "@heroicons/react/20/solid"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -85,16 +84,9 @@ export default function Footer() {
 							</p>
 							<p>Sur rendez-vous du lundi au samedi</p>
 							<p>
-								<span className="block text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
-									Appeler
-								</span>
-								<a
-									href="tel:+262692683073"
-									className="mt-2 inline-flex items-center gap-2 rounded-pill bg-background px-3 py-1.5 font-semibold text-mk-green shadow-sm hover:text-mk-saffron-text"
-								>
-									<PhoneIcon aria-hidden="true" className="size-4" />
-									0692 68 30 73
-								</a>
+								<Link href="/accueil/contact-acces/" className="text-link">
+									Contact & plan d&apos;accès
+								</Link>
 							</p>
 						</address>
 					</div>
