@@ -21,7 +21,7 @@ import thaiAltImage from "@/images/massage-thai-huile-kailash.png"
 export const metadata: Metadata = {
 	title: "Massages bien-être à La Réunion",
 	description:
-		"Découvrez les massages bien-être proposés par Maison Kailash à l'Éperon, Saint-Gilles les Hauts : ayurvédique, pochons, champissage, prénatal, suédois, thaï à l'huile et réflexologie plantaire.",
+		"Découvrez les massages bien-être proposés par Maison Kailash à l'Éperon : Abhyanga, pochons, Champissage, Shiroabhyanga, thaï à l'huile, suédois, réflexologie, prénatal et Rebozo.",
 	alternates: {
 		canonical: "/bien-etre/",
 	},
@@ -42,7 +42,7 @@ const massages: readonly Massage[] = [
 		tag: "Massage à l'huile",
 		href: "/bien-etre/massage-ayurvedique/",
 		description:
-			"Un massage traditionnel indien enveloppant, idéal pour relâcher les tensions, apaiser le mental et soutenir l'équilibre global.",
+			"Massage traditionnel indien à l’huile pratiqué en fonction de votre dosha, idéal pour apaiser le mental, détoxifier, revitaliser, drainer et soutenir l’harmonie globale du corps.",
 		image: abhyangaImage,
 		imageAlt: "Massage ayurvédique Abhyanga à Maison Kailash",
 	},
@@ -51,27 +51,36 @@ const massages: readonly Massage[] = [
 		tag: "Chaleur & plantes",
 		href: "/bien-etre/massage-ayurvedique-aux-pochons/",
 		description:
-			"Un soin profond et réconfortant associant massage à l'huile, chaleur et pochons pour dénouer le corps en douceur.",
+			"Un soin enveloppant et apaisant associant massage à l’huile, chaleur et pochons pour relâcher les tensions et dénouer le corps en douceur.",
 		image: pochonsImage,
 		imageAlt: "Massage ayurvédique aux pochons à Maison Kailash",
 	},
 	{
-		title: "Massage crânien indien",
+		title: "Champissage indien",
 		tag: "Tête, nuque & épaules",
 		href: "/bien-etre/massage-champissage-indien/",
 		description:
 			"Un massage ciblé du haut du corps pour apaiser les tensions de la nuque, des épaules, du cuir chevelu et du mental.",
-		image: shiroabhyangaImage,
-		imageAlt: "Massage crânien indien à Maison Kailash",
+		image: champissageImage,
+		imageAlt: "Champissage indien à Maison Kailash",
 	},
 	{
-		title: "Massage prénatal",
-		tag: "Grossesse",
-		href: "/bien-etre/massage-prenatal/",
+		title: "Shiroabhyanga",
+		tag: "Massage ayurvédique de la tête",
+		href: "/bien-etre/shiroabhyanga/",
 		description:
-			"Un accompagnement doux et adapté pour aider la future maman à se détendre et à soulager les inconforts de la grossesse.",
-		image: prenatalImage,
-		imageAlt: "Massage prénatal à Maison Kailash",
+			"Un massage ayurvédique de la tête, du cuir chevelu, du visage et de la nuque pour apaiser le mental et relâcher les tensions.",
+		image: shiroabhyangaImage,
+		imageAlt: "Shiroabhyanga à Maison Kailash",
+	},
+	{
+		title: "Massage thaï à l'huile",
+		tag: "Énergie & étirements doux",
+		href: "/bien-etre/massage-thai-a-l-huile/",
+		description:
+			"Un massage à l’huile décontractant et régénérant qui suit les méridiens en associant les pressions et mobilisations douces pour libérer les tensions en profondeur.",
+		image: thaiImage,
+		imageAlt: "Massage thaï à l'huile à Maison Kailash",
 	},
 	{
 		title: "Massage suédois",
@@ -83,15 +92,6 @@ const massages: readonly Massage[] = [
 		imageAlt: "Massage suédois à Maison Kailash",
 	},
 	{
-		title: "Massage thaï à l'huile",
-		tag: "Fluidité & étirements",
-		href: "/bien-etre/massage-thai-a-l-huile/",
-		description:
-			"Un soin harmonisant qui associe pressions, mobilisations douces et massage à l'huile pour libérer les tensions.",
-		image: thaiImage,
-		imageAlt: "Massage thaï à l'huile à Maison Kailash",
-	},
-	{
 		title: "Réflexologie plantaire",
 		tag: "Ancrage",
 		href: "/bien-etre/reflexologie-plantaire/",
@@ -99,6 +99,24 @@ const massages: readonly Massage[] = [
 			"Une stimulation des zones réflexes du pied pour soutenir l'équilibre du corps, la détente et la circulation de l'énergie.",
 		image: reflexologyImage,
 		imageAlt: "Réflexologie plantaire à Maison Kailash",
+	},
+	{
+		title: "Massage prénatal",
+		tag: "Grossesse",
+		href: "/bien-etre/massage-prenatal/",
+		description:
+			"Un accompagnement doux et adapté pour aider la future maman à se détendre et à soulager les inconforts de la grossesse.",
+		image: prenatalImage,
+		imageAlt: "Massage prénatal à Maison Kailash",
+	},
+	{
+		title: "Rebozo",
+		tag: "Soin enveloppant",
+		href: "/bien-etre/rebozo/",
+		description:
+			"Un soin enveloppant et soutenant, pensé pour accompagner les passages de vie et les moments de transition.",
+		image: duoImage,
+		imageAlt: "Soin Rebozo à Maison Kailash",
 	},
 ]
 
@@ -143,14 +161,10 @@ export default function BienEtrePage() {
 									Prendre soin du corps, apaiser le mental
 								</h1>
 								<p className="mt-8 text-lg/8 text-muted sm:text-xl/8">
-									À Maison Kailash, chaque massage commence par un temps
-									d&apos;échange afin d&apos;adapter le soin à votre état du
-									moment, vos besoins et votre sensibilité.
-								</p>
-								<p className="mt-5 text-base/7 text-muted">
 									Nos praticiens vous accueillent sur rendez-vous à
 									l&apos;Éperon, Saint-Gilles les Hauts, pour des massages
-									bien-être, relaxants, profonds ou enveloppants.
+									relaxants, détoxifiants, énergisants, profonds ou
+									enveloppants.
 								</p>
 
 								<div className="mt-10 flex flex-col gap-4 sm:flex-row">

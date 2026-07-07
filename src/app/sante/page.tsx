@@ -21,7 +21,7 @@ import energeticCareImage from "@/images/soin-energetique-kailash.jpg"
 export const metadata: Metadata = {
 	title: "Médecines douces et santé holistique à La Réunion",
 	description:
-		"Découvrez les accompagnements santé proposés par Maison Kailash à l'Éperon : santé intégrative, Chi Nei Tsang, Shiatsu, soin énergétique et Reiki.",
+		"Découvrez les accompagnements santé proposés par Maison Kailash à l'Éperon : Chi Nei Tsang, Reiki, soin énergétique, Shiatsu, santé intégrative, coaching holistique et hypnose.",
 	alternates: {
 		canonical: "/sante/",
 	},
@@ -44,31 +44,22 @@ type Guidance = {
 
 const cares: readonly Care[] = [
 	{
-		title: "Santé intégrative",
-		tag: "Approche globale",
-		href: "/sante/santeintegrative/",
-		description:
-			"Une approche mêlant la sagesse de médecines ancestrales et l'avancée de la médecine moderne, pour mieux comprendre le fonctionnement global de sa santé.",
-		image: integrativeHealthImage,
-		imageAlt: "Santé intégrative à Maison Kailash",
-	},
-	{
 		title: "Massage ventral Chi Nei Tsang",
 		tag: "Ventre & émotions",
 		href: "/sante/massage-ventral/",
 		description:
-			"Un massage abdominal doux et profond, issu de la tradition taoïste, pour soutenir la digestion, la vitalité et le relâchement des tensions.",
+			"Un massage abdominal doux et profond issu de la médecine taoïste, pour soutenir la détoxification des organes internes, la digestion, la vitalité et la libération émotionnelle.",
 		image: chiNeiTsangImage,
 		imageAlt: "Massage ventral Chi Nei Tsang à Maison Kailash",
 	},
 	{
-		title: "Massage Shiatsu",
-		tag: "Pressions japonaises",
-		href: "/sante/shiatsu/",
+		title: "Reiki",
+		tag: "Chakras & bols tibétains",
+		href: "/sante/reiki/",
 		description:
-			"Une technique manuelle d'origine japonaise basée sur la pression des doigts et des paumes pour relâcher les tensions et favoriser une détente profonde.",
-		image: shiatsuImage,
-		imageAlt: "Massage Shiatsu à Maison Kailash",
+			"Soin énergétique d’harmonisation des chakras accompagné par les bols tibétains et les pierres.",
+		image: reikiImage,
+		imageAlt: "Soin Reiki à Maison Kailash",
 	},
 	{
 		title: "Soin énergétique",
@@ -80,13 +71,40 @@ const cares: readonly Care[] = [
 		imageAlt: "Soin énergétique à Maison Kailash",
 	},
 	{
-		title: "Reiki",
-		tag: "Énergie universelle",
-		href: "/sante/reiki/",
+		title: "Shiatsu",
+		tag: "Pressions japonaises",
+		href: "/sante/shiatsu/",
 		description:
-			"Une méthode japonaise par laquelle le praticien canalise l'énergie universelle afin d'accompagner la détente, l'apaisement et la circulation vitale.",
-		image: reikiImage,
-		imageAlt: "Soin Reiki à Maison Kailash",
+			"Une technique manuelle d'origine japonaise basée sur la pression des doigts et des paumes pour relâcher les tensions et favoriser une détente profonde.",
+		image: shiatsuImage,
+		imageAlt: "Shiatsu à Maison Kailash",
+	},
+	{
+		title: "Santé intégrative",
+		tag: "Approche globale",
+		href: "/sante/santeintegrative/",
+		description:
+			"Une approche mêlant la sagesse de médecines ancestrales et l'avancée de la médecine moderne, pour mieux comprendre le fonctionnement global de sa santé.",
+		image: integrativeHealthImage,
+		imageAlt: "Santé intégrative à Maison Kailash",
+	},
+	{
+		title: "Coaching santé holistique",
+		tag: "Accompagnement global",
+		href: "/sante/coaching-sante-holistique/",
+		description:
+			"Un accompagnement global pour clarifier vos besoins, soutenir votre vitalité et avancer vers une hygiène de vie plus alignée.",
+		image: integrativeHealthHeroImage,
+		imageAlt: "Coaching santé holistique à Maison Kailash",
+	},
+	{
+		title: "Hypnose et coaching en système nerveux",
+		tag: "Régulation intérieure",
+		href: "/sante/hypnose-coaching-systeme-nerveux/",
+		description:
+			"Un accompagnement autour de l'hypnose, du coaching et de la régulation du système nerveux pour retrouver davantage de sécurité intérieure.",
+		image: reikiAltImage,
+		imageAlt: "Hypnose et coaching en système nerveux à Maison Kailash",
 	},
 ]
 
@@ -134,9 +152,10 @@ export default function SantePage() {
 									accompagner une meilleure compréhension de soi.
 								</p>
 								<p className="mt-5 text-base/7 text-muted">
-									Santé intégrative, Chi Nei Tsang, Shiatsu, soin énergétique
-									ou Reiki : chaque accompagnement invite à revenir à une
-									écoute plus fine du corps et de ses besoins.
+									Soin ventral Chi Nei Tsang, Reiki ou soin énergétique,
+									Shiatsu, santé intégrative, hypnose ou coaching : chaque
+									accompagnement invite à revenir à une écoute plus fine du
+									corps et de ses besoins.
 								</p>
 
 								<div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -208,9 +227,9 @@ export default function SantePage() {
 								Nos pratiques santé
 							</h2>
 							<p className="mt-6 text-lg/8 text-muted">
-								Chaque soin possède sa propre porte d&apos;entrée : le corps,
-								le ventre, les pressions, l&apos;énergie ou l&apos;approche
-								globale de la santé.
+								Chaque soin possède sa propre porte d&apos;entrée : le corps, le
+								ventre, les pressions, l&apos;énergie ou l&apos;approche globale
+								de la santé.
 							</p>
 						</div>
 					</Reveal>
