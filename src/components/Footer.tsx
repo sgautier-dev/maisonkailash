@@ -46,7 +46,7 @@ export default function Footer() {
 							<Image
 								src={logoKailash}
 								alt=""
-								className="size-18 object-contain"
+								className="size-16 object-contain"
 							/>
 						</Link>
 

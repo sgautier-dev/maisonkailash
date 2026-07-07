@@ -82,7 +82,7 @@ export default function Header() {
 							src={logoKailash}
 							alt=""
 							priority
-							className="size-20 object-contain"
+							className="size-16 object-contain"
 						/>
 					</Link>
 				</div>
@@ -190,7 +190,7 @@ export default function Header() {
 								src={logoKailash}
 								alt=""
 								priority
-								className="size-20 object-contain"
+								className="size-16 object-contain"
 							/>
 						</Link>
 
@@ -342,7 +342,7 @@ function DesktopGroupedDropdown({
 	const activeGroup = groups[activeGroupIndex] ?? groups[0]
 
 	return (
-		<div className="grid w-[42rem] max-w-[calc(100vw-2rem)] grid-cols-[16rem_1fr] overflow-hidden rounded-panel">
+		<div className="grid w-2xl max-w-[calc(100vw-2rem)] grid-cols-[16rem_1fr] overflow-hidden rounded-panel">
 			<div className="border-r border-border bg-surface p-3">
 				<div className="space-y-1">
 					{groups.map((group, index) => {

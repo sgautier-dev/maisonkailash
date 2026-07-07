@@ -13,6 +13,7 @@ import foundersKailash from "@/images/maison-kailash.png"
 import homeHero from "@/images/home-hero.jpeg"
 import seatedMassageImage from "@/images/massage-assis-kailash.jpg"
 import LocationCta from "@/components/LocationCta"
+import logoKailash from "@/images/logo-kailash.png"
 
 const services = [
 	{
@@ -65,27 +66,30 @@ export default function HomePage() {
 		<main>
 			<section className="relative overflow-hidden bg-background">
 				<div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
-					<div className="px-6 pt-14 pb-16 sm:pb-24 lg:col-span-7 lg:px-0 lg:pt-28 lg:pb-32 xl:col-span-6">
+					<div className="px-6 pt-8 pb-14 sm:pb-20 lg:col-span-7 lg:px-0 lg:pt-16 lg:pb-24 xl:col-span-6">
 						<div className="mx-auto max-w-2xl lg:mx-0 hero-reveal">
+							<Image
+								src={logoKailash}
+								alt="Maison Kailash"
+								priority
+								className="mb-8 size-28 object-contain sm:size-32 lg:size-36"
+							/>
+
 							<p className="text-sm/6 font-semibold tracking-[0.18em] text-mk-saffron-text uppercase">
 								L&apos;Éperon · Saint-Gilles les Hauts
 							</p>
-
 							<h1 className="heading-display mt-6 max-w-3xl text-mk-green">
 								votre espace bien-être à la Réunion
 							</h1>
-
 							<p className="mt-8 max-w-xl text-lg/8 text-muted sm:text-xl/8">
 								Les praticiens de notre espace de santé et de bien-être vous
 								proposent différents massages bien-être et soins de santé
 								holistique, sur rendez-vous à l&apos;Éperon.
 							</p>
-
 							<p className="mt-5 max-w-xl text-base/7 text-muted">
 								Ils interviennent également en entreprises ou en collectivités
 								lors de sessions de massages sur chaise.
 							</p>
-
 							<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
 								<Link
 									href="/bien-etre/"
