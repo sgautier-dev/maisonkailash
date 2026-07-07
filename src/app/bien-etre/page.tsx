@@ -17,6 +17,7 @@ import reflexologyImage from "@/images/reflexologie-plantaire-kailash.jpg"
 import ayurvedicAltImage from "@/images/massage-ayurvedique-kailash2.png"
 import prenatalAltImage from "@/images/massage-prenatal-kailash2.jpg"
 import thaiAltImage from "@/images/massage-thai-huile-kailash.png"
+import rebozoImage from "@/images/background.jpeg"
 
 export const metadata: Metadata = {
 	title: "Massages bien-être à La Réunion",
@@ -115,7 +116,7 @@ const massages: readonly Massage[] = [
 		href: "/bien-etre/rebozo/",
 		description:
 			"Un soin enveloppant et soutenant, pensé pour accompagner les passages de vie et les moments de transition.",
-		image: duoImage,
+		image: rebozoImage,
 		imageAlt: "Soin Rebozo à Maison Kailash",
 	},
 ]
