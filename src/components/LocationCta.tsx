@@ -37,45 +37,54 @@ export default function LocationCta({
 	secondaryHref = "/accueil/contact-acces/",
 }: LocationCtaProps) {
 	return (
-		<section className="bg-mk-green">
+		<section className="bg-background">
 			<div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-				<div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-					<Reveal>
-						<div className="max-w-2xl">
-							<Icon aria-hidden="true" className="size-8 text-white/80" />
-							<h2 className="mt-5 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-								{title}
-							</h2>
-							<p className="mt-6 text-lg/8 text-white/80">{description}</p>
+				<div className="overflow-hidden rounded-panel border border-mk-saffron/35 bg-mk-saffron-soft shadow-soft">
+					<div className="grid gap-0 lg:grid-cols-[1fr_0.8fr] lg:items-stretch">
+						<Reveal>
+							<div className="flex h-full flex-col justify-center px-6 py-10 sm:px-10 lg:px-12 lg:py-14">
+								<Icon
+									aria-hidden="true"
+									className="size-8 text-mk-saffron-text"
+								/>
+								<h2 className="mt-5 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+									{title}
+								</h2>
+								<p className="mt-6 max-w-2xl text-lg/8 text-muted">
+									{description}
+								</p>
 
-							<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-								<a
-									href={phoneHref}
-									className="inline-flex items-center justify-center gap-2 rounded-pill bg-white px-5 py-3 text-sm font-semibold text-mk-green shadow-card hover:bg-mk-saffron-soft hover:text-mk-saffron-text"
-								>
-									<PhoneIcon aria-hidden="true" className="size-4" />
-									{phoneLabel}
-								</a>
-								<Link
-									href={secondaryHref}
-									className="inline-flex items-center justify-center rounded-pill border border-white/30 px-5 py-3 text-sm font-semibold text-white hover:bg-white/10"
-								>
-									{secondaryLabel}
-								</Link>
+								<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+									<a
+										href={phoneHref}
+										className="inline-flex items-center justify-center gap-2 rounded-pill bg-mk-green px-5 py-3 text-sm font-semibold text-white shadow-card hover:bg-mk-saffron hover:text-foreground"
+									>
+										<PhoneIcon aria-hidden="true" className="size-4" />
+										{phoneLabel}
+									</a>
+									<Link
+										href={secondaryHref}
+										className="inline-flex items-center justify-center rounded-pill border border-mk-saffron/50 bg-white/60 px-5 py-3 text-sm font-semibold text-mk-saffron-text hover:bg-white"
+									>
+										{secondaryLabel}
+									</Link>
+								</div>
 							</div>
-						</div>
-					</Reveal>
+						</Reveal>
 
-					<Reveal delay="sm">
-						<div className="overflow-hidden rounded-panel bg-white/10 shadow-soft ring-1 ring-white/20">
-							<Image
-								src={image}
-								alt={imageAlt}
-								sizes="(min-width: 1024px) 34vw, 100vw"
-								className="aspect-4/3 w-full object-cover"
-							/>
-						</div>
-					</Reveal>
+						<Reveal delay="sm">
+							<div className="h-full p-4 lg:p-5">
+								<div className="media-frame h-full">
+									<Image
+										src={image}
+										alt={imageAlt}
+										sizes="(min-width: 1024px) 34vw, 100vw"
+										className="aspect-4/3 w-full object-cover lg:h-full"
+									/>
+								</div>
+							</div>
+						</Reveal>
+					</div>
 				</div>
 			</div>
 		</section>

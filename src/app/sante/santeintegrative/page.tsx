@@ -3,16 +3,15 @@ import Image from "next/image"
 import Link from "next/link"
 import {
 	CheckCircleIcon,
-	ClockIcon,
 	HeartIcon,
-	PhoneIcon,
 	SparklesIcon,
 } from "@heroicons/react/24/outline"
 
 import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
-import integrativeHealthImage from "@/images/sante-integrative-kailash.png"
-import integrativeHealthDetailImage from "@/images/sante-integrative-kailash2.jpg"
+import integrativeHealthImage from "@/images/sante-integrative-kailash2.jpg"
+import integrativeHealthDetailImage from "@/images/sante-integrative-kailash.png"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Santé intégrative à La Réunion",
@@ -100,7 +99,7 @@ export default function SanteIntegrativePage() {
 			<section id="approche" className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-						<Reveal className="order-2 lg:order-1">
+						<Reveal className="order-2 hidden md:block lg:order-1">
 							<div className="media-frame">
 								<Image
 									src={integrativeHealthDetailImage}
@@ -265,84 +264,26 @@ export default function SanteIntegrativePage() {
 				</div>
 			</section>
 
-			<section id="tarifs" className="section-padding bg-surface">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Tarifs & réservation</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Consultation unique ou accompagnement
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									La santé intégrative est proposée sur rendez-vous avec
-									Nicolas.
-								</p>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="grid gap-5">
-								<div className="grid gap-5 sm:grid-cols-2">
-									<div className="content-card">
-										<ClockIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											Consultation unique
-										</h3>
-										<p className="mt-2 text-sm/6 text-muted">1h30</p>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											110 €
-										</p>
-									</div>
-
-									<div className="content-card">
-										<SparklesIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											Accompagnement
-										</h3>
-										<p className="mt-2 text-sm/6 text-muted">
-											4 séances : 1h30, 1h, 1h, 1h
-										</p>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											270 €
-										</p>
-									</div>
-								</div>
-
-								<div className="content-card flex flex-col gap-5 bg-mk-saffron-soft sm:flex-row sm:items-center sm:justify-between">
-									<div className="flex gap-4">
-										<PhoneIcon
-											aria-hidden="true"
-											className="mt-1 size-6 shrink-0 text-mk-saffron-text"
-										/>
-										<div>
-											<h3 className="text-lg font-semibold text-mk-saffron-text">
-												Réserver avec Nicolas
-											</h3>
-											<p className="mt-1 text-base/7 text-mk-saffron-text/80">
-												Contactez Nicolas pour choisir le format le plus adapté.
-											</p>
-										</div>
-									</div>
-
-									<a
-										href={bookingPhoneHref}
-										className="btn-primary shrink-0 px-5 py-3 text-sm"
-									>
-										{bookingPhoneLabel}
-									</a>
-								</div>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
+			<ServiceBookingSection
+				title="Consultation unique ou accompagnement"
+				description="La santé intégrative est proposée sur rendez-vous."
+				practitioner="Nicolas"
+				items={[
+					{
+						label: "Consultation unique",
+						value: "110 €",
+						description: "1h30.",
+					},
+					{
+						label: "Accompagnement",
+						value: "270 €",
+						description: "4 séances : 1h30, 1h, 1h, 1h.",
+					},
+				]}
+				phoneLabel={bookingPhoneLabel}
+				phoneHref={bookingPhoneHref}
+				ctaLabel="Réservez cet accompagnement"
+			/>
 
 			<LocationCta />
 		</main>

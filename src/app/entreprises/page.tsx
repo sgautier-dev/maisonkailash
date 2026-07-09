@@ -135,7 +135,7 @@ export default function EntreprisesPage() {
 			<section className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-						<Reveal>
+						<Reveal className="order-2 hidden md:block lg:order-1">
 							<div className="media-frame">
 								<Image
 									src={massageAssisDetailImage}
@@ -146,7 +146,7 @@ export default function EntreprisesPage() {
 							</div>
 						</Reveal>
 
-						<Reveal delay="sm">
+						<Reveal delay="sm" className="order-1 lg:order-2">
 							<div className="max-w-2xl">
 								<p className="eyebrow">Le massage assis</p>
 								<h2 className="heading-section mt-2 text-mk-green">
@@ -326,7 +326,7 @@ export default function EntreprisesPage() {
 				description="Entreprise, collectivité, événement ou retraite bien-être : nous vous répondons avec une proposition adaptée, sur devis."
 				image={massageAssisCtaImage}
 				imageAlt="Massage assis lors d'une intervention Maison Kailash"
-				secondaryLabel="Contact"
+				secondaryLabel="Formulaire de contact"
 				secondaryHref="/accueil/contact-acces/"
 			/>
 		</main>

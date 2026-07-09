@@ -224,52 +224,54 @@ export default function CoursCollectifsPage() {
 								<article className="group h-full">
 									<Link
 										href={course.href}
-										className="content-card flex h-full flex-col p-0"
+										className="content-card flex h-full flex-col p-4 lg:p-0"
 										aria-label={`Découvrir ${course.title}`}
 									>
-										<div className="media-frame rounded-b-none shadow-none">
-											<Image
-												src={course.image}
-												alt={course.imageAlt}
-												sizes="(min-width: 1024px) 45vw, 100vw"
-												className="aspect-4/3 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-											/>
+										<div className="flex gap-4 lg:block">
+											<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-none lg:h-auto lg:w-full lg:rounded-b-none lg:rounded-t-panel">
+												<Image
+													src={course.image}
+													alt={course.imageAlt}
+													sizes="(min-width: 1024px) 45vw, 96px"
+													className="size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-4/3 lg:w-full"
+												/>
+											</div>
+
+											<div className="min-w-0 flex-1 lg:p-8 lg:pb-0">
+												<p className="text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
+													{course.tag}
+												</p>
+												<h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-3 lg:text-2xl">
+													{course.title}
+												</h3>
+												<p className="mt-3 line-clamp-3 text-sm/6 text-muted lg:mt-4 lg:text-base/7">
+													{course.description}
+												</p>
+											</div>
 										</div>
 
-										<div className="flex grow flex-col p-6 sm:p-8">
-											<p className="text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
-												{course.tag}
-											</p>
-											<h3 className="mt-3 text-2xl font-semibold text-foreground group-hover:text-mk-green">
-												{course.title}
-											</h3>
-											<p className="mt-4 text-base/7 text-muted">
-												{course.description}
-											</p>
-
-											<dl className="mt-8 space-y-4">
-												{course.details.map((detail) => (
-													<div key={detail.label} className="flex gap-3">
-														<detail.icon
-															aria-hidden="true"
-															className="mt-0.5 size-5 shrink-0 text-mk-green"
-														/>
-														<div>
-															<dt className="text-sm font-semibold text-foreground">
-																{detail.label}
-															</dt>
-															<dd className="mt-0.5 text-sm/6 text-muted">
-																{detail.value}
-															</dd>
-														</div>
+										<dl className="mt-6 space-y-4 lg:px-8">
+											{course.details.map((detail) => (
+												<div key={detail.label} className="flex gap-3">
+													<detail.icon
+														aria-hidden="true"
+														className="mt-0.5 size-5 shrink-0 text-mk-green"
+													/>
+													<div>
+														<dt className="text-sm font-semibold text-foreground">
+															{detail.label}
+														</dt>
+														<dd className="mt-0.5 text-sm/6 text-muted">
+															{detail.value}
+														</dd>
 													</div>
-												))}
-											</dl>
+												</div>
+											))}
+										</dl>
 
-											<p className="mt-8 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
-												Découvrir le cours
-											</p>
-										</div>
+										<p className="mt-8 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text lg:px-8 lg:pb-8">
+											Découvrir le cours
+										</p>
 									</Link>
 								</article>
 							</Reveal>

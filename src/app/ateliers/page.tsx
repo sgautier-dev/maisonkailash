@@ -302,8 +302,8 @@ function WorkshopCard({
 			<div
 				className={
 					variant === "horizontal"
-						? "media-frame shadow-none lg:w-56 lg:shrink-0"
-						: "media-frame shadow-none"
+						? "order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-56 lg:rounded-panel"
+						: "order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-panel"
 				}
 			>
 				<Image
@@ -311,19 +311,23 @@ function WorkshopCard({
 					alt={workshop.imageAlt}
 					sizes={
 						variant === "horizontal"
-							? "(min-width: 1024px) 14rem, 100vw"
-							: "(min-width: 1024px) 33vw, 100vw"
+							? "(min-width: 1024px) 14rem, 96px"
+							: "(min-width: 1024px) 33vw, 96px"
 					}
 					className={
 						variant === "horizontal"
-							? "aspect-4/5 w-full object-cover"
-							: "aspect-3/2 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+							? "size-full object-cover lg:aspect-4/5 lg:w-full"
+							: "size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full"
 					}
 				/>
 			</div>
 
 			<div
-				className={variant === "horizontal" ? "flex grow flex-col p-6" : "p-6"}
+				className={
+					variant === "horizontal"
+						? "min-w-0 flex-1 lg:flex lg:grow lg:flex-col lg:p-6"
+						: "min-w-0 flex-1 lg:p-6"
+				}
 			>
 				<div className="flex flex-wrap items-center gap-3">
 					<span className="rounded-full bg-mk-saffron-soft px-3 py-1 text-xs font-semibold text-mk-saffron-text">
@@ -334,14 +338,14 @@ function WorkshopCard({
 					</span>
 				</div>
 
-				<h3 className="mt-4 text-2xl font-semibold text-foreground group-hover:text-mk-green">
+				<h3 className="mt-3 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-4 lg:text-2xl">
 					{workshop.title}
 				</h3>
-				<p className="mt-4 text-base/7 text-muted">
+				<p className="mt-3 line-clamp-3 text-sm/6 text-muted lg:mt-4 lg:line-clamp-none lg:text-base/7">
 					{workshop.shortDescription}
 				</p>
 
-				<dl className="mt-6 space-y-3 text-sm/6 text-muted">
+				<dl className="mt-5 space-y-3 text-sm/6 text-muted lg:mt-6">
 					<div className="flex gap-3">
 						<ArchiveBoxIcon
 							aria-hidden="true"
@@ -377,7 +381,7 @@ function WorkshopCard({
 				</dl>
 
 				{workshop.href ? (
-					<p className="mt-6 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
+					<p className="mt-5 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text lg:mt-6">
 						Consulter l&apos;archive
 					</p>
 				) : null}
@@ -390,8 +394,8 @@ function WorkshopCard({
 			<article
 				className={
 					variant === "horizontal"
-						? "content-card flex h-full flex-col p-0 lg:flex-row"
-						: "content-card h-full p-0"
+						? "content-card flex h-full gap-4 p-4 lg:flex-row lg:gap-0 lg:p-0"
+						: "content-card flex h-full gap-4 p-4 lg:flex-col lg:gap-0 lg:p-0"
 				}
 			>
 				{content}
@@ -405,8 +409,8 @@ function WorkshopCard({
 				href={workshop.href}
 				className={
 					variant === "horizontal"
-						? "content-card flex h-full flex-col p-0 lg:flex-row"
-						: "content-card flex h-full flex-col p-0"
+						? "content-card flex h-full gap-4 p-4 lg:flex-row lg:gap-0 lg:p-0"
+						: "content-card flex h-full gap-4 p-4 lg:flex-col lg:gap-0 lg:p-0"
 				}
 			>
 				{content}

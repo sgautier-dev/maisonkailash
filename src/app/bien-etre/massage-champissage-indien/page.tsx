@@ -1,17 +1,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-	CheckCircleIcon,
-	ClockIcon,
-	PhoneIcon,
-	SparklesIcon,
-} from "@heroicons/react/24/outline"
+import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
 import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
 import champissageImage from "@/images/champissage-indien-kailash.jpeg"
 import champissageDetailImage from "@/images/champissage-indien-kailash2.jpg"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Massage crânien Champissage indien à La Réunion",
@@ -99,7 +95,7 @@ export default function ChampissageIndienPage() {
 			<section className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-						<Reveal className="order-2 lg:order-1">
+						<Reveal className="order-2 hidden md:block lg:order-1">
 							<div className="media-frame">
 								<Image
 									src={champissageDetailImage}
@@ -206,85 +202,28 @@ export default function ChampissageIndienPage() {
 				</div>
 			</section>
 
-			<section id="tarifs" className="section-padding bg-background">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Tarifs & réservation</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Séance seule ou cure de trois séances
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									Le Champissage indien est proposé sur rendez-vous à Maison
-									Kailash, à l&apos;Éperon.
-								</p>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="grid gap-5">
-								<div className="grid gap-5 sm:grid-cols-2">
-									<div className="content-card">
-										<ClockIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											30 à 40 minutes
-										</h3>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											45 €
-										</p>
-										<p className="mt-3 text-sm/6 text-muted">
-											Une séance de massage crânien Champissage.
-										</p>
-									</div>
-									<div className="content-card">
-										<SparklesIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											Cure de 3 séances
-										</h3>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											120 €
-										</p>
-										<p className="mt-3 text-sm/6 text-muted">
-											Sur une période d&apos;un mois.
-										</p>
-									</div>
-								</div>
-
-								<div className="content-card flex flex-col gap-5 bg-mk-saffron-soft sm:flex-row sm:items-center sm:justify-between">
-									<div className="flex gap-4">
-										<PhoneIcon
-											aria-hidden="true"
-											className="mt-1 size-6 shrink-0 text-mk-saffron-text"
-										/>
-										<div>
-											<h3 className="text-lg font-semibold text-mk-saffron-text">
-												Réserver ce massage avec Lou
-											</h3>
-											<p className="mt-1 text-base/7 text-mk-saffron-text/80">
-												Contactez Lou pour réserver une séance ou une cure.
-											</p>
-										</div>
-									</div>
-
-									<a
-										href={bookingPhoneHref}
-										className="btn-primary shrink-0 px-5 py-3 text-sm"
-									>
-										{bookingPhoneLabel}
-									</a>
-								</div>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
+			<ServiceBookingSection
+				title="Séance seule ou cure de trois séances"
+				description="Le Champissage indien est proposé sur rendez-vous."
+				practitioner="Lou"
+				location="Maison Kailash, L'Éperon - Saint-Gilles les Hauts"
+				items={[
+					{
+						label: "30 à 40 minutes",
+						value: "45 €",
+						description: "Une séance de massage crânien Champissage.",
+					},
+					{
+						label: "Cure de 3 séances",
+						value: "120 €",
+						description: "Sur une période d'un mois.",
+					},
+				]}
+				phoneLabel={bookingPhoneLabel}
+				phoneHref={bookingPhoneHref}
+				ctaLabel="Réservez ce massage"
+				background="background"
+			/>
 
 			<LocationCta />
 		</main>

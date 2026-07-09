@@ -61,7 +61,7 @@ const massages: readonly Massage[] = [
 		tag: "Tête, nuque & épaules",
 		href: "/bien-etre/massage-champissage-indien/",
 		description:
-			"Un massage ciblé du haut du corps pour apaiser les tensions de la nuque, des épaules, du cuir chevelu et du mental.",
+			"Un massage habillé sur chaise, ciblé du haut du corps pour apaiser les tensions de la nuque, des épaules, du cuir chevelu et du mental.",
 		image: champissageImage,
 		imageAlt: "Champissage indien à Maison Kailash",
 	},
@@ -70,7 +70,7 @@ const massages: readonly Massage[] = [
 		tag: "Massage ayurvédique de la tête",
 		href: "/bien-etre/shiroabhyanga/",
 		description:
-			"Un massage ayurvédique de la tête, du cuir chevelu, du visage et de la nuque pour apaiser le mental et relâcher les tensions.",
+			"Un massage ayurvédique à l’huile de la tête, du cuir chevelu, du visage et de la nuque pour apaiser le mental et relâcher les tensions.",
 		image: shiroabhyangaImage,
 		imageAlt: "Shiroabhyanga à Maison Kailash",
 	},
@@ -270,28 +270,31 @@ export default function BienEtrePage() {
 								key={massage.href}
 								delay={index % 3 === 2 ? "lg" : index % 3 === 1 ? "md" : "sm"}
 							>
-								<article className="group flex h-full flex-col">
-									<Link href={massage.href} className="flex h-full flex-col">
-										<div className="media-frame relative">
+								<article className="group h-full">
+									<Link
+										href={massage.href}
+										className="flex h-full gap-4 rounded-card bg-background p-4 shadow-card transition hover:-translate-y-0.5 lg:flex-col lg:bg-transparent lg:p-0 lg:shadow-none lg:hover:translate-y-0"
+									>
+										<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-none lg:h-auto lg:w-full lg:rounded-panel">
 											<Image
 												src={massage.image}
 												alt={massage.imageAlt}
-												sizes="(min-width: 1024px) 33vw, 100vw"
-												className="aspect-3/2 w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+												sizes="(min-width: 1024px) 33vw, 96px"
+												className="size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full"
 											/>
 										</div>
 
-										<div className="mt-6 flex grow flex-col">
+										<div className="min-w-0 flex-1 lg:mt-6 lg:flex lg:grow lg:flex-col">
 											<p className="text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
 												{massage.tag}
 											</p>
-											<h3 className="mt-3 text-xl font-semibold text-foreground group-hover:text-mk-green">
+											<h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-3 lg:text-xl">
 												{massage.title}
 											</h3>
-											<p className="mt-4 line-clamp-3 text-sm/6 text-muted">
+											<p className="mt-3 line-clamp-3 text-sm/6 text-muted">
 												{massage.description}
 											</p>
-											<p className="mt-6 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
+											<p className="mt-4 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text lg:mt-6">
 												Découvrir le soin
 											</p>
 										</div>

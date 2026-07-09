@@ -40,6 +40,12 @@ export const mainNavigation: readonly NavigationSection[] = [
 						description: "Un soin enveloppant aux pochons chauds et plantes.",
 					},
 					{
+						name: "Champissage indien",
+						href: "/bien-etre/massage-champissage-indien/",
+						description:
+							"Massage crânien, nuque et épaules pour apaiser les tensions.",
+					},
+					{
 						name: "Shiroabhyanga",
 						href: "/bien-etre/shiroabhyanga/",
 						description:
@@ -51,12 +57,6 @@ export const mainNavigation: readonly NavigationSection[] = [
 				type: "group",
 				name: "Massages détente & profonds",
 				children: [
-					{
-						name: "Champissage indien",
-						href: "/bien-etre/massage-champissage-indien/",
-						description:
-							"Massage crânien, nuque et épaules pour apaiser les tensions.",
-					},
 					{
 						name: "Massage thaï à l'huile",
 						href: "/bien-etre/massage-thai-a-l-huile/",

@@ -16,7 +16,7 @@ import {
 	Portal,
 } from "@headlessui/react"
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline"
-import { ChevronDownIcon } from "@heroicons/react/20/solid"
+import { ChevronDownIcon, PhoneIcon } from "@heroicons/react/20/solid"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -87,11 +87,19 @@ export default function Header() {
 					</Link>
 				</div>
 
-				<div className="flex lg:hidden">
+				<div className="flex items-center gap-8 lg:hidden">
+					<Link
+						href="tel:+262692683073"
+						aria-label="Appeler Maison Kailash"
+						className="inline-flex size-12 items-center justify-center rounded-full border border-mk-saffron/40 bg-mk-saffron/30 text-mk-green transition hover:bg-mk-saffron/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mk-saffron"
+					>
+						<PhoneIcon aria-hidden="true" className="size-7" />
+					</Link>
+
 					<button
 						type="button"
 						onClick={() => setMobileMenuOpen(true)}
-						className="-m-2.5 inline-flex size-14 items-center justify-center rounded-md text-foreground"
+						className="-mr-2.5 inline-flex size-14 items-center justify-center rounded-md text-foreground"
 					>
 						<span className="sr-only">Ouvrir le menu principal</span>
 						<Bars3Icon aria-hidden="true" className="size-10" />
@@ -216,7 +224,7 @@ export default function Header() {
 												key={section.name}
 												href={section.href}
 												onClick={() => setMobileMenuOpen(false)}
-												className="block rounded-card px-3 py-2 text-lg/7 font-semibold text-foreground hover:bg-mk-mint/30"
+												className="-mx-3 block rounded-card px-3 py-2 text-lg/7 font-semibold text-foreground hover:bg-mk-mint/30"
 											>
 												{section.name}
 											</Link>

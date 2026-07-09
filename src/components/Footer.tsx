@@ -51,24 +51,27 @@ export default function Footer() {
 						</Link>
 
 						<p className="mt-6 max-w-sm text-sm/6 text-muted">
-							Santé holistique, bien-être, yoga, méditation et ateliers à
-							l&apos;Éperon, Saint-Gilles les Hauts, dans l&apos;Ouest de La
-							Réunion.
+							Centre de bien-être et santé dans l&apos;Ouest de la Réunion.
 						</p>
 
-						<div className="mt-6 flex gap-x-5">
-							{socialNavigation.map((item) => (
-								<a
-									key={item.name}
-									href={item.href}
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-mk-green hover:text-mk-saffron-text"
-								>
-									<span className="sr-only">{item.name}</span>
-									<item.icon aria-hidden="true" className="size-5" />
-								</a>
-							))}
+						<div className="mt-6">
+							<p className="text-sm font-semibold text-foreground">
+								Suivez-nous sur les réseaux sociaux
+							</p>
+							<div className="mt-4 flex gap-x-5">
+								{socialNavigation.map((item) => (
+									<a
+										key={item.name}
+										href={item.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="text-mk-green hover:text-mk-saffron-text"
+									>
+										<span className="sr-only">{item.name}</span>
+										<item.icon aria-hidden="true" className="size-7" />
+									</a>
+								))}
+							</div>
 						</div>
 					</div>
 

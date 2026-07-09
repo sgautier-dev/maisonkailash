@@ -1,17 +1,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-	CheckCircleIcon,
-	ClockIcon,
-	PhoneIcon,
-	SparklesIcon,
-} from "@heroicons/react/24/outline"
+import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
 import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
 import chiNeiTsangImage from "@/images/massage-ventral-chi-nei-tsang-kailash.jpg"
 import chiNeiTsangDetailImage from "@/images/massage-ventral-chi-nei-tsang-kailash2.png"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Massage ventral Chi Nei Tsang à La Réunion",
@@ -64,7 +60,7 @@ export default function MassageVentralPage() {
 										Ventre & émotions
 									</span>
 									<span className="rounded-pill bg-mk-mint/40 px-4 py-2 text-sm font-semibold text-mk-green">
-										1h ou 1h30-1h45
+										1h ou 1h30
 									</span>
 									<span className="rounded-pill bg-mk-mint/40 px-4 py-2 text-sm font-semibold text-mk-green">
 										Sur rendez-vous
@@ -106,7 +102,7 @@ export default function MassageVentralPage() {
 			<section className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-						<Reveal className="order-2 lg:order-1">
+						<Reveal className="order-2 hidden md:block lg:order-1">
 							<div className="media-frame">
 								<Image
 									src={chiNeiTsangDetailImage}
@@ -249,81 +245,19 @@ export default function MassageVentralPage() {
 				</div>
 			</section>
 
-			<section id="tarifs" className="section-padding bg-surface">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Tarifs & réservation</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Un soin profond, seul ou en accompagnement suivi
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									Une seule séance peut déjà avoir un impact intéressant. Pour
-									un travail plus profond, plusieurs séances rapprochées peuvent
-									être recommandées.
-								</p>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="grid gap-5">
-								<div className="grid gap-5 sm:grid-cols-2">
-									<div className="content-card">
-										<ClockIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											1 heure
-										</h3>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											80 €
-										</p>
-									</div>
-									<div className="content-card">
-										<SparklesIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											1h30 à 1h45
-										</h3>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											110 €
-										</p>
-									</div>
-								</div>
-
-								<div className="content-card flex flex-col gap-5 bg-mk-saffron-soft sm:flex-row sm:items-center sm:justify-between">
-									<div className="flex gap-4">
-										<PhoneIcon
-											aria-hidden="true"
-											className="mt-1 size-6 shrink-0 text-mk-saffron-text"
-										/>
-										<div>
-											<h3 className="text-lg font-semibold text-mk-saffron-text">
-												Réserver ce soin avec Lou
-											</h3>
-											<p className="mt-1 text-base/7 text-mk-saffron-text/80">
-												Contactez Lou pour choisir le format adapté à votre
-												besoin.
-											</p>
-										</div>
-									</div>
-
-									<a
-										href={bookingPhoneHref}
-										className="btn-primary shrink-0 px-5 py-3 text-sm"
-									>
-										{bookingPhoneLabel}
-									</a>
-								</div>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
+			<ServiceBookingSection
+				title="Deux formats selon votre besoin"
+				description="Le massage ventral Chi Nei Tsang est proposé sur rendez-vous."
+				practitioner="Lou"
+				location="Maison Kailash, L'Éperon - Saint-Gilles les Hauts"
+				items={[
+					{ label: "1 heure", value: "70 €" },
+					{ label: "1 heure 30", value: "90 €" },
+				]}
+				phoneLabel={bookingPhoneLabel}
+				phoneHref={bookingPhoneHref}
+				ctaLabel="Réservez ce soin"
+			/>
 
 			<LocationCta />
 		</main>

@@ -1,16 +1,12 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-	CheckCircleIcon,
-	ClockIcon,
-	PhoneIcon,
-	SparklesIcon,
-} from "@heroicons/react/24/outline"
+import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
 import Reveal from "@/components/Reveal"
 import prenatalImage from "@/images/massage-prenatal-kailash.jpg"
 import prenatalDetailImage from "@/images/massage-prenatal-kailash2.jpg"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Massage prénatal à La Réunion",
@@ -98,7 +94,7 @@ export default function MassagePrenatalPage() {
 			<section className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-						<Reveal className="order-2 lg:order-1">
+						<Reveal className="order-2 hidden md:block lg:order-1">
 							<div className="media-frame">
 								<Image
 									src={prenatalDetailImage}
@@ -204,79 +200,20 @@ export default function MassagePrenatalPage() {
 				</div>
 			</section>
 
-			<section id="tarifs" className="section-padding bg-background">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Tarifs & réservation</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Deux formats selon votre besoin
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									Le massage prénatal est proposé sur rendez-vous avec Elodie, à
-									St Leu.
-								</p>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="grid gap-5">
-								<div className="grid gap-5 sm:grid-cols-2">
-									<div className="content-card">
-										<ClockIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											1 heure 10
-										</h3>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											90 €
-										</p>
-									</div>
-									<div className="content-card">
-										<SparklesIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-xl font-semibold text-foreground">
-											1 heure 30
-										</h3>
-										<p className="mt-3 text-3xl font-semibold text-mk-green">
-											110 €
-										</p>
-									</div>
-								</div>
-
-								<div className="content-card flex flex-col gap-5 bg-mk-saffron-soft sm:flex-row sm:items-center sm:justify-between">
-									<div className="flex gap-4">
-										<PhoneIcon
-											aria-hidden="true"
-											className="mt-1 size-6 shrink-0 text-mk-saffron-text"
-										/>
-										<div>
-											<h3 className="text-lg font-semibold text-mk-saffron-text">
-												Réserver ce massage avec Elodie
-											</h3>
-											<p className="mt-1 text-base/7 text-mk-saffron-text/80">
-												Contactez Elodie pour réserver votre séance à St Leu.
-											</p>
-										</div>
-									</div>
-
-									<a
-										href={bookingPhoneHref}
-										className="btn-primary shrink-0 px-5 py-3 text-sm"
-									>
-										{bookingPhoneLabel}
-									</a>
-								</div>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
+			<ServiceBookingSection
+				title="Deux formats selon votre besoin"
+				description="Le massage prénatal est proposé sur rendez-vous."
+				practitioner="Élodie"
+				location="Saint-Leu, Colimaçons"
+				items={[
+					{ label: "1 heure 10", value: "90 €" },
+					{ label: "1 heure 30", value: "110 €" },
+				]}
+				phoneLabel={bookingPhoneLabel}
+				phoneHref={bookingPhoneHref}
+				ctaLabel="Réservez ce massage"
+				background="background"
+			/>
 		</main>
 	)
 }

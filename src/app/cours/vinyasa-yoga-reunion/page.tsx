@@ -4,9 +4,6 @@ import Link from "next/link"
 import {
 	CalendarDaysIcon,
 	CheckCircleIcon,
-	ClockIcon,
-	PhoneIcon,
-	SparklesIcon,
 	TicketIcon,
 } from "@heroicons/react/24/outline"
 
@@ -14,6 +11,7 @@ import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
 import vinyasaImage from "@/images/vinyasa-yoga-kailash.jpg"
 import vinyasaDetailImage from "@/images/vinyasa-yoga-kailash2.jpg"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Vinyasa Yoga à La Réunion",
@@ -100,7 +98,7 @@ export default function VinyasaYogaPage() {
 			<section className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-						<Reveal className="order-2 lg:order-1">
+						<Reveal className="order-2 hidden md:block lg:order-1">
 							<div className="media-frame">
 								<Image
 									src={vinyasaDetailImage}
@@ -207,104 +205,28 @@ export default function VinyasaYogaPage() {
 				</div>
 			</section>
 
-			<section id="tarifs" className="section-padding bg-background">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Horaires & tarifs</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Cours du mercredi à Maison Kailash
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									Cours sur réservation à l&apos;Éperon, Saint-Gilles les Hauts.
-								</p>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="grid gap-5">
-								<div className="content-card">
-									<CalendarDaysIcon
-										aria-hidden="true"
-										className="size-7 text-mk-green"
-									/>
-									<h3 className="mt-5 text-xl font-semibold text-foreground">
-										Mercredi
-									</h3>
-									<p className="mt-3 text-base/7 text-muted">
-										17h et 18h30, durée 1h30.
-									</p>
-								</div>
-
-								<div className="grid gap-5 sm:grid-cols-3">
-									<div className="content-card">
-										<ClockIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-lg font-semibold text-foreground">
-											Séance
-										</h3>
-										<p className="mt-3 text-2xl font-semibold text-mk-green">
-											15 €
-										</p>
-									</div>
-									<div className="content-card">
-										<TicketIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-lg font-semibold text-foreground">
-											10 cours
-										</h3>
-										<p className="mt-3 text-2xl font-semibold text-mk-green">
-											120 €
-										</p>
-									</div>
-									<div className="content-card">
-										<SparklesIcon
-											aria-hidden="true"
-											className="size-7 text-mk-green"
-										/>
-										<h3 className="mt-5 text-lg font-semibold text-foreground">
-											Découverte
-										</h3>
-										<p className="mt-3 text-2xl font-semibold text-mk-green">
-											8 €
-										</p>
-									</div>
-								</div>
-
-								<div className="content-card flex flex-col gap-5 bg-mk-saffron-soft sm:flex-row sm:items-center sm:justify-between">
-									<div className="flex gap-4">
-										<PhoneIcon
-											aria-hidden="true"
-											className="mt-1 size-6 shrink-0 text-mk-saffron-text"
-										/>
-										<div>
-											<h3 className="text-lg font-semibold text-mk-saffron-text">
-												Réservation avec Charlotte
-											</h3>
-											<p className="mt-1 text-base/7 text-mk-saffron-text/80">
-												Contactez directement Charlotte pour réserver votre
-												place.
-											</p>
-										</div>
-									</div>
-
-									<a
-										href={bookingPhoneHref}
-										className="btn-primary shrink-0 px-5 py-3 text-sm"
-									>
-										{bookingPhoneLabel}
-									</a>
-								</div>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
+			<ServiceBookingSection
+				eyebrow="Horaires & tarifs"
+				title="Cours du mercredi à Maison Kailash"
+				description="Cours sur réservation."
+				practitioner="Charlotte"
+				location="Maison Kailash, L'Éperon - Saint-Gilles les Hauts"
+				items={[
+					{
+						label: "Mercredi",
+						value: "17h et 18h30",
+						description: "Durée 1h30.",
+						icon: CalendarDaysIcon,
+					},
+					{ label: "Séance", value: "15 €", icon: TicketIcon },
+					{ label: "10 cours", value: "120 €", icon: TicketIcon },
+					{ label: "Découverte", value: "8 €", icon: TicketIcon },
+				]}
+				phoneLabel={bookingPhoneLabel}
+				phoneHref={bookingPhoneHref}
+				ctaLabel="Réservez ce cours"
+				background="background"
+			/>
 
 			<LocationCta />
 		</main>

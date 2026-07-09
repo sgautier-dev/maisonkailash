@@ -19,14 +19,14 @@ const services = [
 	{
 		name: "Massages bien-être",
 		description:
-			"Massages ayurvédiques, réflexologie plantaire, champissage, massage suédois ou thaï à l’huile.",
+			"Massage ayurvédique, massage thaï à l’huile, massage suédois, refléxologie plantaire ou prénatal.",
 		href: "/bien-etre/",
 		icon: HeartIcon,
 	},
 	{
 		name: "Santé holistique",
 		description:
-			"Soins holistiques, médecines douces, shiatsu, reiki, massage ventral et accompagnements complémentaires.",
+			"Massage ventral Chi Nei Tsang, Shiatsu, Reiki, soin énergétique, soins holistiques et médecines douces.",
 		href: "/sante/",
 		icon: SparklesIcon,
 	},
@@ -93,13 +93,13 @@ export default function HomePage() {
 									href="/bien-etre/"
 									className="btn-primary px-5 py-3 text-sm"
 								>
-									Découvrir les soins
+									Découvrir les massages
 								</Link>
 								<Link
-									href="/accueil/contact-acces/"
+									href="/sante/"
 									className="btn-secondary px-5 py-3 text-sm"
 								>
-									Contact & accès
+									Découvrir les soins
 								</Link>
 							</div>
 						</div>
