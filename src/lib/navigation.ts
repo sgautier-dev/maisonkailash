@@ -204,7 +204,7 @@ export const mainNavigation: readonly NavigationSection[] = [
 export const utilityNavigation: readonly NavigationLink[] = [
 	{
 		name: "Contact & accès",
-		href: "/accueil/contact-acces/",
+		href: "/contact-acces/",
 	},
 ]
 

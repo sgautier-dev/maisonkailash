@@ -151,7 +151,7 @@ export default function CoursCollectifsPage() {
 										Voir les cours
 									</Link>
 									<Link
-										href="/accueil/contact-acces/"
+										href="/contact-acces/"
 										className="btn-secondary px-5 py-3 text-sm"
 									>
 										Contact & accès

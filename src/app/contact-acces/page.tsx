@@ -1,11 +1,9 @@
 import type { ComponentType, SVGProps } from "react"
 import type { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 import {
 	ArrowTopRightOnSquareIcon,
 	CalendarDaysIcon,
-	HomeIcon,
 	MapPinIcon,
 	PhoneIcon,
 } from "@heroicons/react/24/outline"
@@ -13,13 +11,14 @@ import {
 import Reveal from "@/components/Reveal"
 import accessImage from "@/images/acces-maison-kailash-eperon.jpg"
 import logoKailash from "@/images/logo-kailash.png"
+import ContactForm from "@/components/ContactForm"
 
 export const metadata: Metadata = {
 	title: "Contact & accès Maison Kailash",
 	description:
 		"Adresse, téléphone, accès et prise de rendez-vous à Maison Kailash, centre bien-être et santé à l'Éperon, Saint-Gilles les Hauts.",
 	alternates: {
-		canonical: "/accueil/contact-acces/",
+		canonical: "/contact-acces/",
 	},
 }
 
@@ -123,42 +122,7 @@ export default function ContactAccessPage() {
 				</div>
 			</section>
 
-			<section className="section-padding bg-surface">
-				<div className="section-container">
-					<div className="grid gap-6 md:grid-cols-3">
-						{infoCards.map((item, index) => (
-							<Reveal
-								key={item.title}
-								delay={index > 1 ? "lg" : index > 0 ? "md" : "sm"}
-							>
-								<div className="content-card h-full">
-									<item.icon aria-hidden="true" className="size-7 text-mk-green" />
-									<h2 className="mt-5 text-xl font-semibold text-foreground">
-										{item.title}
-									</h2>
-									<p className="mt-3 text-base/7 text-muted">
-										{item.description}
-									</p>
-									{item.href ? (
-										<a
-											href={item.href}
-											target={item.href.startsWith("http") ? "_blank" : undefined}
-											rel={
-												item.href.startsWith("http")
-													? "noopener noreferrer"
-													: undefined
-											}
-											className="mt-5 inline-flex text-sm font-semibold text-mk-green hover:text-mk-saffron-text"
-										>
-											{item.linkLabel}
-										</a>
-									) : null}
-								</div>
-							</Reveal>
-						))}
-					</div>
-				</div>
-			</section>
+			<ContactForm infoItems={infoCards} />
 
 			<section className="section-padding bg-background">
 				<div className="section-container">
@@ -207,82 +171,6 @@ export default function ContactAccessPage() {
 							</div>
 						</Reveal>
 					</div>
-				</div>
-			</section>
-
-			<section className="section-padding bg-surface">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-						<Reveal>
-							<div className="media-frame">
-								<Image
-									src={accessImage}
-									alt="Entrée de Maison Kailash à Saint-Gilles les Hauts"
-									sizes="(min-width: 1024px) 42vw, 100vw"
-									className="aspect-4/3 w-full object-cover"
-								/>
-							</div>
-						</Reveal>
-
-						<Reveal delay="sm">
-							<div className="max-w-2xl">
-								<p className="eyebrow">Rendez-vous</p>
-								<h2 className="heading-section mt-2 text-foreground">
-									Contactez-nous avant de vous déplacer
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									L&apos;accueil se fait uniquement sur rendez-vous. Pour une
-									demande de massage, de soin, de bon cadeau ou d&apos;information
-									pratique, le plus simple est de nous appeler directement.
-								</p>
-
-								<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-									<a
-										href={phoneHref}
-										className="btn-primary inline-flex items-center justify-center gap-2 px-5 py-3 text-sm"
-									>
-										<PhoneIcon aria-hidden="true" className="size-4" />
-										{phoneLabel}
-									</a>
-									<Link href="/bien-etre/" className="btn-secondary px-5 py-3 text-sm">
-										Voir les massages
-									</Link>
-								</div>
-							</div>
-						</Reveal>
-					</div>
-				</div>
-			</section>
-
-			<section className="section-padding bg-background">
-				<div className="section-container">
-					<Reveal>
-						<div className="rounded-panel border border-mk-saffron/30 bg-mk-saffron-soft p-8 shadow-card sm:p-10">
-							<div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-								<div className="max-w-2xl">
-									<HomeIcon
-										aria-hidden="true"
-										className="size-8 text-mk-saffron-text"
-									/>
-									<h2 className="mt-5 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-										Formulaire de contact bientôt disponible
-									</h2>
-									<p className="mt-4 text-base/7 text-muted">
-										Nous ajouterons ici un formulaire pour les demandes écrites.
-										En attendant, privilégiez le téléphone pour les réservations
-										et les informations urgentes.
-									</p>
-								</div>
-
-								<a
-									href={phoneHref}
-									className="btn-primary shrink-0 px-5 py-3 text-sm"
-								>
-									Appeler Maison Kailash
-								</a>
-							</div>
-						</div>
-					</Reveal>
 				</div>
 			</section>
 		</main>

@@ -12,7 +12,7 @@ import prenatalImage from "@/images/massage-prenatal-kailash.jpg"
 import massageRoomImage from "@/images/massage-room.jpg"
 import swedishImage from "@/images/massage-suedois-kailash.jpg"
 import thaiImage from "@/images/massage-thai-huile-kailash.jpg"
-import duoImage from "@/images/massages-duo-kailash.png"
+import duoImage from "@/images/massages-duo-kailash.jpg"
 import reflexologyImage from "@/images/reflexologie-plantaire-kailash.jpg"
 import ayurvedicAltImage from "@/images/massage-ayurvedique-kailash2.png"
 import prenatalAltImage from "@/images/massage-prenatal-kailash2.jpg"
@@ -176,7 +176,7 @@ export default function BienEtrePage() {
 										Choisir un massage
 									</Link>
 									<Link
-										href="/accueil/contact-acces/"
+										href="/contact-acces/"
 										className="btn-secondary px-5 py-3 text-sm"
 									>
 										Demander conseil
@@ -333,7 +333,7 @@ export default function BienEtrePage() {
 								</p>
 								<div className="mt-10">
 									<Link
-										href="/accueil/contact-acces/"
+										href="/contact-acces/#formulaire"
 										className="btn-primary px-5 py-3 text-sm"
 									>
 										Demander un bon cadeau
@@ -360,7 +360,7 @@ export default function BienEtrePage() {
 							</p>
 							<div className="mt-10">
 								<Link
-									href="/accueil/contact-acces/"
+									href="/contact-acces/"
 									className="btn-primary px-5 py-3 text-sm"
 								>
 									Demander conseil

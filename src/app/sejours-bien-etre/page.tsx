@@ -151,7 +151,7 @@ export default function SejoursBienEtrePage() {
 										Voir les séjours
 									</Link>
 									<Link
-										href="/accueil/contact-acces/"
+										href="/contact-acces/"
 										className="btn-secondary px-5 py-3 text-sm"
 									>
 										Être informé

@@ -102,7 +102,7 @@ export default function EntreprisesPage() {
 
 								<div className="mt-10 flex flex-col gap-4 sm:flex-row">
 									<Link
-										href="/accueil/contact-acces/"
+										href="/contact-acces/#formulaire"
 										className="btn-primary px-5 py-3 text-sm"
 									>
 										Demander une intervention
@@ -327,7 +327,7 @@ export default function EntreprisesPage() {
 				image={massageAssisCtaImage}
 				imageAlt="Massage assis lors d'une intervention Maison Kailash"
 				secondaryLabel="Formulaire de contact"
-				secondaryHref="/accueil/contact-acces/"
+				secondaryHref="/contact-acces/#formulaire"
 			/>
 		</main>
 	)

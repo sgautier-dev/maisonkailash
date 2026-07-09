@@ -233,7 +233,7 @@ export default function HomePage() {
 							</div>
 
 							<Link
-								href="/accueil/contact-acces/"
+								href="/contact-acces/#formulaire"
 								className="btn-primary px-5 py-3 text-sm"
 							>
 								Demander un bon cadeau

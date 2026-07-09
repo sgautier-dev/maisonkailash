@@ -87,7 +87,7 @@ export default function Footer() {
 							</p>
 							<p>Sur rendez-vous du lundi au samedi</p>
 							<p>
-								<Link href="/accueil/contact-acces/" className="text-link">
+								<Link href="/contact-acces/" className="text-link">
 									Contact & plan d&apos;accès
 								</Link>
 							</p>

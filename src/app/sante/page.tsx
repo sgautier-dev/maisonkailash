@@ -163,7 +163,7 @@ export default function SantePage() {
 										Découvrir les soins
 									</Link>
 									<Link
-										href="/accueil/contact-acces/"
+										href="/contact-acces/"
 										className="btn-secondary px-5 py-3 text-sm"
 									>
 										Demander conseil

@@ -34,7 +34,7 @@ export default function LocationCta({
 	phoneLabel = "0692 68 30 73",
 	phoneHref = "tel:+262692683073",
 	secondaryLabel = "Contact & plan d'accès",
-	secondaryHref = "/accueil/contact-acces/",
+	secondaryHref = "/contact-acces/",
 }: LocationCtaProps) {
 	return (
 		<section className="bg-background">
