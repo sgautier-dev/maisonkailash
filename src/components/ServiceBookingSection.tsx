@@ -40,7 +40,6 @@ export default function ServiceBookingSection({
 	practitioner,
 	location,
 	items,
-	phoneLabel,
 	phoneHref,
 	ctaLabel,
 	ctaDescription,
@@ -148,7 +147,7 @@ export default function ServiceBookingSection({
 									href={phoneHref}
 									className="btn-primary shrink-0 px-5 py-3 text-sm"
 								>
-									{phoneLabel}
+									Prendre RDV
 								</a>
 							</div>
 						</div>

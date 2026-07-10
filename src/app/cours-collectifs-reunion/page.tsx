@@ -16,6 +16,7 @@ import taiChiImage from "@/images/taichi-kailash2.jpg"
 import vinyasaImage from "@/images/vinyasa-yoga-kailash.jpg"
 import yogaDeckImage from "@/images/yoga-deck-kailash.jpg"
 import yogaHeroImage from "@/images/yoga-kailash.jpg"
+import meditationImage from "@/images/meditation-kailash.jpeg"
 
 export const metadata: Metadata = {
 	title: "Cours collectifs yoga et Tai Chi à La Réunion",
@@ -116,6 +117,42 @@ const courses: readonly Course[] = [
 			},
 		],
 	},
+	{
+		title: "Méditation",
+		tag: "Présence silencieuse",
+		href: "/cours/meditation/",
+		description:
+			"Une pratique guidée ou silencieuse pour revenir à soi, apaiser le mental et cultiver une présence simple, directe et accessible.",
+		image: meditationImage,
+		imageAlt: "Cours de méditation à Maison Kailash",
+		details: [
+			{
+				label: "Intervenante",
+				value: "Lou",
+				icon: UserIcon,
+			},
+			{
+				label: "Horaire",
+				value: "Jeudi à 18h15",
+				icon: CalendarDaysIcon,
+			},
+			{
+				label: "Lieu",
+				value: "Maison Kailash, Saint-Gilles les Hauts / Éperon",
+				icon: MapPinIcon,
+			},
+			{
+				label: "Durée",
+				value: "1h15",
+				icon: ClockIcon,
+			},
+			{
+				label: "Participation",
+				value: "Donation de 5€ minimum",
+				icon: TicketIcon,
+			},
+		],
+	},
 ]
 
 export default function CoursCollectifsPage() {
@@ -180,7 +217,7 @@ export default function CoursCollectifsPage() {
 							<div>
 								<p className="eyebrow">Pratiquer régulièrement</p>
 								<h2 className="heading-section mt-2 text-foreground">
-									Deux rendez-vous pour bouger, respirer et se recentrer
+									Des rendez-vous pour bouger, respirer et se recentrer
 								</h2>
 							</div>
 						</Reveal>
@@ -218,64 +255,67 @@ export default function CoursCollectifsPage() {
 						</div>
 					</Reveal>
 
-					<div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
-						{courses.map((course, index) => (
-							<Reveal key={course.href} delay={index === 1 ? "md" : "sm"}>
-								<article className="group h-full">
-									<Link
-										href={course.href}
-										className="content-card flex h-full flex-col p-4 lg:p-0"
-										aria-label={`Découvrir ${course.title}`}
-									>
-										<div className="flex gap-4 lg:block">
-											<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-b-none lg:rounded-t-panel">
+					<div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+						{courses.map((course, index) => {
+							const primaryDetails = course.details.slice(0, 3)
+
+							return (
+								<Reveal
+									key={course.href}
+									delay={index % 3 === 2 ? "lg" : index % 3 === 1 ? "md" : "sm"}
+								>
+									<article className="group h-full">
+										<Link
+											href={course.href}
+											className="flex h-full gap-4 rounded-card bg-background p-4 shadow-card transition hover:-translate-y-0.5 lg:flex-col lg:bg-transparent lg:p-0 lg:shadow-none lg:hover:translate-y-0"
+											aria-label={`Découvrir ${course.title}`}
+										>
+											<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-panel">
 												<Image
 													src={course.image}
 													alt={course.imageAlt}
-													sizes="(min-width: 1024px) 45vw, 96px"
-													className="size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-4/3 lg:w-full"
+													sizes="(min-width: 1024px) 33vw, 96px"
+													className="size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full"
 												/>
 											</div>
 
-											<div className="min-w-0 flex-1 lg:p-8 lg:pb-0">
+											<div className="min-w-0 flex-1 lg:mt-6 lg:flex lg:grow lg:flex-col">
 												<p className="text-xs font-semibold tracking-[0.12em] text-mk-saffron-text uppercase">
 													{course.tag}
 												</p>
-												<h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-3 lg:text-2xl">
+
+												<h3 className="mt-2 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-3 lg:text-xl">
 													{course.title}
 												</h3>
-												<p className="mt-3 line-clamp-3 text-sm/6 text-muted lg:mt-4 lg:text-base/7">
+
+												<p className="mt-3 line-clamp-3 text-sm/6 text-muted lg:text-base/7">
 													{course.description}
 												</p>
+
+												<dl className="mt-5 space-y-2 text-sm/6 text-muted">
+													{primaryDetails.map((detail) => (
+														<div key={detail.label} className="flex gap-2">
+															<detail.icon
+																aria-hidden="true"
+																className="mt-0.5 size-4 shrink-0 text-mk-green"
+															/>
+															<div className="min-w-0">
+																<dt className="sr-only">{detail.label}</dt>
+																<dd className="line-clamp-1">{detail.value}</dd>
+															</div>
+														</div>
+													))}
+												</dl>
+
+												<p className="mt-auto pt-5 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
+													Découvrir le cours
+												</p>
 											</div>
-										</div>
-
-										<dl className="mt-6 space-y-4 lg:px-8">
-											{course.details.map((detail) => (
-												<div key={detail.label} className="flex gap-3">
-													<detail.icon
-														aria-hidden="true"
-														className="mt-0.5 size-5 shrink-0 text-mk-green"
-													/>
-													<div>
-														<dt className="text-sm font-semibold text-foreground">
-															{detail.label}
-														</dt>
-														<dd className="mt-0.5 text-sm/6 text-muted">
-															{detail.value}
-														</dd>
-													</div>
-												</div>
-											))}
-										</dl>
-
-										<p className="mt-8 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text lg:px-8 lg:pb-8">
-											Découvrir le cours
-										</p>
-									</Link>
-								</article>
-							</Reveal>
-						))}
+										</Link>
+									</article>
+								</Reveal>
+							)
+						})}
 					</div>
 				</div>
 			</section>

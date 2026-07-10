@@ -173,6 +173,10 @@ export const mainNavigation: readonly NavigationSection[] = [
 				name: "Tai Chi",
 				href: "/cours/tai-chi-reunion/",
 			},
+			{
+				name: "Méditation",
+				href: "/cours/meditation/",
+			},
 		],
 	},
 	{

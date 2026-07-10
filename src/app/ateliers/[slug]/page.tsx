@@ -6,7 +6,6 @@ import { notFound } from "next/navigation"
 import {
 	CalendarDaysIcon,
 	CurrencyEuroIcon,
-	EnvelopeIcon,
 	MapPinIcon,
 	PhoneIcon,
 	SparklesIcon,
@@ -241,18 +240,9 @@ export default async function WorkshopPage({ params }: WorkshopPageProps) {
 									icon={CurrencyEuroIcon}
 								/>
 
-								<DetailCard
-									label="Téléphone"
-									value={workshop.bookingPhone}
-									icon={PhoneIcon}
-									href={getPhoneHref(workshop.bookingPhone)}
-								/>
-
-								<DetailCard
-									label="Email"
-									value={workshop.bookingEmail}
-									icon={EnvelopeIcon}
-									href={getEmailHref(workshop.bookingEmail)}
+								<BookingContactCard
+									phone={workshop.bookingPhone}
+									email={workshop.bookingEmail}
 								/>
 							</div>
 						</Reveal>
@@ -354,6 +344,44 @@ function DetailCard({ label, value, icon: Icon, href }: DetailCardProps) {
 	}
 
 	return <div className="content-card">{content}</div>
+}
+
+function BookingContactCard({
+	phone,
+	email,
+}: {
+	phone?: string
+	email?: string
+}) {
+	const phoneHref = getPhoneHref(phone)
+	const emailHref = getEmailHref(email)
+
+	if (!phoneHref && !emailHref) {
+		return null
+	}
+
+	return (
+		<div className="content-card">
+			<PhoneIcon aria-hidden="true" className="size-7 text-mk-green" />
+			<h3 className="mt-5 text-lg font-semibold text-foreground">
+				Réservation
+			</h3>
+
+			<div className="mt-5 flex flex-wrap gap-3">
+				{phoneHref ? (
+					<a href={phoneHref} className="btn-primary px-4 py-2.5 text-sm">
+						Prendre RDV
+					</a>
+				) : null}
+
+				{emailHref ? (
+					<a href={emailHref} className="btn-secondary px-4 py-2.5 text-sm">
+						Envoyer un email
+					</a>
+				) : null}
+			</div>
+		</div>
+	)
 }
 
 function getPhoneHref(phone?: string) {

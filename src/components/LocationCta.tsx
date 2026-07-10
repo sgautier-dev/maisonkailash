@@ -31,7 +31,7 @@ export default function LocationCta({
 	description = "À Saint-Gilles les Hauts, dans l'Ouest de La Réunion, sur rendez-vous du lundi au samedi.",
 	image = massageRoomImage,
 	imageAlt = "Salle de massage Maison Kailash à l'Éperon",
-	phoneLabel = "0692 68 30 73",
+	phoneLabel = "Prendre RDV",
 	phoneHref = "tel:+262692683073",
 	secondaryLabel = "Contact & plan d'accès",
 	secondaryHref = "/contact-acces/",

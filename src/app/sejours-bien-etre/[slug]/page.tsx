@@ -7,7 +7,6 @@ import {
 	CalendarDaysIcon,
 	CheckCircleIcon,
 	CurrencyEuroIcon,
-	EnvelopeIcon,
 	GlobeAsiaAustraliaIcon,
 	MapPinIcon,
 	PhoneIcon,
@@ -294,14 +293,8 @@ export default async function RetreatPage({ params }: RetreatPageProps) {
 								/>
 
 								<DetailCard
-									label="Destination"
-									value={retreat.destination}
-									icon={GlobeAsiaAustraliaIcon}
-								/>
-
-								<DetailCard
 									label="Lieu"
-									value={retreat.location}
+									value={formatLocation(retreat.destination, retreat.location)}
 									icon={MapPinIcon}
 								/>
 
@@ -317,30 +310,11 @@ export default async function RetreatPage({ params }: RetreatPageProps) {
 									icon={SparklesIcon}
 								/>
 
-								<DetailCard
-									label="Tarif"
-									value={retreat.price}
-									icon={CurrencyEuroIcon}
-								/>
+								<PriceCard price={retreat.price} deposit={retreat.deposit} />
 
-								<DetailCard
-									label="Acompte"
-									value={retreat.deposit}
-									icon={CurrencyEuroIcon}
-								/>
-
-								<DetailCard
-									label="Téléphone"
-									value={retreat.bookingPhone}
-									icon={PhoneIcon}
-									href={getPhoneHref(retreat.bookingPhone)}
-								/>
-
-								<DetailCard
-									label="Email"
-									value={retreat.bookingEmail}
-									icon={EnvelopeIcon}
-									href={getEmailHref(retreat.bookingEmail)}
+								<BookingContactCard
+									phone={retreat.bookingPhone}
+									email={retreat.bookingEmail}
 								/>
 							</div>
 						</Reveal>
@@ -572,6 +546,71 @@ function DetailCard({ label, value, icon: Icon, href }: DetailCardProps) {
 	}
 
 	return <div className="content-card">{content}</div>
+}
+
+function PriceCard({ price, deposit }: { price?: string; deposit?: string }) {
+	if (!price && !deposit) {
+		return null
+	}
+
+	return (
+		<div className="content-card">
+			<CurrencyEuroIcon aria-hidden="true" className="size-7 text-mk-green" />
+			<h3 className="mt-5 text-lg font-semibold text-foreground">Tarif</h3>
+
+			{price ? (
+				<p className="mt-3 text-2xl font-semibold text-mk-green">{price}</p>
+			) : null}
+
+			{deposit ? (
+				<p className="mt-3 inline-flex rounded-pill bg-mk-saffron-soft px-3 py-1 text-sm font-semibold text-mk-saffron-text">
+					Acompte : {deposit}
+				</p>
+			) : null}
+		</div>
+	)
+}
+
+function BookingContactCard({
+	phone,
+	email,
+}: {
+	phone?: string
+	email?: string
+}) {
+	const phoneHref = getPhoneHref(phone)
+	const emailHref = getEmailHref(email)
+
+	if (!phoneHref && !emailHref) {
+		return null
+	}
+
+	return (
+		<div className="content-card">
+			<PhoneIcon aria-hidden="true" className="size-7 text-mk-green" />
+			<h3 className="mt-5 text-lg font-semibold text-foreground">
+				Réservation
+			</h3>
+
+			<div className="mt-5 flex flex-wrap gap-3">
+				{phoneHref ? (
+					<a href={phoneHref} className="btn-primary px-4 py-2.5 text-sm">
+						Prendre RDV
+					</a>
+				) : null}
+
+				{emailHref ? (
+					<a href={emailHref} className="btn-secondary px-4 py-2.5 text-sm">
+						Envoyer un email
+					</a>
+				) : null}
+			</div>
+		</div>
+	)
+}
+
+function formatLocation(destination?: string, location?: string) {
+	return [destination, location].filter(Boolean).join(" · ") || undefined
 }
 
 function hasListContent(items?: string[]) {
