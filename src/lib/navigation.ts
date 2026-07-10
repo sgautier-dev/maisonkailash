@@ -182,22 +182,12 @@ export const mainNavigation: readonly NavigationSection[] = [
 	{
 		name: "Ateliers",
 		href: "/ateliers/",
-		children: [
-			{
-				name: "Méditation - Yogi Ashokananda",
-				href: "/ateliers/meditation-yogi-ashokananda/",
-			},
-		],
+		children: [],
 	},
 	{
 		name: "Séjours",
 		href: "/sejours-bien-etre/",
-		children: [
-			{
-				name: "Cure ayurvédique en Inde",
-				href: "/sejours-bien-etre/cure-ayurvedique-inde/",
-			},
-		],
+		children: [],
 	},
 ]
 

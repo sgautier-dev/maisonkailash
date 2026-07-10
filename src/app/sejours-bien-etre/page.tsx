@@ -1,20 +1,22 @@
 import type { ComponentType, SVGProps } from "react"
 import type { Metadata } from "next"
-import Image, { type StaticImageData } from "next/image"
+import Image from "next/image"
 import Link from "next/link"
 import {
-	ArchiveBoxIcon,
+	CurrencyEuroIcon,
 	GlobeAsiaAustraliaIcon,
 	HeartIcon,
 	MapPinIcon,
 	SparklesIcon,
 	SunIcon,
+	UserGroupIcon,
 } from "@heroicons/react/24/outline"
 
+import NewsletterSignup from "@/components/NewsletterSignup"
 import Reveal from "@/components/Reveal"
+import { getEventShortDateLabel } from "@/lib/eventDate"
 import sejourIndeImage from "@/images/sejour-inde.jpeg"
 import sejourInde2Image from "@/images/sejour-inde2.jpeg"
-import sejourInde3Image from "@/images/sejour-inde3.jpeg"
 import sejourInde5Image from "@/images/sejour-inde5.jpeg"
 import sejourMaurice3Image from "@/images/sejour-maurice3.jpeg"
 import sejourMaurice4Image from "@/images/sejour-maurice4.jpeg"
@@ -22,7 +24,8 @@ import sejourMaurice5Image from "@/images/sejour-maurice5.jpeg"
 import sejourMaurice7Image from "@/images/sejour-maurice7.jpeg"
 import sejourRodriguesImage from "@/images/sejour-rodrigues.jpeg"
 import sejourRodrigues2Image from "@/images/sejour-rodrigues2.jpeg"
-import NewsletterSignup from "@/components/NewsletterSignup"
+import { getRetreats, type Retreat } from "@/sanity/queries"
+import { urlForImage } from "@/sanity/image"
 
 export const metadata: Metadata = {
 	title: "Séjours et retraites bien-être",
@@ -33,42 +36,11 @@ export const metadata: Metadata = {
 	},
 }
 
-type RetreatStatus = "open" | "full" | "past" | "draft"
-
-type Retreat = {
-	title: string
-	slug: string
-	status: RetreatStatus
-	destination: string
-	dateLabel: string
-	shortDescription: string
-	image: StaticImageData
-	imageAlt: string
-	href?: string
-}
-
 type RetreatTheme = {
 	name: string
 	description: string
 	icon: ComponentType<SVGProps<SVGSVGElement>>
 }
-
-const upcomingRetreats: readonly Retreat[] = []
-
-const archivedRetreats: readonly Retreat[] = [
-	{
-		title: "Cure Panchakarma en Inde du Sud",
-		slug: "cure-ayurvedique-inde",
-		status: "past",
-		destination: "Inde du Sud",
-		dateLabel: "Archive 2024",
-		shortDescription:
-			"Une immersion ayurvédique dédiée au repos, aux soins traditionnels et au retour à l'équilibre dans le cadre d'une cure Panchakarma.",
-		image: sejourInde3Image,
-		imageAlt: "Cure ayurvédique Panchakarma en Inde du Sud",
-		href: "/sejours-bien-etre/cure-ayurvedique-inde/",
-	},
-]
 
 const heroImages = [
 	{
@@ -119,7 +91,9 @@ const retreatThemes: readonly RetreatTheme[] = [
 	},
 ]
 
-export default function SejoursBienEtrePage() {
+export default async function SejoursBienEtrePage() {
+	const retreats = await getRetreats()
+
 	return (
 		<main>
 			<section className="overflow-hidden bg-background">
@@ -145,13 +119,13 @@ export default function SejoursBienEtrePage() {
 
 								<div className="mt-10 flex flex-col gap-4 sm:flex-row">
 									<Link
-										href="#prochains-sejours"
+										href="#sejours"
 										className="btn-primary px-5 py-3 text-sm"
 									>
 										Voir les séjours
 									</Link>
 									<Link
-										href="/contact-acces/"
+										href="#sejours-newsletter"
 										className="btn-secondary px-5 py-3 text-sm"
 									>
 										Être informé
@@ -236,25 +210,26 @@ export default function SejoursBienEtrePage() {
 				</div>
 			</section>
 
-			<section id="prochains-sejours" className="section-padding bg-background">
+			<section id="sejours" className="section-padding bg-background">
 				<div className="section-container">
 					<Reveal>
 						<div className="mx-auto max-w-2xl text-center">
 							<p className="eyebrow">Agenda</p>
 							<h2 className="heading-section mt-2 text-mk-green">
-								Prochains séjours
+								Séjours et retraites
 							</h2>
 							<p className="mt-6 text-lg/8 text-muted">
-								Les prochains séjours seront annoncés ici dès leur ouverture.
+								Les séjours ouverts, complets ou passés sont regroupés ici pour
+								garder une vision claire des propositions Maison Kailash.
 							</p>
 						</div>
 					</Reveal>
 
-					{upcomingRetreats.length > 0 ? (
-						<div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-							{upcomingRetreats.map((retreat, index) => (
+					{retreats.length > 0 ? (
+						<div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+							{retreats.map((retreat, index) => (
 								<Reveal
-									key={retreat.slug}
+									key={retreat._id}
 									delay={index % 3 === 2 ? "lg" : index % 3 === 1 ? "md" : "sm"}
 								>
 									<RetreatCard retreat={retreat} />
@@ -273,12 +248,11 @@ export default function SejoursBienEtrePage() {
 								</h3>
 								<p className="mt-4 text-base/7 text-muted">
 									Les prochains voyages, cures et retraites seront publiés ici.
-									Vous pouvez contacter Maison Kailash pour être informé des
-									projets à venir.
+									Inscrivez-vous à la newsletter pour recevoir les annonces.
 								</p>
 								<div className="mt-8">
 									<NewsletterSignup
-										id="retreats-newsletter"
+										id="sejours-newsletter"
 										title="Inscription à la newsletter"
 										description="Inscrivez-vous à la newsletter Maison Kailash pour recevoir les annonces des prochains voyages, cures et retraites bien-être."
 									/>
@@ -361,162 +335,123 @@ export default function SejoursBienEtrePage() {
 					</div>
 				</div>
 			</section>
-
-			<section className="section-padding bg-background">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Archives</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Séjours passés
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									Certains séjours restent visibles pour conserver la mémoire
-									des voyages organisés ou relayés par Maison Kailash.
-								</p>
-							</div>
-						</Reveal>
-
-						<div className="grid gap-8">
-							{archivedRetreats.map((retreat) => (
-								<Reveal key={retreat.slug} delay="sm">
-									<RetreatCard retreat={retreat} variant="horizontal" />
-								</Reveal>
-							))}
-						</div>
-					</div>
-				</div>
-			</section>
 		</main>
 	)
 }
 
-function getStatusLabel(status: RetreatStatus) {
-	switch (status) {
-		case "open":
-			return "Inscriptions ouvertes"
-		case "full":
-			return "Complet"
-		case "past":
-			return "Archive"
-		case "draft":
-			return "Bientôt"
-	}
-}
+function RetreatCard({ retreat }: { retreat: Retreat }) {
+	const imageSrc = retreat.mainImage
+		? urlForImage(retreat.mainImage).width(900).auto("format").url()
+		: sejourIndeImage
 
-function RetreatCard({
-	retreat,
-	variant = "default",
-}: {
-	retreat: Retreat
-	variant?: "default" | "horizontal"
-}) {
-	const content = (
-		<>
-			<div
-				className={
-					variant === "horizontal"
-						? "order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:min-h-72 lg:w-80 lg:self-stretch lg:rounded-panel"
-						: "order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-panel"
-				}
-			>
-				<Image
-					src={retreat.image}
-					alt={retreat.imageAlt}
-					sizes={
-						variant === "horizontal"
-							? "(min-width: 1024px) 20rem, 96px"
-							: "(min-width: 1024px) 33vw, 96px"
-					}
-					className={
-						variant === "horizontal"
-							? "size-full object-cover object-center lg:h-full lg:w-full"
-							: "size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full"
-					}
-				/>
-			</div>
-
-			<div
-				className={
-					variant === "horizontal"
-						? "min-w-0 flex-1 lg:flex lg:grow lg:flex-col lg:p-6"
-						: "min-w-0 flex-1 lg:p-6"
-				}
-			>
-				<div className="flex flex-wrap items-center gap-3">
-					<span className="rounded-full bg-mk-saffron-soft px-3 py-1 text-xs font-semibold text-mk-saffron-text">
-						{getStatusLabel(retreat.status)}
-					</span>
-					<span className="text-xs font-semibold tracking-[0.12em] text-mk-green uppercase">
-						{retreat.destination}
-					</span>
-				</div>
-
-				<h3 className="mt-3 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-4 lg:text-2xl">
-					{retreat.title}
-				</h3>
-				<p className="mt-3 line-clamp-3 text-sm/6 text-muted lg:mt-4 lg:line-clamp-none lg:text-base/7">
-					{retreat.shortDescription}
-				</p>
-
-				<dl className="mt-5 space-y-3 text-sm/6 text-muted lg:mt-6">
-					<div className="flex gap-3">
-						<ArchiveBoxIcon
-							aria-hidden="true"
-							className="mt-0.5 size-5 shrink-0 text-mk-green"
-						/>
-						<div>
-							<dt className="sr-only">Statut</dt>
-							<dd>{retreat.dateLabel}</dd>
-						</div>
-					</div>
-					<div className="flex gap-3">
-						<MapPinIcon
-							aria-hidden="true"
-							className="mt-0.5 size-5 shrink-0 text-mk-green"
-						/>
-						<div>
-							<dt className="sr-only">Destination</dt>
-							<dd>{retreat.destination}</dd>
-						</div>
-					</div>
-				</dl>
-
-				{retreat.href ? (
-					<p className="mt-5 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text lg:mt-6">
-						Consulter l&apos;archive
-					</p>
-				) : null}
-			</div>
-		</>
-	)
-
-	if (!retreat.href) {
-		return (
-			<article
-				className={
-					variant === "horizontal"
-						? "content-card flex h-full gap-4 p-4 lg:flex-row lg:gap-0 lg:p-0"
-						: "content-card flex h-full gap-4 p-4 lg:flex-col lg:gap-0 lg:p-0"
-				}
-			>
-				{content}
-			</article>
-		)
-	}
+	const imageAlt = retreat.mainImage?.alt ?? retreat.title
+	const dateLabel = getEventShortDateLabel(retreat)
 
 	return (
 		<article className="group h-full">
 			<Link
-				href={retreat.href}
-				className={
-					variant === "horizontal"
-						? "content-card flex h-full gap-4 p-4 lg:flex-row lg:gap-0 lg:p-0"
-						: "content-card flex h-full gap-4 p-4 lg:flex-col lg:gap-0 lg:p-0"
-				}
+				href={`/sejours-bien-etre/${retreat.slug}/`}
+				className="content-card flex h-full flex-col overflow-hidden p-0"
 			>
-				{content}
+				<div className="relative aspect-4/3 bg-background">
+					<div className="absolute inset-5">
+						<Image
+							src={imageSrc}
+							alt={imageAlt}
+							fill
+							sizes="(min-width: 1280px) 26rem, (min-width: 768px) 50vw, 100vw"
+							className="object-contain transition duration-300 group-hover:scale-[1.02]"
+						/>
+					</div>
+
+					{retreat.status === "past" || retreat.status === "full" ? (
+						<span className="absolute left-0 top-5 rounded-r-full bg-mk-saffron px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-soft">
+							{retreat.status === "past" ? "Archive" : "Complet"}
+						</span>
+					) : null}
+				</div>
+
+				<div className="flex flex-1 flex-col p-6">
+					<div className="flex flex-wrap items-center gap-3">
+						<span className="text-xs font-semibold tracking-[0.12em] text-mk-green uppercase">
+							{retreat.destination}
+						</span>
+
+						{dateLabel ? (
+							<span className="rounded-pill bg-mk-mint/40 px-3 py-1 text-xs font-semibold text-mk-green">
+								{dateLabel}
+							</span>
+						) : null}
+					</div>
+
+					<h3 className="mt-4 text-xl font-semibold text-foreground group-hover:text-mk-green">
+						{retreat.title}
+					</h3>
+
+					<p className="mt-4 line-clamp-3 text-sm/6 text-muted">
+						{retreat.excerpt}
+					</p>
+
+					<dl className="mt-5 min-h-24 space-y-3 text-sm/6 text-muted">
+						{retreat.teacher ? (
+							<div className="flex gap-3">
+								<UserGroupIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div>
+									<dt className="sr-only">Intervenant</dt>
+									<dd>{retreat.teacher}</dd>
+								</div>
+							</div>
+						) : null}
+
+						{retreat.location ? (
+							<div className="flex gap-3">
+								<MapPinIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div>
+									<dt className="sr-only">Lieu</dt>
+									<dd>{retreat.location}</dd>
+								</div>
+							</div>
+						) : null}
+
+						{retreat.price ? (
+							<div className="flex gap-3">
+								<CurrencyEuroIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div>
+									<dt className="sr-only">Tarif</dt>
+									<dd>{retreat.price}</dd>
+								</div>
+							</div>
+						) : null}
+
+						{retreat.bookingText ? (
+							<div className="flex gap-3">
+								<SparklesIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div className="min-w-0">
+									<dt className="sr-only">Information</dt>
+									<dd className="line-clamp-2">{retreat.bookingText}</dd>
+								</div>
+							</div>
+						) : null}
+					</dl>
+
+					<p className="mt-auto pt-6 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
+						{retreat.status === "past"
+							? "Consulter l'archive"
+							: "Voir les détails"}
+					</p>
+				</div>
 			</Link>
 		</article>
 	)

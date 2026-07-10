@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity"
 
 export const workshop = defineType({
 	name: "workshop",
-	title: "Atelier",
+	title: "Ateliers",
 	type: "document",
 	fields: [
 		defineField({
@@ -55,19 +55,32 @@ export const workshop = defineType({
 		defineField({
 			name: "startDate",
 			title: "Date de début",
-			type: "datetime",
+			type: "date",
+			validation: (rule) => rule.required(),
+		}),
+		defineField({
+			name: "startTime",
+			title: "Heure de début",
+			type: "string",
+			description: "Exemple : 18h00",
 		}),
 		defineField({
 			name: "endDate",
 			title: "Date de fin",
-			type: "datetime",
+			type: "date",
+		}),
+		defineField({
+			name: "endTime",
+			title: "Heure de fin",
+			type: "string",
+			description: "Exemple : 19h30",
 		}),
 		defineField({
 			name: "dateLabel",
-			title: "Texte de date affiché",
+			title: "Texte de date personnalisé (optionnel)",
 			type: "string",
 			description:
-				"Exemples : Jeudi 28 mai 2026 · Archive 2024 · Dates à venir.",
+				"À laisser vide dans la plupart des cas. Utile seulement pour un libellé spécial comme : Dates à venir.",
 		}),
 		defineField({
 			name: "location",
@@ -79,6 +92,14 @@ export const workshop = defineType({
 			name: "teacher",
 			title: "Intervenant",
 			type: "string",
+		}),
+		defineField({
+			name: "teacherProfile",
+			title: "Fiche intervenant",
+			type: "reference",
+			to: [{ type: "teacher" }],
+			description:
+				"Optionnel. Permet d'afficher une section À propos de l'intervenant sur la page de l'atelier.",
 		}),
 		defineField({
 			name: "excerpt",
@@ -116,12 +137,19 @@ export const workshop = defineType({
 		}),
 		defineField({
 			name: "bookingText",
-			title: "Texte réservation",
+			title: "Information pratique",
 			type: "string",
+			description:
+				"Exemples : Places limitées, Sur inscription, Matériel non fourni, Enseignement traduit en français.",
 		}),
 		defineField({
 			name: "bookingPhone",
 			title: "Téléphone réservation",
+			type: "string",
+		}),
+		defineField({
+			name: "bookingEmail",
+			title: "Email réservation",
 			type: "string",
 		}),
 		defineField({

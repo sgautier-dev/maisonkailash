@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity"
 
 export const retreat = defineType({
 	name: "retreat",
-	title: "Séjour",
+	title: "Séjours",
 	type: "document",
 	fields: [
 		defineField({
@@ -44,6 +44,19 @@ export const retreat = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: "location",
+			title: "Lieu précis",
+			type: "string",
+			description:
+				"Optionnel. Exemple : Hauts de Saint-Leu, Inde du Sud, Rodrigues.",
+		}),
+		defineField({
+			name: "level",
+			title: "Niveau",
+			type: "string",
+			description: "Exemple : Tous niveaux.",
+		}),
+		defineField({
 			name: "startDate",
 			title: "Date de début",
 			type: "date",
@@ -55,17 +68,30 @@ export const retreat = defineType({
 		}),
 		defineField({
 			name: "dateLabel",
-			title: "Texte de date affiché",
+			title: "Texte de date personnalisé (optionnel)",
 			type: "string",
 			description:
-				"Exemples : Archive 2024 · Du 19 juillet au 3 août 2024 · Dates à venir.",
+				"À laisser vide dans la plupart des cas. Utile seulement pour un libellé spécial comme : Dates à venir, Archive 2024, Programme à confirmer.",
+		}),
+		defineField({
+			name: "teacher",
+			title: "Intervenant ou accompagnant",
+			type: "string",
+		}),
+		defineField({
+			name: "teacherProfile",
+			title: "Fiche intervenant",
+			type: "reference",
+			to: [{ type: "teacher" }],
+			description:
+				"Optionnel. Permet d'afficher une section À propos de l'intervenant sur la page du séjour.",
 		}),
 		defineField({
 			name: "excerpt",
 			title: "Résumé court",
 			type: "text",
 			rows: 3,
-			validation: (rule) => rule.required().max(260),
+			validation: (rule) => rule.required().max(280),
 		}),
 		defineField({
 			name: "mainImage",
@@ -84,10 +110,57 @@ export const retreat = defineType({
 			],
 		}),
 		defineField({
+			name: "gallery",
+			title: "Galerie photos",
+			type: "array",
+			of: [
+				defineField({
+					name: "image",
+					title: "Image",
+					type: "image",
+					options: {
+						hotspot: true,
+					},
+					fields: [
+						defineField({
+							name: "alt",
+							title: "Texte alternatif",
+							type: "string",
+							validation: (rule) => rule.required(),
+						}),
+					],
+				}),
+			],
+		}),
+		defineField({
 			name: "body",
 			title: "Contenu détaillé",
 			type: "array",
 			of: [{ type: "block" }],
+		}),
+		defineField({
+			name: "programItems",
+			title: "Programme",
+			type: "array",
+			of: [{ type: "string" }],
+			description:
+				"Exemples : Himalayan Hatha Yoga, Pranayama, méditation, enseignements spirituels.",
+		}),
+		defineField({
+			name: "includedItems",
+			title: "Inclus",
+			type: "array",
+			of: [{ type: "string" }],
+			description:
+				"Exemples : 10 heures d'enseignements, temps d'échange avec l'intervenant.",
+		}),
+		defineField({
+			name: "requiredItems",
+			title: "À prévoir",
+			type: "array",
+			of: [{ type: "string" }],
+			description:
+				"Exemples : tapis, briques, sangle, couverture, matériel personnel.",
 		}),
 		defineField({
 			name: "price",
@@ -95,13 +168,26 @@ export const retreat = defineType({
 			type: "string",
 		}),
 		defineField({
-			name: "bookingText",
-			title: "Texte réservation",
+			name: "deposit",
+			title: "Acompte",
 			type: "string",
+			description: "Exemple : 200 euros.",
+		}),
+		defineField({
+			name: "bookingText",
+			title: "Information pratique",
+			type: "string",
+			description:
+				"Exemples : Programme complet sur demande, places limitées, inscription sur demande.",
 		}),
 		defineField({
 			name: "bookingPhone",
 			title: "Téléphone réservation",
+			type: "string",
+		}),
+		defineField({
+			name: "bookingEmail",
+			title: "Email réservation",
 			type: "string",
 		}),
 		defineField({

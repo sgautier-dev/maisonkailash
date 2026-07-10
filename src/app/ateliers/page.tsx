@@ -1,21 +1,22 @@
 import type { ComponentType, SVGProps } from "react"
 import type { Metadata } from "next"
-import Image, { type StaticImageData } from "next/image"
+import Image from "next/image"
 import Link from "next/link"
 import {
-	ArchiveBoxIcon,
 	CalendarDaysIcon,
-	MapPinIcon,
+	CurrencyEuroIcon,
 	SparklesIcon,
 	UserGroupIcon,
 } from "@heroicons/react/24/outline"
 
 import LocationCta from "@/components/LocationCta"
+import NewsletterSignup from "@/components/NewsletterSignup"
 import Reveal from "@/components/Reveal"
 import atelierHeroImage from "@/images/atelier-kailash.jpg"
 import atelierRoomImage from "@/images/atelier-kailash2.jpg"
-import yogiAshokanandaImage from "@/images/yogi-ashokananda-kailash.jpg"
-import NewsletterSignup from "@/components/NewsletterSignup"
+import { getWorkshops, type Workshop } from "@/sanity/queries"
+import { urlForImage } from "@/sanity/image"
+import { getEventShortDateLabel } from "@/lib/eventDate"
 
 export const metadata: Metadata = {
 	title: "Ateliers, stages et rencontres à La Réunion",
@@ -26,46 +27,11 @@ export const metadata: Metadata = {
 	},
 }
 
-type WorkshopStatus = "open" | "full" | "past" | "draft"
-
-type Workshop = {
-	title: string
-	slug: string
-	status: WorkshopStatus
-	category: string
-	dateLabel: string
-	location: string
-	teacher?: string
-	shortDescription: string
-	image: StaticImageData
-	imageAlt: string
-	href?: string
-}
-
 type WorkshopTheme = {
 	name: string
 	description: string
 	icon: ComponentType<SVGProps<SVGSVGElement>>
 }
-
-const upcomingWorkshops: readonly Workshop[] = []
-
-const archivedWorkshops: readonly Workshop[] = [
-	{
-		title: "Méditation avec Yogi Ashokananda",
-		slug: "meditation-yogi-ashokananda",
-		status: "past",
-		category: "Méditation",
-		dateLabel: "Archive",
-		location: "Maison Kailash, Saint-Gilles les Hauts",
-		teacher: "Yogi Ashokananda",
-		shortDescription:
-			"Un temps de pratique et de transmission autour de la méditation et des enseignements de Yogi Ashokananda.",
-		image: yogiAshokanandaImage,
-		imageAlt: "Méditation avec Yogi Ashokananda à Maison Kailash",
-		href: "/ateliers/meditation-yogi-ashokananda/",
-	},
-]
 
 const workshopThemes: readonly WorkshopTheme[] = [
 	{
@@ -88,20 +54,9 @@ const workshopThemes: readonly WorkshopTheme[] = [
 	},
 ]
 
-function getStatusLabel(status: WorkshopStatus) {
-	switch (status) {
-		case "open":
-			return "Inscriptions ouvertes"
-		case "full":
-			return "Complet"
-		case "past":
-			return "Archive"
-		case "draft":
-			return "Bientôt"
-	}
-}
+export default async function AteliersPage() {
+	const workshops = await getWorkshops()
 
-export default function AteliersPage() {
 	return (
 		<main>
 			<section className="relative overflow-hidden bg-background">
@@ -125,14 +80,14 @@ export default function AteliersPage() {
 								</p>
 								<p className="mt-5 text-base/7 text-muted">
 									Cette rubrique est pensée comme un agenda vivant : les
-									prochains rendez-vous seront publiés ici, avec les
-									informations pratiques pour réserver ou contacter
-									l&apos;équipe.
+									prochains rendez-vous seront publiés ici, et les archives
+									restent visibles pour donner un aperçu de l&apos;esprit des
+									rencontres accueillies.
 								</p>
 
 								<div className="mt-10 flex flex-col gap-4 sm:flex-row">
 									<Link
-										href="#prochains-ateliers"
+										href="#ateliers"
 										className="btn-primary px-5 py-3 text-sm"
 									>
 										Voir les ateliers
@@ -160,27 +115,27 @@ export default function AteliersPage() {
 				</div>
 			</section>
 
-			<section id="prochains-ateliers" className="section-padding bg-surface">
+			<section id="ateliers" className="section-padding bg-surface">
 				<div className="section-container">
 					<Reveal>
 						<div className="mx-auto max-w-2xl text-center">
 							<p className="eyebrow">Agenda</p>
 							<h2 className="heading-section mt-2 text-foreground">
-								Prochains ateliers
+								Ateliers et stages
 							</h2>
 							<p className="mt-6 text-lg/8 text-muted">
-								Les nouveaux rendez-vous seront annoncés ici dès leur
-								validation.
+								Les prochains rendez-vous apparaissent en premier. Les ateliers
+								passés restent consultables avec la mention Archive.
 							</p>
 						</div>
 					</Reveal>
 
-					{upcomingWorkshops.length > 0 ? (
-						<div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-							{upcomingWorkshops.map((workshop, index) => (
+					{workshops.length > 0 ? (
+						<div className="mx-auto mt-16 grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+							{workshops.map((workshop, index) => (
 								<Reveal
-									key={workshop.slug}
-									delay={index % 3 === 2 ? "lg" : index % 3 === 1 ? "md" : "sm"}
+									key={workshop._id}
+									delay={index % 2 === 1 ? "md" : "sm"}
 								>
 									<WorkshopCard workshop={workshop} />
 								</Reveal>
@@ -198,8 +153,8 @@ export default function AteliersPage() {
 								</h3>
 								<p className="mt-4 text-base/7 text-muted">
 									Les prochains ateliers, stages ou conférences seront publiés
-									ici. Vous pouvez aussi contacter Maison Kailash pour connaître
-									les projets à venir.
+									ici. Vous pouvez aussi vous inscrire à la newsletter pour
+									recevoir les annonces.
 								</p>
 								<div className="mt-8">
 									<NewsletterSignup
@@ -215,34 +170,6 @@ export default function AteliersPage() {
 			</section>
 
 			<section className="section-padding bg-background">
-				<div className="section-container">
-					<div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-						<Reveal>
-							<div>
-								<p className="eyebrow">Archives</p>
-								<h2 className="heading-section mt-2 text-mk-green">
-									Ateliers passés
-								</h2>
-								<p className="mt-6 text-lg/8 text-muted">
-									Certains événements passés restent visibles pour conserver la
-									mémoire des rencontres accueillies à Maison Kailash et donner
-									un aperçu de l&apos;esprit des ateliers.
-								</p>
-							</div>
-						</Reveal>
-
-						<div className="grid gap-8">
-							{archivedWorkshops.map((workshop) => (
-								<Reveal key={workshop.slug} delay="sm">
-									<WorkshopCard workshop={workshop} variant="horizontal" />
-								</Reveal>
-							))}
-						</div>
-					</div>
-				</div>
-			</section>
-
-			<section className="section-padding bg-surface">
 				<div className="section-container">
 					<div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
 						<Reveal>
@@ -290,130 +217,102 @@ export default function AteliersPage() {
 	)
 }
 
-function WorkshopCard({
-	workshop,
-	variant = "default",
-}: {
-	workshop: Workshop
-	variant?: "default" | "horizontal"
-}) {
-	const content = (
-		<>
-			<div
-				className={
-					variant === "horizontal"
-						? "order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-56 lg:rounded-panel"
-						: "order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-panel"
-				}
-			>
-				<Image
-					src={workshop.image}
-					alt={workshop.imageAlt}
-					sizes={
-						variant === "horizontal"
-							? "(min-width: 1024px) 14rem, 96px"
-							: "(min-width: 1024px) 33vw, 96px"
-					}
-					className={
-						variant === "horizontal"
-							? "size-full object-cover lg:aspect-4/5 lg:w-full"
-							: "size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full"
-					}
-				/>
-			</div>
+function WorkshopCard({ workshop }: { workshop: Workshop }) {
+	const imageSrc = workshop.mainImage
+		? urlForImage(workshop.mainImage).width(900).auto("format").url()
+		: atelierRoomImage
 
-			<div
-				className={
-					variant === "horizontal"
-						? "min-w-0 flex-1 lg:flex lg:grow lg:flex-col lg:p-6"
-						: "min-w-0 flex-1 lg:p-6"
-				}
-			>
-				<div className="flex flex-wrap items-center gap-3">
-					<span className="rounded-full bg-mk-saffron-soft px-3 py-1 text-xs font-semibold text-mk-saffron-text">
-						{getStatusLabel(workshop.status)}
-					</span>
-					<span className="text-xs font-semibold tracking-[0.12em] text-mk-green uppercase">
-						{workshop.category}
-					</span>
-				</div>
-
-				<h3 className="mt-3 text-lg font-semibold text-foreground group-hover:text-mk-green lg:mt-4 lg:text-2xl">
-					{workshop.title}
-				</h3>
-				<p className="mt-3 line-clamp-3 text-sm/6 text-muted lg:mt-4 lg:line-clamp-none lg:text-base/7">
-					{workshop.shortDescription}
-				</p>
-
-				<dl className="mt-5 space-y-3 text-sm/6 text-muted lg:mt-6">
-					<div className="flex gap-3">
-						<ArchiveBoxIcon
-							aria-hidden="true"
-							className="mt-0.5 size-5 shrink-0 text-mk-green"
-						/>
-						<div>
-							<dt className="sr-only">Date</dt>
-							<dd>{workshop.dateLabel}</dd>
-						</div>
-					</div>
-					{workshop.teacher ? (
-						<div className="flex gap-3">
-							<UserGroupIcon
-								aria-hidden="true"
-								className="mt-0.5 size-5 shrink-0 text-mk-green"
-							/>
-							<div>
-								<dt className="sr-only">Intervenant</dt>
-								<dd>{workshop.teacher}</dd>
-							</div>
-						</div>
-					) : null}
-					<div className="flex gap-3">
-						<MapPinIcon
-							aria-hidden="true"
-							className="mt-0.5 size-5 shrink-0 text-mk-green"
-						/>
-						<div>
-							<dt className="sr-only">Lieu</dt>
-							<dd>{workshop.location}</dd>
-						</div>
-					</div>
-				</dl>
-
-				{workshop.href ? (
-					<p className="mt-5 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text lg:mt-6">
-						Consulter l&apos;archive
-					</p>
-				) : null}
-			</div>
-		</>
-	)
-
-	if (!workshop.href) {
-		return (
-			<article
-				className={
-					variant === "horizontal"
-						? "content-card flex h-full gap-4 p-4 lg:flex-row lg:gap-0 lg:p-0"
-						: "content-card flex h-full gap-4 p-4 lg:flex-col lg:gap-0 lg:p-0"
-				}
-			>
-				{content}
-			</article>
-		)
-	}
+	const imageAlt = workshop.mainImage?.alt ?? workshop.title
+	const dateLabel = getEventShortDateLabel(workshop)
 
 	return (
 		<article className="group h-full">
 			<Link
-				href={workshop.href}
-				className={
-					variant === "horizontal"
-						? "content-card flex h-full gap-4 p-4 lg:flex-row lg:gap-0 lg:p-0"
-						: "content-card flex h-full gap-4 p-4 lg:flex-col lg:gap-0 lg:p-0"
-				}
+				href={`/ateliers/${workshop.slug}/`}
+				className="content-card flex h-full flex-col overflow-hidden p-0"
 			>
-				{content}
+				<div className="relative aspect-4/3 bg-background">
+					<div className="absolute inset-5">
+						<Image
+							src={imageSrc}
+							alt={imageAlt}
+							fill
+							sizes="(min-width: 1280px) 26rem, (min-width: 768px) 50vw, 100vw"
+							className="object-contain transition duration-300 group-hover:scale-[1.02]"
+						/>
+					</div>
+
+					{workshop.status === "past" || workshop.status === "full" ? (
+						<span className="absolute left-0 top-5 rounded-r-full bg-mk-saffron px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white shadow-soft">
+							{workshop.status === "past" ? "Archive" : "Complet"}
+						</span>
+					) : null}
+				</div>
+
+				<div className="flex flex-1 flex-col p-6">
+					<div className="flex flex-wrap items-center gap-3">
+						<span className="text-xs font-semibold tracking-[0.12em] text-mk-green uppercase">
+							{workshop.category}
+						</span>
+
+						{dateLabel ? (
+							<span className="rounded-pill bg-mk-mint/40 px-3 py-1 text-xs font-semibold text-mk-green">
+								{dateLabel}
+							</span>
+						) : null}
+					</div>
+
+					<h3 className="mt-4 text-xl font-semibold text-foreground group-hover:text-mk-green">
+						{workshop.title}
+					</h3>
+
+					<dl className="mt-5 min-h-24 space-y-3 text-sm/6 text-muted">
+						{workshop.teacher ? (
+							<div className="flex gap-3">
+								<UserGroupIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div>
+									<dt className="sr-only">Intervenant</dt>
+									<dd>{workshop.teacher}</dd>
+								</div>
+							</div>
+						) : null}
+
+						{workshop.price ? (
+							<div className="flex gap-3">
+								<CurrencyEuroIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div>
+									<dt className="sr-only">Tarif</dt>
+									<dd>{workshop.price}</dd>
+								</div>
+							</div>
+						) : null}
+
+						{workshop.bookingText ? (
+							<div className="flex gap-3">
+								<SparklesIcon
+									aria-hidden="true"
+									className="mt-0.5 size-5 shrink-0 text-mk-green"
+								/>
+								<div className="min-w-0">
+									<dt className="sr-only">Information</dt>
+									<dd className="line-clamp-2">{workshop.bookingText}</dd>
+								</div>
+							</div>
+						) : null}
+					</dl>
+
+					<p className="mt-auto pt-6 text-sm font-semibold text-mk-green group-hover:text-mk-saffron-text">
+						{workshop.status === "past"
+							? "Consulter l'archive"
+							: "Voir les détails"}
+					</p>
+				</div>
 			</Link>
 		</article>
 	)

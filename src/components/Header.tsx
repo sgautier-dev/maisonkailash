@@ -42,7 +42,11 @@ function getSectionLinks(section: NavigationSection): NavigationLink[] {
 	)
 }
 
-export default function Header() {
+export default function Header({
+	navigation = mainNavigation,
+}: {
+	navigation?: readonly NavigationSection[]
+}) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 	const pathname = usePathname()
 	const contactLink = utilityNavigation[0]
@@ -107,7 +111,7 @@ export default function Header() {
 				</div>
 
 				<PopoverGroup className="hidden lg:flex lg:gap-x-4 xl:gap-x-7">
-					{mainNavigation.map((section) => {
+					{navigation.map((section) => {
 						const hasChildren = Boolean(section.children?.length)
 
 						if (!hasChildren) {
@@ -215,7 +219,7 @@ export default function Header() {
 					<div className="mt-8 flow-root">
 						<div className="-my-6 divide-y divide-border">
 							<div className="space-y-2 py-6">
-								{mainNavigation.map((section) => {
+								{navigation.map((section) => {
 									const hasChildren = Boolean(section.children?.length)
 
 									if (!hasChildren) {
