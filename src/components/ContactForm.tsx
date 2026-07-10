@@ -38,30 +38,14 @@ export default function ContactForm({
 										aria-hidden="true"
 										className="mt-1 size-6 shrink-0 text-mk-green"
 									/>
+
 									<div>
 										<dt className="font-semibold text-foreground">
 											{item.title}
 										</dt>
-										<dd className="mt-1">
-											{item.href ? (
-												<a
-													href={item.href}
-													target={
-														item.href.startsWith("http") ? "_blank" : undefined
-													}
-													rel={
-														item.href.startsWith("http")
-															? "noopener noreferrer"
-															: undefined
-													}
-													className="text-link"
-												>
-													{item.description}
-												</a>
-											) : (
-												item.description
-											)}
-										</dd>
+
+										<dd className="mt-1">{item.description}</dd>
+
 										{item.href && item.linkLabel ? (
 											<a
 												href={item.href}

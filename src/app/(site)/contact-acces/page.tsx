@@ -1,6 +1,7 @@
 import type { ComponentType, SVGProps } from "react"
 import type { Metadata } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import {
 	ArrowTopRightOnSquareIcon,
 	CalendarDaysIcon,
@@ -8,10 +9,10 @@ import {
 	PhoneIcon,
 } from "@heroicons/react/24/outline"
 
+import ContactForm from "@/components/ContactForm"
 import Reveal from "@/components/Reveal"
 import accessImage from "@/images/acces-maison-kailash-eperon.jpg"
 import logoKailash from "@/images/logo-kailash.png"
-import ContactForm from "@/components/ContactForm"
 
 export const metadata: Metadata = {
 	title: "Contact & accès Maison Kailash",
@@ -34,7 +35,7 @@ const phoneHref = "tel:+262692683073"
 const phoneLabel = "0692 68 30 73"
 
 const mapsHref =
-	"https://www.google.com/maps/search/?api=1&query=44%20Route%20de%20l%27%C3%89peron%2097435%20Saint-Gilles%20les%20Hauts%20La%20R%C3%A9union"
+	"https://www.google.com/maps/search/?api=1&query=Maison%20Kailash%20La%20R%C3%A9union"
 
 const infoCards: readonly InfoCard[] = [
 	{
@@ -48,7 +49,7 @@ const infoCards: readonly InfoCard[] = [
 		title: "Adresse",
 		description: "44 Route de l'Éperon, 97435 Saint-Gilles les Hauts",
 		href: mapsHref,
-		linkLabel: "Ouvrir l'itinéraire",
+		linkLabel: "Ouvrir dans Google Maps",
 		icon: MapPinIcon,
 	},
 	{
@@ -92,17 +93,18 @@ export default function ContactAccessPage() {
 								</p>
 
 								<div className="mt-10 flex flex-col gap-4 sm:flex-row">
-									<a href={phoneHref} className="btn-primary px-5 py-3 text-sm">
-										Appeler Maison Kailash
-									</a>
-									<a
-										href={mapsHref}
-										target="_blank"
-										rel="noopener noreferrer"
+									<Link
+										href="#formulaire"
+										className="btn-primary px-5 py-3 text-sm"
+									>
+										Nous contacter
+									</Link>
+									<Link
+										href="#acces"
 										className="btn-secondary px-5 py-3 text-sm"
 									>
-										Ouvrir l&apos;itinéraire
-									</a>
+										Voir l&apos;accès
+									</Link>
 								</div>
 							</div>
 						</Reveal>
@@ -124,7 +126,10 @@ export default function ContactAccessPage() {
 
 			<ContactForm infoItems={infoCards} />
 
-			<section className="section-padding bg-background">
+			<section
+				id="acces"
+				className="section-padding bg-background scroll-mt-16"
+			>
 				<div className="section-container">
 					<div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
 						<Reveal>
