@@ -228,7 +228,7 @@ export default function CoursCollectifsPage() {
 										aria-label={`Découvrir ${course.title}`}
 									>
 										<div className="flex gap-4 lg:block">
-											<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-none lg:h-auto lg:w-full lg:rounded-b-none lg:rounded-t-panel">
+											<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-b-none lg:rounded-t-panel">
 												<Image
 													src={course.image}
 													alt={course.imageAlt}

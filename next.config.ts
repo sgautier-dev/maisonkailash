@@ -1,7 +1,15 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  trailingSlash: true,
-};
+	trailingSlash: true,
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "cdn.sanity.io",
+			},
+		],
+	},
+}
 
-export default nextConfig;
+export default nextConfig

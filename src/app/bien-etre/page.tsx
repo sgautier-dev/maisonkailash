@@ -275,7 +275,7 @@ export default function BienEtrePage() {
 										href={massage.href}
 										className="flex h-full gap-4 rounded-card bg-background p-4 shadow-card transition hover:-translate-y-0.5 lg:flex-col lg:bg-transparent lg:p-0 lg:shadow-none lg:hover:translate-y-0"
 									>
-										<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-none lg:h-auto lg:w-full lg:rounded-panel">
+										<div className="order-2 h-24 w-24 shrink-0 overflow-hidden rounded-card bg-surface lg:order-0 lg:h-auto lg:w-full lg:rounded-panel">
 											<Image
 												src={massage.image}
 												alt={massage.imageAlt}

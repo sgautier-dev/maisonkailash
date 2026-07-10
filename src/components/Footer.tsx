@@ -45,7 +45,7 @@ export default function Footer() {
 							<span className="sr-only">Maison Kailash</span>
 							<Image
 								src={logoKailash}
-								alt=""
+								alt="logo kailash"
 								className="size-16 object-contain"
 							/>
 						</Link>
