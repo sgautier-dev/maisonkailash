@@ -2,13 +2,6 @@ import type { Metadata } from "next"
 import { Julius_Sans_One, Noto_Sans } from "next/font/google"
 
 import "./globals.css"
-import Footer from "@/components/Footer"
-import Header from "@/components/Header"
-import { mainNavigation, type NavigationSection } from "@/lib/navigation"
-import {
-	getRetreatNavigationLinks,
-	getWorkshopNavigationLinks,
-} from "@/sanity/queries"
 
 const juliusSansOne = Julius_Sans_One({
 	subsets: ["latin"],
@@ -38,58 +31,18 @@ export const metadata: Metadata = {
 	authors: [{ name: "Sébastien Gautier", url: "https://www.sgautier.dev" }],
 }
 
-export default async function RootLayout({
+export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const [workshopNavigationLinks, retreatNavigationLinks] = await Promise.all([
-		getWorkshopNavigationLinks(),
-		getRetreatNavigationLinks(),
-	])
-
-	const navigation = getNavigationWithSanityContent({
-		workshopLinks: workshopNavigationLinks,
-		retreatLinks: retreatNavigationLinks,
-	})
-
 	return (
 		<html
 			lang="fr"
 			className={`${juliusSansOne.variable} ${notoSans.variable}`}
 			data-scroll-behavior="smooth"
 		>
-			<body className="min-h-screen bg-background font-sans text-foreground antialiased">
-				<Header navigation={navigation} />
-				{children}
-				<Footer />
-			</body>
+			{children}
 		</html>
 	)
-}
-
-function getNavigationWithSanityContent({
-	workshopLinks,
-	retreatLinks,
-}: {
-	workshopLinks: { name: string; href: string }[]
-	retreatLinks: { name: string; href: string }[]
-}): readonly NavigationSection[] {
-	return mainNavigation.map((section) => {
-		if (section.href === "/ateliers/" && workshopLinks.length > 0) {
-			return {
-				...section,
-				children: workshopLinks,
-			}
-		}
-
-		if (section.href === "/sejours-bien-etre/" && retreatLinks.length > 0) {
-			return {
-				...section,
-				children: retreatLinks,
-			}
-		}
-
-		return section
-	})
 }
