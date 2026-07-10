@@ -22,11 +22,11 @@ export default async function SiteLayout({
 	})
 
 	return (
-		<body className="min-h-screen bg-background font-sans text-foreground antialiased">
+		<>
 			<Header navigation={navigation} />
 			{children}
 			<Footer />
-		</body>
+		</>
 	)
 }
 

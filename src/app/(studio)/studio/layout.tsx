@@ -3,5 +3,5 @@ export default function StudioLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	return <body className="h-dvh overflow-hidden bg-white">{children}</body>
+	return <div className="h-dvh overflow-hidden bg-white">{children}</div>
 }

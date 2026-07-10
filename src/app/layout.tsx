@@ -42,7 +42,9 @@ export default function RootLayout({
 			className={`${juliusSansOne.variable} ${notoSans.variable}`}
 			data-scroll-behavior="smooth"
 		>
-			{children}
+			<body className="min-h-screen bg-background font-sans text-foreground antialiased">
+				{children}
+			</body>
 		</html>
 	)
 }
