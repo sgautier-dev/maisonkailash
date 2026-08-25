@@ -4,9 +4,9 @@ import Link from "next/link"
 import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
 import Reveal from "@/components/Reveal"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 import prenatalImage from "@/images/massage-prenatal-kailash.jpg"
 import prenatalDetailImage from "@/images/massage-prenatal-kailash2.jpg"
-import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Massage prénatal à La Réunion",
@@ -52,7 +52,7 @@ export default function MassagePrenatalPage() {
 										Dès le 4e mois
 									</span>
 									<span className="rounded-pill bg-mk-mint/40 px-4 py-2 text-sm font-semibold text-mk-green">
-										1h10 ou 1h30
+										1h ou 1h30
 									</span>
 									<span className="rounded-pill bg-mk-mint/40 px-4 py-2 text-sm font-semibold text-mk-green">
 										St Leu
@@ -206,8 +206,8 @@ export default function MassagePrenatalPage() {
 				practitioner="Élodie"
 				location="Saint-Leu, Colimaçons"
 				items={[
-					{ label: "1 heure 10", value: "90 €" },
-					{ label: "1 heure 30", value: "110 €" },
+					{ label: "1 heure", value: "80 €" },
+					{ label: "1 heure 30", value: "100 €" },
 				]}
 				phoneLabel={bookingPhoneLabel}
 				phoneHref={bookingPhoneHref}
