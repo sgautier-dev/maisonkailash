@@ -12,11 +12,13 @@ import Reveal from "@/components/Reveal"
 import chiNeiTsangImage from "@/images/massage-ventral-chi-nei-tsang-kailash.jpg"
 import reikiImage from "@/images/reiki-kailash.jpg"
 import reikiAltImage from "@/images/reiki-kailash2.png"
-import integrativeHealthImage from "@/images/sante-integrative-kailash.png"
-import integrativeHealthHeroImage from "@/images/sante-kailash.jpg"
+import integrativeHealthImage from "@/images/sante-integrative-kailash3.jpg"
+import integrativeHealthHeroImage from "@/images/sante-bol-tibetain-kailash.jpg"
 import shiatsuImage from "@/images/shiatsu-kailash.jpg"
 import shiatsuAltImage from "@/images/shiatsu-kailash2.jpg"
 import energeticCareImage from "@/images/soin-energetique-kailash.jpg"
+import healthClosingImage from "@/images/sante-lotus-kailash.jpg"
+import coachingHealthImage from "@/images/coaching-sante-fleurs-kailash.jpg"
 
 export const metadata: Metadata = {
 	title: "Médecines douces et santé holistique à La Réunion",
@@ -34,6 +36,7 @@ type Care = {
 	description: string
 	image: StaticImageData
 	imageAlt: string
+	imageClassName?: string
 }
 
 type Guidance = {
@@ -78,6 +81,7 @@ const cares: readonly Care[] = [
 			"Une technique manuelle d'origine japonaise basée sur la pression des doigts et des paumes pour relâcher les tensions et favoriser une détente profonde.",
 		image: shiatsuImage,
 		imageAlt: "Shiatsu à Maison Kailash",
+		imageClassName: "object-[50%_35%]",
 	},
 	{
 		title: "Santé intégrative",
@@ -94,7 +98,7 @@ const cares: readonly Care[] = [
 		href: "/sante/coaching-sante-holistique/",
 		description:
 			"Un accompagnement global pour clarifier vos besoins, soutenir votre vitalité et avancer vers une hygiène de vie plus alignée.",
-		image: integrativeHealthHeroImage,
+		image: coachingHealthImage,
 		imageAlt: "Coaching santé holistique à Maison Kailash",
 	},
 	{
@@ -179,7 +183,7 @@ export default function SantePage() {
 						src={integrativeHealthHeroImage}
 						alt="Accompagnement santé holistique à Maison Kailash"
 						sizes="(min-width: 1024px) 50vw, 100vw"
-						className="aspect-3/2 w-full object-cover lg:aspect-auto lg:h-full"
+						className="aspect-3/2 w-full object-cover object-center lg:aspect-auto lg:h-full lg:object-[5%_60%]"
 						priority
 					/>
 				</div>
@@ -250,7 +254,7 @@ export default function SantePage() {
 												src={care.image}
 												alt={care.imageAlt}
 												sizes="(min-width: 1024px) 33vw, 96px"
-												className="size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full"
+												className={`size-full object-cover transition duration-300 group-hover:scale-[1.03] lg:aspect-3/2 lg:w-full ${care.imageClassName ?? ""}`}
 											/>
 										</div>
 
@@ -339,8 +343,8 @@ export default function SantePage() {
 						<Reveal delay="sm">
 							<div className="content-card">
 								<Image
-									src={reikiAltImage}
-									alt="Soin Reiki à Maison Kailash"
+									src={healthClosingImage}
+									alt="Fleurs de lotus à Maison Kailash"
 									sizes="(min-width: 1024px) 42vw, 100vw"
 									className="aspect-4/3 w-full rounded-card object-cover"
 								/>
