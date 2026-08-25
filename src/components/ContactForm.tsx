@@ -1,25 +1,32 @@
 "use client"
 
-import { ArrowPathIcon } from "@heroicons/react/24/outline"
-import { useAction } from "next-safe-action/hooks"
 import {
-	type ComponentType,
-	type FormEvent,
-	type SVGProps,
-	useRef,
-	useState,
-} from "react"
+	ArrowPathIcon,
+	CalendarDaysIcon,
+	MapPinIcon,
+	PhoneIcon,
+} from "@heroicons/react/24/outline"
+import { useAction } from "next-safe-action/hooks"
+import { type SubmitEvent, useRef, useState } from "react"
 
 import { sendContactEmail } from "@/app/actions/sendContactEmail"
 
 import FormNotification from "./FormNotification"
+
+const contactInfoIcons = {
+	phone: PhoneIcon,
+	location: MapPinIcon,
+	calendar: CalendarDaysIcon,
+} as const
+
+type ContactInfoIcon = keyof typeof contactInfoIcons
 
 type ContactInfoItem = {
 	title: string
 	description: string
 	href?: string
 	linkLabel?: string
-	icon: ComponentType<SVGProps<SVGSVGElement>>
+	icon: ContactInfoIcon
 }
 
 type ContactFormProps = {
@@ -44,13 +51,7 @@ function getFormValue(formData: FormData, name: string) {
 	return typeof value === "string" ? value : ""
 }
 
-function FieldError({
-	id,
-	errors,
-}: {
-	id: string
-	errors?: string[]
-}) {
+function FieldError({ id, errors }: { id: string; errors?: string[] }) {
 	if (!errors?.length) {
 		return null
 	}
@@ -68,6 +69,7 @@ export default function ContactForm({
 	infoItems,
 }: ContactFormProps) {
 	const formRef = useRef<HTMLFormElement>(null)
+
 	const [notification, setNotification] = useState<NotificationState>({
 		show: false,
 		title: "",
@@ -112,7 +114,7 @@ export default function ContactForm({
 
 	const fieldErrors = result.validationErrors?.fieldErrors
 
-	function handleSubmit(event: FormEvent<HTMLFormElement>) {
+	function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
 		event.preventDefault()
 
 		const formData = new FormData(event.currentTarget)
@@ -153,44 +155,49 @@ export default function ContactForm({
 						<p className="mt-6 text-lg/8 text-muted">{description}</p>
 
 						<dl className="mt-10 space-y-6 text-base/7 text-muted">
-							{infoItems.map((item) => (
-								<div key={item.title} className="flex gap-4">
-									<item.icon
-										aria-hidden="true"
-										className="mt-1 size-6 shrink-0 text-mk-green"
-									/>
+							{infoItems.map((item) => {
+								const Icon = contactInfoIcons[item.icon]
 
-									<div>
-										<dt className="font-semibold text-foreground">
-											{item.title}
-										</dt>
-										<dd className="mt-1">{item.description}</dd>
+								return (
+									<div key={item.title} className="flex gap-4">
+										<Icon
+											aria-hidden="true"
+											className="mt-1 size-6 shrink-0 text-mk-green"
+										/>
 
-										{item.href && item.linkLabel ? (
-											<a
-												href={item.href}
-												target={
-													item.href.startsWith("http") ? "_blank" : undefined
-												}
-												rel={
-													item.href.startsWith("http")
-														? "noopener noreferrer"
-														: undefined
-												}
-												className="mt-2 inline-flex text-sm font-semibold text-mk-green hover:text-mk-saffron-text"
-											>
-												{item.linkLabel}
-											</a>
-										) : null}
+										<div>
+											<dt className="font-semibold text-foreground">
+												{item.title}
+											</dt>
+											<dd className="mt-1">{item.description}</dd>
+
+											{item.href && item.linkLabel ? (
+												<a
+													href={item.href}
+													target={
+														item.href.startsWith("http") ? "_blank" : undefined
+													}
+													rel={
+														item.href.startsWith("http")
+															? "noopener noreferrer"
+															: undefined
+													}
+													className="mt-2 inline-flex text-sm font-semibold text-mk-green hover:text-mk-saffron-text"
+												>
+													{item.linkLabel}
+												</a>
+											) : null}
+										</div>
 									</div>
-								</div>
-							))}
+								)
+							})}
 						</dl>
 					</div>
 
 					<form
 						ref={formRef}
 						onSubmit={handleSubmit}
+						autoComplete="on"
 						aria-busy={isExecuting}
 						className="content-card"
 					>
@@ -317,10 +324,7 @@ export default function ContactForm({
 									}
 									className={`mt-2 ${fieldClassName}`}
 								/>
-								<FieldError
-									id="message-error"
-									errors={fieldErrors?.message}
-								/>
+								<FieldError id="message-error" errors={fieldErrors?.message} />
 							</div>
 						</div>
 
@@ -357,6 +361,10 @@ export default function ContactForm({
 								)}
 							</button>
 						</div>
+						<p className="mt-4 text-sm/6 text-muted">
+							Les informations transmises sont utilisées uniquement pour
+							répondre à votre demande.
+						</p>
 					</form>
 				</div>
 			</div>

@@ -1,15 +1,9 @@
-import type { ComponentType, SVGProps } from "react"
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import {
-	ArrowTopRightOnSquareIcon,
-	CalendarDaysIcon,
-	MapPinIcon,
-	PhoneIcon,
-} from "@heroicons/react/24/outline"
 
-import ContactForm from "@/components/ContactForm"
+import ContactForm, { type ContactInfoItem } from "@/components/ContactForm"
 import Reveal from "@/components/Reveal"
 import accessImage from "@/images/acces-maison-kailash-eperon.jpg"
 import logoKailash from "@/images/logo-kailash.png"
@@ -23,41 +17,33 @@ export const metadata: Metadata = {
 	},
 }
 
-type InfoCard = {
-	title: string
-	description: string
-	href?: string
-	linkLabel?: string
-	icon: ComponentType<SVGProps<SVGSVGElement>>
-}
-
 const phoneHref = "tel:+262692683073"
 const phoneLabel = "0692 68 30 73"
 
 const mapsHref =
 	"https://www.google.com/maps/search/?api=1&query=Maison%20Kailash%20La%20R%C3%A9union"
 
-const infoCards: readonly InfoCard[] = [
+const infoCards = [
 	{
 		title: "Téléphone",
 		description: phoneLabel,
 		href: phoneHref,
 		linkLabel: "Appeler",
-		icon: PhoneIcon,
+		icon: "phone",
 	},
 	{
 		title: "Adresse",
 		description: "44 Route de l'Éperon, 97435 Saint-Gilles les Hauts",
 		href: mapsHref,
 		linkLabel: "Ouvrir dans Google Maps",
-		icon: MapPinIcon,
+		icon: "location",
 	},
 	{
 		title: "Accueil",
 		description: "Uniquement sur rendez-vous, du lundi au samedi.",
-		icon: CalendarDaysIcon,
+		icon: "calendar",
 	},
-]
+] as const satisfies readonly ContactInfoItem[]
 
 const accessSteps = [
 	"Depuis la route des Tamarins, prenez la sortie Saint-Gilles les Hauts / L'Éperon / Le Maïdo.",
