@@ -6,9 +6,9 @@ import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
 import champissageImage from "@/images/champissage-indien-kailash.jpeg"
 import abhyangaImage from "@/images/massage-ayurvedique-abhyanga-kailash.jpg"
-import pochonsImage from "@/images/massage-ayurvedique-pochons-kailash.jpg"
+import pochonsImage from "@/images/massage-pochons-kailash3.jpg"
 import shiroabhyangaImage from "@/images/massage-cranien-shiroabhyanga-kailash.jpg"
-import prenatalImage from "@/images/massage-prenatal-kailash.jpg"
+import prenatalImage from "@/images/massage-prenatal-kailash3.jpg"
 import massageRoomImage from "@/images/massage-room.jpg"
 import swedishImage from "@/images/massage-suedois-kailash.jpg"
 import thaiImage from "@/images/massage-thai-huile-kailash.jpg"
@@ -17,7 +17,8 @@ import reflexologyImage from "@/images/reflexologie-plantaire-kailash.jpg"
 import ayurvedicAltImage from "@/images/massage-ayurvedique-kailash2.png"
 import prenatalAltImage from "@/images/massage-prenatal-kailash2.jpg"
 import thaiAltImage from "@/images/massage-thai-huile-kailash.png"
-import rebozoImage from "@/images/background.jpeg"
+import rebozoImage from "@/images/rebozo-kailash.jpg"
+import bienEtreHeroImage from "@/images/bien-etre-fleurs-main-kailash.jpg"
 
 export const metadata: Metadata = {
 	title: "Massages bien-être à La Réunion",
@@ -138,7 +139,7 @@ const heroImages = [
 		className: "aspect-3/4",
 	},
 	{
-		src: champissageImage,
+		src: bienEtreHeroImage,
 		alt: "Champissage indien à Maison Kailash",
 		className: "aspect-2/3",
 	},
@@ -186,43 +187,55 @@ export default function BienEtrePage() {
 						</Reveal>
 
 						<Reveal delay="sm">
-							<div className="grid grid-cols-3 gap-4 sm:gap-6">
-								<div className="space-y-4 pt-12 sm:space-y-6">
-									<div className="media-frame">
-										<Image
-											src={heroImages[0].src}
-											alt={heroImages[0].alt}
-											sizes="(min-width: 1024px) 18vw, 33vw"
-											className={`${heroImages[0].className} w-full object-cover`}
-											priority
-										/>
+							<div>
+								<div className="media-frame md:hidden">
+									<Image
+										src={bienEtreHeroImage}
+										alt="Fleurs dans une main à Maison Kailash"
+										sizes="100vw"
+										className="aspect-square w-full object-cover"
+										priority
+									/>
+								</div>
+
+								<div className="hidden grid-cols-3 gap-4 sm:gap-6 md:grid">
+									<div className="space-y-4 pt-12 sm:space-y-6">
+										<div className="media-frame">
+											<Image
+												src={heroImages[0].src}
+												alt={heroImages[0].alt}
+												sizes="(min-width: 1024px) 18vw, 33vw"
+												className={`${heroImages[0].className} w-full object-cover`}
+												priority
+											/>
+										</div>
 									</div>
-								</div>
 
-								<div className="space-y-4 sm:space-y-6">
-									{heroImages.slice(1, 3).map((image) => (
-										<div key={image.alt} className="media-frame">
-											<Image
-												src={image.src}
-												alt={image.alt}
-												sizes="(min-width: 1024px) 18vw, 33vw"
-												className={`${image.className} w-full object-cover`}
-											/>
-										</div>
-									))}
-								</div>
+									<div className="space-y-4 sm:space-y-6">
+										{heroImages.slice(1, 3).map((image) => (
+											<div key={image.alt} className="media-frame">
+												<Image
+													src={image.src}
+													alt={image.alt}
+													sizes="(min-width: 1024px) 18vw, 33vw"
+													className={`${image.className} w-full object-cover`}
+												/>
+											</div>
+										))}
+									</div>
 
-								<div className="space-y-4 pt-8 sm:space-y-6 sm:pt-16">
-									{heroImages.slice(3).map((image) => (
-										<div key={image.alt} className="media-frame">
-											<Image
-												src={image.src}
-												alt={image.alt}
-												sizes="(min-width: 1024px) 18vw, 33vw"
-												className={`${image.className} w-full object-cover`}
-											/>
-										</div>
-									))}
+									<div className="space-y-4 pt-8 sm:space-y-6 sm:pt-16">
+										{heroImages.slice(3).map((image) => (
+											<div key={image.alt} className="media-frame">
+												<Image
+													src={image.src}
+													alt={image.alt}
+													sizes="(min-width: 1024px) 18vw, 33vw"
+													className={`${image.className} w-full object-cover`}
+												/>
+											</div>
+										))}
+									</div>
 								</div>
 							</div>
 						</Reveal>
