@@ -110,7 +110,7 @@ export default function HomePage() {
 							src={homeHero}
 							alt="Espace de soin Maison Kailash à La Réunion"
 							priority
-							className="aspect-3/2 w-full bg-surface object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full hero-image-reveal"
+							className="aspect-3/2 w-full bg-surface object-cover object-[50%_30%] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full lg:object-center hero-image-reveal"
 						/>
 					</div>
 				</div>
