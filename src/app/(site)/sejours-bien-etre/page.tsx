@@ -24,6 +24,7 @@ import sejourMaurice5Image from "@/images/sejour-maurice5.jpeg"
 import sejourMaurice7Image from "@/images/sejour-maurice7.jpeg"
 import sejourRodriguesImage from "@/images/sejour-rodrigues.jpeg"
 import sejourRodrigues2Image from "@/images/sejour-rodrigues2.jpeg"
+import sejourReunionImage from "@/images/sejour-retraite-reunion-kailash.jpg"
 import { getRetreats, type Retreat } from "@/sanity/queries"
 import { urlForImage } from "@/sanity/image"
 
@@ -44,7 +45,7 @@ type RetreatTheme = {
 
 const heroImages = [
 	{
-		src: sejourIndeImage,
+		src: sejourReunionImage,
 		alt: "Séjour bien-être en Inde",
 		className: "aspect-4/3",
 	},
@@ -135,43 +136,55 @@ export default async function SejoursBienEtrePage() {
 						</Reveal>
 
 						<Reveal delay="sm">
-							<div className="grid grid-cols-3 gap-4 sm:gap-6">
-								<div className="space-y-4 pt-12 sm:space-y-6">
-									<div className="media-frame">
-										<Image
-											src={heroImages[0].src}
-											alt={heroImages[0].alt}
-											sizes="(min-width: 1024px) 18vw, 33vw"
-											className={`${heroImages[0].className} w-full object-cover`}
-											priority
-										/>
+							<div>
+								<div className="media-frame md:hidden">
+									<Image
+										src={heroImages[0].src}
+										alt={heroImages[0].alt}
+										sizes="100vw"
+										className="aspect-4/3 w-full object-cover"
+										priority
+									/>
+								</div>
+
+								<div className="hidden grid-cols-3 gap-4 sm:gap-6 md:grid">
+									<div className="space-y-4 pt-12 sm:space-y-6">
+										<div className="media-frame">
+											<Image
+												src={heroImages[0].src}
+												alt={heroImages[0].alt}
+												sizes="(min-width: 1024px) 18vw, 33vw"
+												className={`${heroImages[0].className} w-full object-cover`}
+												priority
+											/>
+										</div>
 									</div>
-								</div>
 
-								<div className="space-y-4 sm:space-y-6">
-									{heroImages.slice(1, 3).map((image) => (
-										<div key={image.alt} className="media-frame">
-											<Image
-												src={image.src}
-												alt={image.alt}
-												sizes="(min-width: 1024px) 18vw, 33vw"
-												className={`${image.className} w-full object-cover`}
-											/>
-										</div>
-									))}
-								</div>
+									<div className="space-y-4 sm:space-y-6">
+										{heroImages.slice(1, 3).map((image) => (
+											<div key={image.alt} className="media-frame">
+												<Image
+													src={image.src}
+													alt={image.alt}
+													sizes="(min-width: 1024px) 18vw, 33vw"
+													className={`${image.className} w-full object-cover`}
+												/>
+											</div>
+										))}
+									</div>
 
-								<div className="space-y-4 pt-8 sm:space-y-6 sm:pt-16">
-									{heroImages.slice(3).map((image) => (
-										<div key={image.alt} className="media-frame">
-											<Image
-												src={image.src}
-												alt={image.alt}
-												sizes="(min-width: 1024px) 18vw, 33vw"
-												className={`${image.className} w-full object-cover`}
-											/>
-										</div>
-									))}
+									<div className="space-y-4 pt-8 sm:space-y-6 sm:pt-16">
+										{heroImages.slice(3).map((image) => (
+											<div key={image.alt} className="media-frame">
+												<Image
+													src={image.src}
+													alt={image.alt}
+													sizes="(min-width: 1024px) 18vw, 33vw"
+													className={`${image.className} w-full object-cover`}
+												/>
+											</div>
+										))}
+									</div>
 								</div>
 							</div>
 						</Reveal>
