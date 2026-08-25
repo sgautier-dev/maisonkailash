@@ -3,16 +3,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
-import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
+import ServiceBookingSection from "@/components/ServiceBookingSection"
 import shiatsuImage from "@/images/shiatsu-kailash.jpg"
 import shiatsuDetailImage from "@/images/shiatsu-kailash2.jpg"
-import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {
 	title: "Massage Shiatsu à La Réunion",
 	description:
-		"Massage Shiatsu à Maison Kailash, à l'Éperon : pressions japonaises sur vêtements pour détente profonde, tensions musculaires, stress et équilibre corporel.",
+		"Massage Shiatsu à La Réunion : soin japonais par pressions, étirements doux et mobilisations pour réharmoniser le corps, apaiser l'esprit et soutenir l'équilibre global.",
 	alternates: {
 		canonical: "/sante/shiatsu/",
 	},
@@ -22,12 +21,14 @@ const bookingPhoneHref = "tel:+262692683073"
 const bookingPhoneLabel = "0692 68 30 73"
 
 const benefits = [
-	"Installer une détente profonde",
-	"Relâcher les tensions musculaires",
-	"Réduire les effets du stress",
-	"Soutenir l'équilibre général du corps",
-	"Accompagner les troubles digestifs ou du sommeil",
-	"Aider le corps à retrouver de bonnes conditions",
+	"Relâcher les tensions musculaires et les raideurs liées au stress, aux postures répétitives ou à l'activité physique",
+	"Favoriser une détente profonde et apaiser l'agitation mentale",
+	"Soutenir la récupération après une période de fatigue, de surmenage ou d'effort",
+	"Encourager une respiration plus ample et une meilleure conscience corporelle",
+	"Harmoniser la circulation de l'énergie le long des méridiens selon la tradition énergétique orientale",
+	"Accompagner l'équilibre des grandes fonctions corporelles, notamment digestives, respiratoires et du repos",
+	"Favoriser le recentrage, la stabilité émotionnelle et une sensation de paix intérieure",
+	"Offrir un espace précieux de reconnexion entre le corps, l'énergie et l'esprit",
 ]
 
 export default function ShiatsuPage() {
@@ -41,9 +42,15 @@ export default function ShiatsuPage() {
 								<p className="eyebrow">Massage Shiatsu</p>
 								<h1 className="heading-display mt-4 text-mk-green">Shiatsu</h1>
 								<p className="mt-8 text-lg/8 text-muted sm:text-xl/8">
-									Une technique manuelle d&apos;origine japonaise basée sur la
-									pression des doigts et des paumes pour relâcher les tensions,
-									apaiser le stress et favoriser une détente profonde.
+									Un soin japonais authentique pour réharmoniser le corps,
+									apaiser l’esprit et retrouver une énergie plus fluide.
+								</p>
+								<p className="mt-5 text-base/7 text-muted">
+									Le Shiatsu est une invitation à ralentir, à respirer et à
+									revenir pleinement à soi. Par la précision d’un toucher manuel
+									profond et bienveillant, ce soin accompagne le relâchement des
+									tensions, soutient l’équilibre naturel du corps et ouvre un
+									espace de calme intérieur.
 								</p>
 
 								<div className="mt-8 flex flex-wrap gap-3">
@@ -79,7 +86,7 @@ export default function ShiatsuPage() {
 							<div className="media-frame">
 								<Image
 									src={shiatsuImage}
-									alt="Massage Shiatsu à Maison Kailash"
+									alt="Massage Shiatsu à La Réunion"
 									priority
 									sizes="(min-width: 1024px) 48vw, 100vw"
 									className="aspect-4/3 w-full object-cover"
@@ -108,24 +115,43 @@ export default function ShiatsuPage() {
 							<div className="max-w-2xl">
 								<p className="eyebrow">Qu&apos;est-ce que c&apos;est ?</p>
 								<h2 className="heading-section mt-2 text-mk-green">
-									Une méthode japonaise par pression des doigts et des paumes
+									L’art japonais de la pression des doigts
 								</h2>
 								<div className="mt-8 space-y-5 text-base/7 text-muted">
 									<p>
-										Le Shiatsu signifie littéralement “pression des doigts”. Il
-										repose sur des pressions manuelles appliquées sur le corps
-										pour aider à éliminer la fatigue accumulée et maintenir le
-										corps en bonnes conditions.
+										Le mot Shiatsu signifie littéralement « pression des doigts
+										». Cette pratique traditionnelle japonaise s’appuie sur des
+										pressions exercées avec les pouces, les doigts et les
+										paumes, associées à des étirements doux et des mobilisations
+										adaptées.
 									</p>
 									<p>
-										Cette technique 100% manuelle n&apos;utilise ni instrument
-										ni huile. Elle permet de détecter les tensions et de les
-										relâcher avec une pression douce, profonde et adaptée.
+										Dans la vision énergétique orientale, le corps est parcouru
+										de lignes d’énergie appelées méridiens. Ces trajets relient
+										différents points du corps et sont traditionnellement
+										associés aux grands organes ainsi qu’aux systèmes corporels
+										: respiration, digestion, circulation, élimination, repos ou
+										équilibre émotionnel.
 									</p>
 									<p>
-										La sensibilité des doigts permet d&apos;ajuster la
-										profondeur et la durée de chaque pression afin de préserver
-										une sensation agréable tout au long du soin.
+										Le praticien exerce des pressions ciblées le long de ces
+										méridiens et sur certains points énergétiques. Cette approche
+										vise à favoriser une circulation plus harmonieuse de
+										l’énergie vitale, à libérer les zones où elle semble
+										stagnante et à accompagner le corps dans ses capacités
+										naturelles d’équilibre.
+									</p>
+									<p>
+										Le Shiatsu considère la personne dans sa globalité : le corps
+										physique, le souffle, l’état émotionnel, l’énergie et
+										l’intériorité sont intimement liés. Il ne se limite donc pas
+										à soulager une tension localisée ; il propose un moment de
+										rééquilibrage global, adapté à votre rythme et à vos besoins.
+									</p>
+									<p>
+										Entièrement manuel, le Shiatsu se pratique sans huile ni
+										appareil. Chaque pression est ajustée avec précision afin
+										d’offrir un soin profond, respectueux et agréable.
 									</p>
 								</div>
 							</div>
@@ -141,7 +167,7 @@ export default function ShiatsuPage() {
 							<div>
 								<p className="eyebrow">Déroulement</p>
 								<h2 className="heading-section mt-2 text-mk-green">
-									Un soin au sol ou sur table, sans huile
+									Un moment de présence, de détente et de rééquilibrage
 								</h2>
 							</div>
 						</Reveal>
@@ -149,18 +175,29 @@ export default function ShiatsuPage() {
 						<Reveal delay="sm">
 							<div className="space-y-5 text-base/7 text-muted">
 								<p>
-									Le Shiatsu se pratique sur vêtements, au sol ou sur table,
-									selon le besoin et le confort de la personne.
+									Le Shiatsu se reçoit habillé, avec des vêtements souples et
+									confortables. Selon les besoins, le soin peut être pratiqué au
+									sol, sur un futon traditionnel, ou sur table.
 								</p>
 								<p>
-									Le praticien travaille par pressions progressives des doigts
-									et des paumes, en suivant les zones de tension et l&apos;état
-									du moment.
+									La séance commence par un temps d’écoute permettant de
+									comprendre votre état du moment et votre intention : détente,
+									récupération, apaisement du stress, besoin de relâcher le corps
+									ou recherche d’un meilleur ancrage.
 								</p>
 								<p>
-									Ce soin est destiné à un large public : adultes, enfants,
-									personnes âgées, femmes enceintes ou sportifs, en adaptant
-									toujours l&apos;intensité et la posture.
+									Le praticien réalise ensuite des pressions lentes et
+									progressives sur les méridiens, les points énergétiques et les
+									zones de tension du corps. Des mobilisations articulaires, des
+									étirements doux et un travail sur la respiration peuvent
+									compléter la séance pour encourager la souplesse, le
+									relâchement et une présence plus profonde à soi.
+								</p>
+								<p>
+									Dans une atmosphère calme, confidentielle et bienveillante, le
+									Shiatsu devient un temps de pause régénérante. Vous êtes invité
+									à accueillir vos sensations, à déposer les tensions accumulées
+									et à retrouver votre équilibre intérieur.
 								</p>
 							</div>
 						</Reveal>
@@ -174,8 +211,12 @@ export default function ShiatsuPage() {
 						<div className="mx-auto max-w-2xl text-center">
 							<p className="eyebrow">Bienfaits</p>
 							<h2 className="heading-section mt-2 text-mk-green">
-								Un soin de détente et de maintien de l&apos;équilibre corporel
+								Retrouver un équilibre physique, énergétique et intérieur
 							</h2>
+							<p className="mt-6 text-lg/8 text-muted">
+								Le Shiatsu est une pratique de bien-être complémentaire qui peut
+								s’intégrer à une bonne hygiène de vie.
+							</p>
 						</div>
 					</Reveal>
 
@@ -183,7 +224,7 @@ export default function ShiatsuPage() {
 						{benefits.map((benefit, index) => (
 							<Reveal
 								key={benefit}
-								delay={index > 3 ? "lg" : index > 1 ? "md" : "sm"}
+								delay={index > 5 ? "lg" : index > 2 ? "md" : "sm"}
 							>
 								<div className="content-card flex h-full gap-4">
 									<CheckCircleIcon
@@ -197,6 +238,15 @@ export default function ShiatsuPage() {
 							</Reveal>
 						))}
 					</div>
+
+					<Reveal delay="sm">
+						<p className="mx-auto mt-10 max-w-3xl text-center text-sm/6 text-muted">
+							Le Shiatsu ne remplace pas un diagnostic, un traitement ou un
+							suivi médical. Il s’inscrit comme une approche complémentaire de
+							bien-être, centrée sur la prévention, l’écoute du corps et la
+							recherche d’un équilibre global.
+						</p>
+					</Reveal>
 				</div>
 			</section>
 
@@ -214,8 +264,6 @@ export default function ShiatsuPage() {
 				ctaLabel="Réservez ce soin"
 				background="background"
 			/>
-
-			<LocationCta />
 		</main>
 	)
 }
