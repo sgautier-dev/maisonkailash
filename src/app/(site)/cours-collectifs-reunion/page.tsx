@@ -133,7 +133,7 @@ const courses: readonly Course[] = [
 			},
 			{
 				label: "Horaire",
-				value: "Jeudi à 18h15",
+				value: "Jeudi à 18h",
 				icon: CalendarDaysIcon,
 			},
 			{
@@ -143,7 +143,7 @@ const courses: readonly Course[] = [
 			},
 			{
 				label: "Durée",
-				value: "1h15",
+				value: "45 min",
 				icon: ClockIcon,
 			},
 			{

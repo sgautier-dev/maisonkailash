@@ -57,7 +57,7 @@ export default function MeditationPage() {
 										Présence silencieuse
 									</span>
 									<span className="rounded-pill bg-mk-mint/40 px-4 py-2 text-sm font-semibold text-mk-green">
-										1h15
+										45 min
 									</span>
 									<span className="rounded-pill bg-mk-mint/40 px-4 py-2 text-sm font-semibold text-mk-green">
 										Sur réservation
@@ -155,7 +155,7 @@ export default function MeditationPage() {
 						<Reveal delay="sm">
 							<div className="space-y-5 text-base/7 text-muted">
 								<p>
-									La session dure environ une heure quinze. Des périodes de
+									La session dure environ quarante-cinq minutes. Des périodes de
 									méditation guidée ou silencieuse alternent avec des
 									explications et des temps d&apos;échange sur la pratique.
 								</p>
@@ -215,8 +215,8 @@ export default function MeditationPage() {
 				items={[
 					{
 						label: "Jeudi",
-						value: "18h15",
-						description: "Sessions bi-mensuelles, durée 1h15.",
+						value: "18h",
+						description: "Sessions bi-mensuelles, durée 45 minutes.",
 						icon: CalendarDaysIcon,
 					},
 					{
