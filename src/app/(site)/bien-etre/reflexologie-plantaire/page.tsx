@@ -4,8 +4,8 @@ import Link from "next/link"
 import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
 import Reveal from "@/components/Reveal"
-import reflexologyImage from "@/images/reflexologie-plantaire-kailash.jpg"
-import reflexologyDetailImage from "@/images/reflexologie-plantaire-kailash.png"
+import reflexologyImage from "@/images/reflexologie-plantaire-kailash2.jpg"
+import reflexologyDetailImage from "@/images/reflexologie-plantaire-kailash.jpg"
 import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {

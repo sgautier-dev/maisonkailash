@@ -6,7 +6,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline"
 import LocationCta from "@/components/LocationCta"
 import Reveal from "@/components/Reveal"
 import pochonsImage from "@/images/massage-ayurvedique-pochons-kailash.jpg"
-import pochonsDetailImage from "@/images/massage-ayurvedique-pochons-kailash2.jpg"
+import pochonsDetailImage from "@/images/massage-pochons-kailash3.jpg"
 import ServiceBookingSection from "@/components/ServiceBookingSection"
 
 export const metadata: Metadata = {

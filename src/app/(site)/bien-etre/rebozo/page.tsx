@@ -6,7 +6,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline"
 import Reveal from "@/components/Reveal"
 import ServiceBookingSection from "@/components/ServiceBookingSection"
 import rebozoImage from "@/images/background.jpeg"
-import rebozoDetailImage from "@/images/massages-duo-kailash.jpg"
+import rebozoDetailImage from "@/images/rebozo-kailash.jpg"
 
 export const metadata: Metadata = {
 	title: "Soin Rebozo à La Réunion",

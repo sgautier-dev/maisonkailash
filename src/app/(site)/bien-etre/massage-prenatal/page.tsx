@@ -5,7 +5,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline"
 
 import Reveal from "@/components/Reveal"
 import ServiceBookingSection from "@/components/ServiceBookingSection"
-import prenatalImage from "@/images/massage-prenatal-kailash.jpg"
+import prenatalImage from "@/images/massage-prenatal-kailash3.jpg"
 import prenatalDetailImage from "@/images/massage-prenatal-kailash2.jpg"
 
 export const metadata: Metadata = {
