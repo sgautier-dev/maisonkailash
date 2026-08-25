@@ -27,7 +27,7 @@ export default function FormNotification({
 	return (
 		<div
 			aria-live={variant === "error" ? "assertive" : "polite"}
-			className="pointer-events-none fixed inset-x-4 bottom-4 z-[100] flex justify-center sm:left-auto sm:right-6 sm:w-full sm:max-w-sm"
+			className="pointer-events-none fixed inset-x-4 bottom-4 z-100 flex justify-center sm:left-auto sm:right-6 sm:w-full sm:max-w-sm"
 		>
 			<Transition
 				show={show}
