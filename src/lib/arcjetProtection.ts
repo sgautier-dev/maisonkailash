@@ -9,28 +9,37 @@ type ArcjetProtectionResult =
 
 const arcjetKey = process.env.ARCJET_KEY
 
-const arcjetClient = arcjetKey
-	? arcjet({
-			key: arcjetKey,
-			rules: [
-				shield({
-					mode: "LIVE",
-				}),
-				detectBot({
-					mode: "LIVE",
-					allow: [],
-				}),
-				fixedWindow({
-					mode: "LIVE",
-					window: "10m",
-					max: 5,
-				}),
-			],
-		})
-	: null
+function createArcjetClient(window: "10m" | "1h", max: number) {
+	if (!arcjetKey) {
+		return null
+	}
 
-export async function checkArcjetProtection(): Promise<ArcjetProtectionResult> {
-	if (!arcjetClient) {
+	return arcjet({
+		key: arcjetKey,
+		rules: [
+			shield({
+				mode: "LIVE",
+			}),
+			detectBot({
+				mode: "LIVE",
+				allow: [],
+			}),
+			fixedWindow({
+				mode: "LIVE",
+				window,
+				max,
+			}),
+		],
+	})
+}
+
+const contactArcjetClient = createArcjetClient("10m", 5)
+const newsletterArcjetClient = createArcjetClient("1h", 5)
+
+async function checkProtection(
+	client: ReturnType<typeof createArcjetClient>,
+): Promise<ArcjetProtectionResult> {
+	if (!client) {
 		if (process.env.NODE_ENV !== "production") {
 			return { allowed: true }
 		}
@@ -44,7 +53,7 @@ export async function checkArcjetProtection(): Promise<ArcjetProtectionResult> {
 	}
 
 	const arcjetRequest = await request()
-	const decision = await arcjetClient.protect(arcjetRequest)
+	const decision = await client.protect(arcjetRequest)
 
 	if (!decision.isDenied()) {
 		return { allowed: true }
@@ -68,4 +77,12 @@ export async function checkArcjetProtection(): Promise<ArcjetProtectionResult> {
 		allowed: false,
 		reason: "denied",
 	}
+}
+
+export function checkArcjetProtection() {
+	return checkProtection(contactArcjetClient)
+}
+
+export function checkNewsletterProtection() {
+	return checkProtection(newsletterArcjetClient)
 }
