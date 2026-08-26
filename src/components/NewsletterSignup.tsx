@@ -63,7 +63,7 @@ export default function NewsletterSignup({
 
 				setNotification({
 					show: true,
-					title: "Vérifiez votre boîte mail",
+					title: "Inscription prise en compte",
 					message: data.message,
 					variant: "success",
 				})
