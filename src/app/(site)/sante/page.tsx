@@ -17,7 +17,7 @@ import integrativeHealthHeroImage from "@/images/sante-bol-tibetain-kailash.jpg"
 import shiatsuImage from "@/images/shiatsu-kailash.jpg"
 import shiatsuAltImage from "@/images/shiatsu-kailash2.jpg"
 import energeticCareImage from "@/images/soin-energetique-kailash.jpg"
-import healthClosingImage from "@/images/sante-lotus-kailash.jpg"
+import healthClosingImage from "@/images/sante-roses-kailash.jpg"
 import coachingHealthImage from "@/images/coaching-sante-fleurs-kailash.jpg"
 
 export const metadata: Metadata = {
