@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/20/solid"
 import Image from "next/image"
 import Link from "next/link"
+import type { Metadata } from "next"
 
 import Reveal from "@/components/Reveal"
 import foundersKailash from "@/images/maison-kailash.png"
@@ -14,6 +15,42 @@ import homeHero from "@/images/home-hero.jpeg"
 import seatedMassageImage from "@/images/massage-assis-kailash.jpg"
 import LocationCta from "@/components/LocationCta"
 import logoKailash from "@/images/logo-kailash.png"
+
+const title = "Maison Kailash | Santé & bien-être à La Réunion"
+const description =
+	"Maison Kailash est un espace de santé holistique et de bien-être à l'Éperon, Saint-Gilles les Hauts, à La Réunion."
+
+export const metadata: Metadata = {
+	title: {
+		absolute: title,
+	},
+	description,
+	alternates: {
+		canonical: "/",
+	},
+	openGraph: {
+		title,
+		description,
+		url: "/",
+		siteName: "Maison Kailash",
+		locale: "fr_FR",
+		type: "website",
+		images: [
+			{
+				url: "/opengraph-image.png",
+				width: 800,
+				height: 791,
+				alt: "Maison Kailash",
+			},
+		],
+	},
+	twitter: {
+		card: "summary",
+		title,
+		description,
+		images: ["/opengraph-image.png"],
+	},
+}
 
 const services = [
 	{
