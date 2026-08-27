@@ -5,6 +5,7 @@ import {
 	getRetreatNavigationLinks,
 	getWorkshopNavigationLinks,
 } from "@/sanity/queries"
+import { Analytics } from "@vercel/analytics/next"
 
 export default async function SiteLayout({
 	children,
@@ -26,6 +27,7 @@ export default async function SiteLayout({
 			<Header navigation={navigation} />
 			{children}
 			<Footer />
+			<Analytics />
 		</>
 	)
 }
