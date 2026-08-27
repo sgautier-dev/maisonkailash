@@ -16,11 +16,27 @@ const notoSans = Noto_Sans({
 	display: "swap",
 })
 
-const siteUrl =
-	process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.maisonkailash.com"
+const siteUrl = new URL(
+	process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.maisonkailash.com",
+)
+
+const isProductionSite = [
+	"maisonkailash.com",
+	"www.maisonkailash.com",
+].includes(siteUrl.hostname)
 
 export const metadata: Metadata = {
-	metadataBase: new URL(siteUrl),
+	metadataBase: siteUrl,
+	robots: isProductionSite
+		? {
+				index: true,
+				follow: true,
+			}
+		: {
+				index: false,
+				follow: false,
+				nocache: true,
+			},
 	title: {
 		default: "Maison Kailash | Santé & bien-être à La Réunion",
 		template: "%s | Maison Kailash",
